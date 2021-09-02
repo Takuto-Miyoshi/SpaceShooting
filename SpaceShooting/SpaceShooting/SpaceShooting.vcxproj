@@ -160,6 +160,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\main.cpp" />
+    <ClCompile Include="Scripts\Manager\InputInvoker.cpp" />
+    <ClCompile Include="Scripts\Manager\InputManager.cpp" />
+    <ClCompile Include="Scripts\Manager\SceneManager.cpp" />
+    <ClCompile Include="Scripts\Scene\InGameScene.cpp" />
+    <ClCompile Include="Scripts\Scene\TitleScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scripts\Definition\DxLibSetting.h" />
+    <ClInclude Include="Scripts\Definition\InputDefinition.h" />
+    <ClInclude Include="Scripts\Definition\SceneDefinition.h" />
+    <ClInclude Include="Scripts\Manager\InputInvoker.h" />
+    <ClInclude Include="Scripts\Manager\InputManager.h" />
+    <ClInclude Include="Scripts\Manager\SceneManager.h" />
+    <ClInclude Include="Scripts\Manager\TimeManager.h" />
+    <ClInclude Include="Scripts\Scene\InGameScene.h" />
+    <ClInclude Include="Scripts\Scene\SceneBase.h" />
+    <ClInclude Include="Scripts\Scene\TitleScene.h" />
+    <ClInclude Include="Scripts\Utility\Property.h" />
+    <ClInclude Include="Scripts\Utility\Singleton.h" />
+    <ClInclude Include="Scripts\Utility\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
