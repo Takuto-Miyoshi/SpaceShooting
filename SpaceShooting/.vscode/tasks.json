@@ -1,0 +1,57 @@
+{
+	"version":"2.0.0",
+	"tasks":[
+		{
+			"label": "debug build",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"/p:Configuration=Debug"
+			],
+			"group": "build",
+			"presentation": {	
+			},
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "debug rebuild",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"/p:Configuration=Debug",
+				"/t:clean",
+				"/t:rebuild"
+			],
+			"group": "build",
+			"presentation": {	
+			},
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "product build",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"/p:Configuration=Product"
+			],
+			"group": "build",
+			"presentation":{
+			},
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "product rebuild",
+			"type": "shell",
+			"command": "msbuild",
+			"args": [
+				"/p:Configuration=Product",
+				"/t:clean",
+				"/t:rebuild"
+			],
+			"group": "build",
+			"presentation":{
+			},
+			"problemMatcher": "$msCompile"
+		}
+	]
+}
