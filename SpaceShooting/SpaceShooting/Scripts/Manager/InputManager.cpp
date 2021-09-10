@@ -44,7 +44,7 @@ namespace shooting {
         auto previous = previousKeys.begin();
         std::for_each( keyStates.begin(), keyStates.end(), [&current, &previous]( auto& element ) {
             // 入力状態へ変換
-            element = ConvertToState( *current == DxLib::PRESSED, *previous );
+            element = ConvertToState( *current == dxlib::PRESSED, *previous );
 
             // 前回の状態を更新
             *previous = *current;
@@ -60,7 +60,7 @@ namespace shooting {
         auto numButton = MOUSE_INPUT_LEFT;  // 左ボタンから調べる
         std::for_each( mousebuttonStates.begin(), mousebuttonStates.end(), [&numButton, &previous]( auto& element ) {
             // 入力状態を取得
-            auto current = ( GetMouseInput() & numButton ) != DxLib::NOT_PRESSED;
+            auto current = ( GetMouseInput() & numButton ) != dxlib::NOT_PRESSED;
 
             // 入力状態へ変換
             element = ConvertToState( current, *previous );

@@ -25,26 +25,27 @@ namespace shooting::object::actor {
     }
 
     void Player::MoveLeft( InputState inputState ) {
-        if ( inputState != InputState::Hold ) return;
+        if ( inputState != InputState::Hold ) { return; }
         position.X -= status::player::SPEED * timeManager.lock()->DeltaTime;
     }
 
     void Player::MoveRight( InputState inputState ) {
-        if ( inputState != InputState::Hold ) return;
+        if ( inputState != InputState::Hold ) { return; }
         position.X += status::player::SPEED * timeManager.lock()->DeltaTime;
     }
 
     void Player::MoveUp( InputState inputState ) {
-        if ( inputState != InputState::Hold ) return;
+        if ( inputState != InputState::Hold ) { return; }
         position.Y -= status::player::SPEED * timeManager.lock()->DeltaTime;
     }
 
     void Player::MoveDown( InputState inputState ) {
-        if ( inputState != InputState::Hold ) return;
+        if ( inputState != InputState::Hold ) { return; }
         position.Y += status::player::SPEED * timeManager.lock()->DeltaTime;
     }
 
     void Player::LookToCursor() {
-        angle = static_cast<float>( position.Angle( InputManager::Instance().lock()->CursorPosition, true ) );
+        auto cursorPosition = InputManager::Instance().lock()->CursorPosition + camera.lock()->Position;
+        angle = static_cast<float>( position.Angle( cursorPosition, true ) );
     }
 }  // namespace shooting::object::actor
