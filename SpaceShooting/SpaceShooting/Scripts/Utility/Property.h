@@ -66,6 +66,22 @@ namespace shooting {
                 base -= value.base;
         }
 
+        auto operator+( T& right ) -> T { return base + right; }
+
+        auto operator-( T& right ) -> T { return base - right; }
+
+        auto operator*( T& right ) -> T { return base * right; }
+
+        auto operator/( T& right ) -> T { return base / right; }
+
+        auto operator+( Property<T>& right ) -> T { return base + right; }
+
+        auto operator-( Property<T>& right ) -> T { return base - right; }
+
+        auto operator*( Property<T>& right ) -> T { return base * right; }
+
+        auto operator/( Property<T>& right ) -> T { return base / right; }
+
         auto operator->() const -> T* { return &base; }
 
         auto operator&() const -> T* { return &base; }
@@ -91,6 +107,22 @@ namespace shooting {
         operator T() const {
             return ( get ) ? get() : base;
         }
+
+        auto operator+( T& right ) -> T { return base + right; }
+
+        auto operator-( T& right ) -> T { return base - right; }
+
+        auto operator*( T& right ) -> T { return base * right; }
+
+        auto operator/( T& right ) -> T { return base / right; }
+
+        auto operator+( ReadonlyProperty<T>& right ) -> T { return base + right; }
+
+        auto operator-( ReadonlyProperty<T>& right ) -> T { return base - right; }
+
+        auto operator*( ReadonlyProperty<T>& right ) -> T { return base * right; }
+
+        auto operator/( ReadonlyProperty<T>& right ) -> T { return base / right; }
 
         auto operator->() const -> T* { return &base; }
 

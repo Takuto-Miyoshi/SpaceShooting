@@ -3,7 +3,9 @@
 #include <algorithm>
 
 #include "../Manager/InputInvoker.h"
+#include "../Manager/InputManager.h"
 #include "../Object/Actor/Player.h"
+#include "../Object/Camera.h"
 #include "DxLib.h"
 
 namespace shooting::scene {
@@ -23,6 +25,9 @@ namespace shooting::scene {
             element->ReserveStart();
             element->Update();
         } );
+
+        Camera::Instance().lock()->Update();
+        Camera::Instance().lock()->OffsetBy( InputManager::Instance().lock()->CursorPosition );
     }
 
     void InGameScene::Draw() {

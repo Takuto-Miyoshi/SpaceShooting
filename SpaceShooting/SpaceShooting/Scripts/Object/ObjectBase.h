@@ -7,6 +7,7 @@
 
 #include "../Manager/TimeManager.h"
 #include "../Utility/Vector.h"
+#include "Camera.h"
 #include "DxLib.h"
 
 namespace shooting::object {
@@ -27,8 +28,8 @@ namespace shooting::object {
         virtual void Update() = 0;
 
         virtual void Draw() {
-            DrawRotaGraphFast( static_cast<int32_t>( position.X ),
-                               static_cast<int32_t>( position.Y ),
+            DrawRotaGraphFast( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
+                               static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
                                1.0f, angle, graphicHandle, TRUE );
         }
 
@@ -39,6 +40,7 @@ namespace shooting::object {
 
        protected:
         std::weak_ptr<TimeManager> timeManager { TimeManager::Instance() };
+        std::weak_ptr<Camera> camera { Camera::Instance() };
 
         bool calledOnce { false };
         int32_t graphicHandle { 0 };
