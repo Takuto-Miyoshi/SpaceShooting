@@ -20,6 +20,8 @@ namespace shooting {
     }
 
     void SceneManager::Update() {
+        timeManager.lock()->Update();
+
         inputManager.lock()->Update();
 
         currentScene->Update();

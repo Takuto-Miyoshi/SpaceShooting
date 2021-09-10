@@ -6,6 +6,7 @@
 
 #include "Definition/DxLibSetting.h"
 #include "DxLib.h"
+#include "Manager/InputInvoker.h"
 #include "Manager/SceneManager.h"
 
 #define new ::new ( _NORMAL_BLOCK, __FILE__, __LINE__ )

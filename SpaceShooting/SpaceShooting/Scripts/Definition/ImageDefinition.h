@@ -11,7 +11,7 @@ namespace shooting::image {
         std::string name;  // 画像の登録名
     };
 
-    const ImageData player { "Images/Object/Actor/Player.h", "Player" };
+    const ImageData player { "Images/Object/Actor/Player.png", "Player" };
 }  // namespace shooting::image
 
 #endif  // !IMAGE_DEFINITION_H
