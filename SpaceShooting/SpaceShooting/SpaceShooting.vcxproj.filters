@@ -17,6 +17,9 @@
     <ClCompile Include="Scripts\Scene\InGameScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\Player.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
@@ -33,6 +36,12 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{af7ff7a1-fa2e-4fa6-8c79-df7f3ea9c13d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{9afe18c4-273f-4d30-82d7-0430a390f687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{e41e3efe-1fc3-4935-916f-be7a09b560ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +82,18 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Definition\DxLibSetting.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\Player.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\ImageDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\ObjectBase.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\StatusDefinition.h">
       <Filter>Definition</Filter>
     </ClInclude>
   </ItemGroup>

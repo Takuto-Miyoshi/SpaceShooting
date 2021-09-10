@@ -7,6 +7,8 @@
 
 #include "Property.h"
 
+constexpr double PI { 3.14159 };
+
 namespace shooting {
     /// @brief 2次元ベクトル
     struct Vector2 {
@@ -34,9 +36,11 @@ namespace shooting {
 
         /// @brief ターゲットへの向きを取得 @n 右が0のラジアン
         /// @param target ターゲットの位置
-        [[nodiscard]] auto Angle( Vector2 target ) const -> double {
+        /// @param toUp 上を基準にするか
+        [[nodiscard]] auto Angle( Vector2 target, bool toUp = false ) const -> double {
             auto vector = VectorTo( target );
-            return atan2( vector.x, vector.y );
+            auto radian = atan2( vector.y, vector.x );
+            return ( toUp ) ? ( radian + PI / 2 ) : radian;
         }
 
        public:
