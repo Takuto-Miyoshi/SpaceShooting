@@ -15,17 +15,12 @@ namespace shooting {
 
        public:
         /// @brief インスタンスを取得 @n なければ作成
-        [[nodiscard]] static auto Instance() -> std::weak_ptr<T> {
+        [[nodiscard]] static auto Instance() -> std::shared_ptr<T>& {
             if ( !instance ) {
                 instance = std::make_shared<T>();
             }
 
             return instance;
-        }
-
-        /// @brief インスタンスを解放
-        static void Finalize() {
-            instance.reset();
         }
 
        private:

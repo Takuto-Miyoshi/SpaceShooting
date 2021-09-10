@@ -3,18 +3,9 @@
 #include <algorithm>
 #include <array>
 
-#include "../Definition/InputDefinition.h"
 #include "DxLib.h"
 
 namespace shooting {
-    void InputManager::Initialize() {
-        previousKeys = std::vector<bool>( NUMBER_OF_KEY, false );
-        keyStates = std::vector<InputState>( NUMBER_OF_KEY, InputState::None );
-
-        previousMousebuttons = std::vector<bool>( NUMBER_OF_MOUSEBUTTON, false );
-        mousebuttonStates = std::vector<InputState>( NUMBER_OF_MOUSEBUTTON, InputState::None );
-    }
-
     void InputManager::Update() {
         UpdateKeyState();
 
@@ -27,7 +18,7 @@ namespace shooting {
         cursorPosition.Set( x, y );
     }
 
-    constexpr auto InputManager::ConvertToState( bool current, bool previous ) -> InputState {
+    constexpr auto InputManager::ConvertToState( const bool& current, const bool& previous ) -> InputState {
         if ( current ) {
             return ( previous ) ? InputState::Hold : InputState::Pressed;
         }
@@ -42,9 +33,9 @@ namespace shooting {
 
         auto current = currentKeys.begin();
         auto previous = previousKeys.begin();
-        std::for_each( keyStates.begin(), keyStates.end(), [&current, &previous]( auto& element ) {
+        for ( auto& key : keyStates ) {
             // 入力状態へ変換
-            element = ConvertToState( *current == DxLib::PRESSED, *previous );
+            key = ConvertToState( *current == dxlib::PRESSED, *previous );
 
             // 前回の状態を更新
             *previous = *current;
@@ -52,24 +43,24 @@ namespace shooting {
             // 次の要素へ
             current++;
             previous++;
-        } );
+        }
     }
 
     void InputManager::UpdateMousebuttonState() {
         auto previous = previousMousebuttons.begin();
         auto numButton = MOUSE_INPUT_LEFT;  // 左ボタンから調べる
-        std::for_each( mousebuttonStates.begin(), mousebuttonStates.end(), [&numButton, &previous]( auto& element ) {
+        for ( auto& mousebutton : mousebuttonStates ) {
             // 入力状態を取得
-            auto current = ( GetMouseInput() & numButton ) != DxLib::NOT_PRESSED;
+            auto current = ( GetMouseInput() & numButton ) != dxlib::NOT_PRESSED;
 
             // 入力状態へ変換
-            element = ConvertToState( current, *previous );
+            mousebutton = ConvertToState( current, *previous );
 
             *previous = current;
 
             // 次の要素へ
             previous++;
             numButton = numButton << 1;
-        } );
+        }
     }
 }  // namespace shooting

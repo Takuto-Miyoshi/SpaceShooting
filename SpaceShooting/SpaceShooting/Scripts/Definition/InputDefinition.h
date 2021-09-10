@@ -26,13 +26,17 @@ namespace shooting {
     /// @brief マウスボタンホイール
     constexpr uint32_t MOUSEBUTTON_WHEEL { 2 };
 
+    namespace input {
+        constexpr uint32_t FUNCTION_CAPACITY { 10 };
+    }
+
     /// @brief DxLib用の定義
-    namespace DxLib {
+    namespace dxlib {
         /// @brief 押している状態
         constexpr int32_t PRESSED { 1 };
         /// @brief 押していない状態
         constexpr int32_t NOT_PRESSED { 0 };
-    }  // namespace DxLib
+    }  // namespace dxlib
 }  // namespace shooting
 
 #endif  // !INPUT_DEFINITION_H

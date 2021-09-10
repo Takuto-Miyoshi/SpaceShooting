@@ -2,24 +2,22 @@
 
 #include <memory>
 
+#include "../Manager/ImageManager.h"
 #include "../Scene/InGameScene.h"
 #include "../Scene/TitleScene.h"
 
 namespace shooting {
     void SceneManager::Initialize() {
-        inputManager = InputManager::Instance();
-        inputManager.lock()->Initialize();
-
-        inputInvoker = InputInvoker::Instance();
         inputInvoker.lock()->Initialize();
-
-        timeManager = TimeManager::Instance();
         timeManager.lock()->Initialize();
+        ImageManager::Instance()->Initialize();
 
         ChangeScene( scene::SceneDefs::Title );
     }
 
     void SceneManager::Update() {
+        timeManager.lock()->Update();
+
         inputManager.lock()->Update();
 
         currentScene->Update();
@@ -31,16 +29,10 @@ namespace shooting {
         if ( currentScene->Change ) { ChangeScene( currentScene->NextScene ); }
     }
 
-    void SceneManager::Finalize() {
-        timeManager.lock()->Finalize();
-        inputInvoker.lock()->Finalize();
-        inputManager.lock()->Finalize();
-        Singleton::Finalize();
-    }
-
-    void SceneManager::ChangeScene( scene::SceneDefs next ) {
+    void SceneManager::ChangeScene( const scene::SceneDefs& next ) {
         inputInvoker.lock()->Reset();
         if ( currentScene ) { currentScene->Finalize(); }
+        ImageManager::Instance().reset();
 
         switch ( next ) {
             case scene::SceneDefs::Title:

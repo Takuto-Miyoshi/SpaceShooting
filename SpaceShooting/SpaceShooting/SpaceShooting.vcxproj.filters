@@ -2,42 +2,118 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Scripts\main.cpp" />
-    <ClCompile Include="Scripts\Manager\InputManager.cpp">
+    <ClCompile Include="Scripts\Manager\InputInvoker.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Manager\InputInvoker.cpp">
+    <ClCompile Include="Scripts\Manager\InputManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Manager\SceneManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Scene\TitleScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Scripts\Scene\InGameScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Scene\TitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\Player.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\ObjectBase.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Bullet\BulletBase.cpp">
+      <Filter>Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\ObjectManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\BulletFactory.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Bullet\StandardBullet.cpp">
+      <Filter>Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\StandardEnemy.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\GameLoop.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Definition\StatusDefinition.cpp">
+      <Filter>Definition</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\ExplodeEnemy.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Camera.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\EnemyManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Weapon\WeaponBase.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Weapon\StandardRifle.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{fbaa1b25-aae7-455d-918b-176c7c94aed6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{ec26879e-2f04-48ca-bd34-8a4c1f28b988}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Definition">
-      <UniqueIdentifier>{984d8ab1-b4b6-472d-b6a6-f8466676aede}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{af7ff7a1-fa2e-4fa6-8c79-df7f3ea9c13d}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="Scripts\Object\Camera.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\ObjectBase.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\DxLibSetting.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\ImageDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\InputDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\SceneDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\StatusDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\ImageManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\InputInvoker.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\InputManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\SceneManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Manager\TimeManager.h">
       <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Scene\InGameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Scene\TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Scene\SceneBase.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\Player.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utility\Vector.h">
+      <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Utility\Property.h">
       <Filter>Utility</Filter>
@@ -45,39 +121,67 @@
     <ClInclude Include="Scripts\Utility\Singleton.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Manager\InputManager.h">
+    <ClInclude Include="Scripts\Object\Bullet\BulletBase.h">
+      <Filter>Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Bullet\StandardBullet.h">
+      <Filter>Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\EnemyBase.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\ObjectManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Definition\InputDefinition.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Utility\Vector.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Manager\InputInvoker.h">
+    <ClInclude Include="Scripts\Manager\BulletFactory.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Manager\SceneManager.h">
+    <ClInclude Include="Scripts\Object\Actor\StandardEnemy.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\GameLoop.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Scene\SceneBase.h">
-      <Filter>Scene</Filter>
+    <ClInclude Include="Scripts\Object\Actor\ExplodeEnemy.h">
+      <Filter>Object\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Scene\TitleScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Definition\SceneDefinition.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Scene\InGameScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Definition\DxLibSetting.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Manager\ImageManager.h">
+    <ClInclude Include="Scripts\Manager\EnemyManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Definition\ImageDefinition.h" />
+    <ClInclude Include="Scripts\Weapon\WeaponBase.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Weapon\StandardRifle.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{694a2c80-7df4-4095-b834-b1910bed70d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{5d5ec427-f19d-4d2e-92a1-a2b783905b98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Bullet">
+      <UniqueIdentifier>{9bdc4dea-9925-4d03-bdfe-ff23d8bc3036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{5925868a-8e16-4869-bd6b-fe8be514a888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{2ccd4153-d895-4318-abcb-3abd092e75f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{e7369085-854a-484a-8313-78a3254ec944}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Definition">
+      <UniqueIdentifier>{a953619b-573c-494d-a3f0-06547f863cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Weapon">
+      <UniqueIdentifier>{31260d0f-84e7-44eb-96da-61d3185a81fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
