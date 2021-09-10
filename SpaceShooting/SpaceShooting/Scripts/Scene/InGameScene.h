@@ -3,6 +3,10 @@
 #ifndef IN_GAME_SCENE_H
 #define IN_GAME_SCENE_H
 
+#include <vector>
+
+#include "../Manager/BulletManager.h"
+#include "../Object/ObjectBase.h"
 #include "SceneBase.h"
 
 namespace shooting::scene {
@@ -10,7 +14,7 @@ namespace shooting::scene {
        public:
         InGameScene() = default;
 
-        ~InGameScene() = default;
+        ~InGameScene() override = default;
 
        public:
         void Start() override;
@@ -20,6 +24,10 @@ namespace shooting::scene {
         void Draw() override;
 
         void Finalize() override;
+
+       private:
+        std::weak_ptr<object::BulletManager> bulletManager { object::BulletManager::Instance() };
+        std::vector<std::unique_ptr<object::ObjectBase>> objectList {};
     };
 }  // namespace shooting::scene
 

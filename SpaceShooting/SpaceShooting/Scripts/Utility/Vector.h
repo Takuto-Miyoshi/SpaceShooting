@@ -7,6 +7,8 @@
 
 #include "Property.h"
 
+constexpr double PI { 3.14159 };
+
 namespace shooting {
     /// @brief 2次元ベクトル
     struct Vector2 {
@@ -26,7 +28,7 @@ namespace shooting {
         [[nodiscard]] auto Length() const -> double { return sqrt( x * x + y * y ); }
 
         /// @brief 正規化したベクトルを取得
-        [[nodiscard]] auto Normalized() const -> Vector2 { return Vector2( x / Length(), y / Length() ); }
+        [[nodiscard]] auto Normalized() const -> Vector2 { return Vector2 { x / Length(), y / Length() }; }
 
         /// @brief ターゲットへの2点間のベクトルを取得
         /// @param target ターゲットの位置
@@ -34,10 +36,15 @@ namespace shooting {
 
         /// @brief ターゲットへの向きを取得 @n 右が0のラジアン
         /// @param target ターゲットの位置
-        [[nodiscard]] auto Angle( Vector2 target ) const -> double {
+        /// @param toUp 上を基準にするか
+        [[nodiscard]] auto Angle( Vector2 target, bool toUp = false ) const -> double {
             auto vector = VectorTo( target );
-            return atan2( vector.x, vector.y );
+            auto radian = atan2( vector.y, vector.x );
+            return ( toUp ) ? ( radian + PI / 2 ) : radian;
         }
+
+        /// @brief ラジアンを単位ベクトルに変換
+        [[nodiscard]] static auto AngleToVector( float angle ) -> Vector2 { return Vector2 { sinf( angle ), -cosf( angle ) }.Normalized(); }
 
        public:
         auto operator+( Vector2 vector ) const -> Vector2 { return Vector2( x + vector.x, y + vector.y ); }

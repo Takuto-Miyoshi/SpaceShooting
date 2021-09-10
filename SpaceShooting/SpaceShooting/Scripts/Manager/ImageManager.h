@@ -28,13 +28,17 @@ namespace shooting {
        public:
         /// @brief 読み込んだ画像を取得
         /// @param name 登録名
-        auto Image( std::string name ) const -> int32_t {
+        [[nodiscard]] auto Image( std::string name ) const -> int32_t {
             auto result = std::find_if( imageDataList.begin(), imageDataList.end(), [&name]( auto element ) {
                 return element.name == name;
             } );
 
             // 最後の要素を警戒
-            return ( result->name != name ) ? -1 : result->graphicHandle;
+            if ( result == imageDataList.end() ) {
+                return ( result->name == name ) ? result->graphicHandle : -1;
+            }
+
+            return result->graphicHandle;
         }
 
         /// @brief 画像の読み込み

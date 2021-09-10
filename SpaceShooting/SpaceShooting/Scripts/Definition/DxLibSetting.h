@@ -6,7 +6,7 @@
 #include <cstdint>
 #include <string>
 
-namespace shooting::DxLib {
+namespace shooting::dxlib {
     constexpr int32_t FAIL { -1 };
 
     constexpr int32_t SCREEN_SIZE_X { 1280 };
@@ -14,6 +14,6 @@ namespace shooting::DxLib {
     constexpr int32_t COLOR_BIT_DEPTH { 32 };
 
     const std::string WINDOW_NAME { "Shooting" };
-}  // namespace shooting::DxLib
+}  // namespace shooting::dxlib
 
 #endif  // !DX_LIB_SETTING_H
