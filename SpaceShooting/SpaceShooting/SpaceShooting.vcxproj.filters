@@ -75,5 +75,9 @@
     <ClInclude Include="Scripts\Definition\DxLibSetting.h">
       <Filter>Definition</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Manager\ImageManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\ImageDefinition.h" />
   </ItemGroup>
 </Project>

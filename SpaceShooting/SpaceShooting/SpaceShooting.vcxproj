@@ -171,8 +171,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Definition\DxLibSetting.h" />
+    <ClInclude Include="Scripts\Definition\ImageDefinition.h" />
     <ClInclude Include="Scripts\Definition\InputDefinition.h" />
     <ClInclude Include="Scripts\Definition\SceneDefinition.h" />
+    <ClInclude Include="Scripts\Manager\ImageManager.h" />
     <ClInclude Include="Scripts\Manager\InputInvoker.h" />
     <ClInclude Include="Scripts\Manager\InputManager.h" />
     <ClInclude Include="Scripts\Manager\SceneManager.h" />
