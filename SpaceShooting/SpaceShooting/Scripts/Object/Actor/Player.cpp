@@ -8,7 +8,7 @@
 #include "../../Manager/InputManager.h"
 #include "../ObjectBase.h"
 
-namespace shooting::object::actor {
+namespace shooting::object {
     void Player::Update() {
         LookToCursor();
     }
@@ -59,4 +59,4 @@ namespace shooting::object::actor {
         auto cursorPosition = InputManager::Instance().lock()->CursorPosition + camera.lock()->Position;
         angle = static_cast<float>( position.Angle( cursorPosition, true ) );
     }
-}  // namespace shooting::object::actor
+}  // namespace shooting::object

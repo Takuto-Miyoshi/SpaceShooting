@@ -88,6 +88,7 @@
     <ClInclude Include="Scripts\Manager\BulletManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\EnemyBase.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />

@@ -19,7 +19,7 @@ namespace shooting::scene {
 
         // オブジェクト
         objectList = std::vector<std::unique_ptr<object::ObjectBase>> {};
-        objectList.push_back( std::make_unique<object::actor::Player>() );
+        objectList.push_back( std::make_unique<object::Player>() );
     }
 
     void InGameScene::Update() {

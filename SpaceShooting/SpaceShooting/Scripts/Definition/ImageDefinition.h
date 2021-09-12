@@ -12,6 +12,9 @@ namespace shooting::image {
     };
 
     const ImageData player { "Images/Object/Actor/Player.png", "Player" };
+
+    const ImageData enemy { "Images/Object/Actor/Enemy.png", "Enemy" };
+
     const ImageData standardBullet { "Images/Object/Bullet/StandardBullet.png", "StandardBullet" };
 }  // namespace shooting::image
 

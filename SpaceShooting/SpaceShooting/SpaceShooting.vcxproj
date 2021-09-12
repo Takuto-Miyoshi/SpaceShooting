@@ -182,6 +182,7 @@
     <ClInclude Include="Scripts\Manager\InputManager.h" />
     <ClInclude Include="Scripts\Manager\SceneManager.h" />
     <ClInclude Include="Scripts\Manager\TimeManager.h" />
+    <ClInclude Include="Scripts\Object\Actor\EnemyBase.h" />
     <ClInclude Include="Scripts\Object\Actor\Player.h" />
     <ClInclude Include="Scripts\Object\Bullet\BulletBase.h" />
     <ClInclude Include="Scripts\Object\Bullet\StandardBullet.h" />

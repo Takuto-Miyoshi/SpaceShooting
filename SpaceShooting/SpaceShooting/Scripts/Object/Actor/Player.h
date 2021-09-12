@@ -6,7 +6,7 @@
 #include "../../Definition/InputDefinition.h"
 #include "../ObjectBase.h"
 
-namespace shooting::object::actor {
+namespace shooting::object {
     class Player : public ObjectBase {
        public:
         Player() = default;
@@ -36,6 +36,6 @@ namespace shooting::object::actor {
 
        private:
     };
-}  // namespace shooting::object::actor
+}  // namespace shooting::object
 
 #endif  // !PLAYER_H
