@@ -6,7 +6,7 @@
 #include "../../Definition/InputDefinition.h"
 #include "../ObjectBase.h"
 
-namespace shooting::object::actor {
+namespace shooting::object {
     class Player : public ObjectBase {
        public:
         Player() = default;
@@ -16,10 +16,12 @@ namespace shooting::object::actor {
        public:
         void Update() override;
 
-        void Finalize() override;
+        auto Collide( const ObjectBase& hit ) -> bool override;
 
        protected:
         void Start() override;
+
+        void OutOfValidArea() override;
 
        private:
         void MoveLeft( InputState inputState );
@@ -35,7 +37,8 @@ namespace shooting::object::actor {
         void LookToCursor();
 
        private:
+        Vector2 previousPosition { 0, 0 };
     };
-}  // namespace shooting::object::actor
+}  // namespace shooting::object
 
 #endif  // !PLAYER_H

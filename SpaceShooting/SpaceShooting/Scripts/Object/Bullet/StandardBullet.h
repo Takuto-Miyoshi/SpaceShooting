@@ -13,16 +13,9 @@ namespace shooting::object {
         ~StandardBullet() override = default;
 
        public:
-        void Start() override {
-            speed = status::standardBullet::SPEED;
-            graphicHandle = ImageManager::Instance().lock()->Image( image::standardBullet.name );
+        void Start() override;
 
-            update = { [this] {
-                position += Vector2::AngleToVector( angle ) * speed * timeManager.lock()->DeltaTime;
-            } };
-        }
-
-       private:
+        void Update() override;
     };
 }  // namespace shooting::object
 

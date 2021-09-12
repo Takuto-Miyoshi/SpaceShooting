@@ -3,10 +3,10 @@
 #ifndef IN_GAME_SCENE_H
 #define IN_GAME_SCENE_H
 
-#include <vector>
+#include <memory>
 
-#include "../Manager/BulletManager.h"
-#include "../Object/ObjectBase.h"
+#include "../Manager/EnemyManager.h"
+#include "../Manager/ObjectManager.h"
 #include "SceneBase.h"
 
 namespace shooting::scene {
@@ -26,8 +26,8 @@ namespace shooting::scene {
         void Finalize() override;
 
        private:
-        std::weak_ptr<object::BulletManager> bulletManager { object::BulletManager::Instance() };
-        std::vector<std::unique_ptr<object::ObjectBase>> objectList {};
+        std::weak_ptr<object::ObjectManager> objectManager { object::ObjectManager::Instance() };
+        object::EnemyManager enemyManager { object::EnemyManager() };
     };
 }  // namespace shooting::scene
 

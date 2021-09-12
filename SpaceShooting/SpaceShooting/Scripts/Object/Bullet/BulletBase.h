@@ -17,46 +17,15 @@ namespace shooting::object {
         ~BulletBase() override = default;
 
        public:
-        static void LoadBulletData() {
-            // 弾画像を読み込んでおく
-            ImageManager::Instance().lock()->LoadGraphHandle( image::standardBullet );
-        }
+        /// @brief 弾データの読み込み
+        static void LoadBulletData();
 
-        void Update() override {
-            if ( !isActive ) { return; }
+        void Update() override;
 
-            update();
-        }
-
-        void Draw() override {
-            if ( !isActive ) { return; }
-
-            ObjectBase::Draw();
-        }
-
-        void Start() override {
-        }
-
-        void Finalize() override {
-        }
-
-        /// @brief 弾をアクティブにする
-        /// @param resetPosition アクティブにした時の位置
-        /// @param resetAngle アクティブにした時の角度
-        void Activate( Vector2 resetPosition, float resetAngle ) {
-            position = resetPosition;
-            angle = resetAngle;
-            isActive = true;
-        }
-
-       public:
-        /// @brief 弾が有効かどうか
-        ReadonlyProperty<bool> IsActive { isActive };
+        auto Collide( const ObjectBase& hit ) -> bool override;
 
        protected:
-        std::function<void()> update { [] {} };
-
-        bool isActive { false };  // 弾が有効かどうか
+        double lifeTime { 0.0 };  // 生成されてからの時間
         double speed { 0.0 };  // 弾の移動速度
     };
 }  // namespace shooting::object

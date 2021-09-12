@@ -5,13 +5,12 @@
 
 #include "../Scene/SceneBase.h"
 #include "../Utility/Property.h"
-#include "../Utility/Singleton.h"
 #include "InputInvoker.h"
 #include "InputManager.h"
 #include "TimeManager.h"
 
 namespace shooting {
-    class SceneManager : public Singleton<SceneManager> {
+    class SceneManager {
        public:
         SceneManager() = default;
 
@@ -22,19 +21,17 @@ namespace shooting {
 
         void Update();
 
-        void Finalize();
-
        private:
-        void ChangeScene( scene::SceneDefs next );
+        void ChangeScene( const scene::SceneDefs& next );
 
        public:
         /// @brief ゲームを終了する
         ReadonlyProperty<bool> EndGame { endGame };
 
        private:
-        std::weak_ptr<InputManager> inputManager;
-        std::weak_ptr<InputInvoker> inputInvoker;
-        std::weak_ptr<TimeManager> timeManager;
+        std::weak_ptr<InputManager> inputManager { InputManager::Instance() };
+        std::weak_ptr<InputInvoker> inputInvoker { InputInvoker::Instance() };
+        std::weak_ptr<TimeManager> timeManager { TimeManager::Instance() };
 
         std::unique_ptr<scene::SceneBase> currentScene;  // 現在取り扱っているシーン
 

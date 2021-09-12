@@ -20,6 +20,42 @@
     <ClCompile Include="Scripts\Object\Actor\Player.cpp">
       <Filter>Object\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Object\ObjectBase.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Bullet\BulletBase.cpp">
+      <Filter>Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\ObjectManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\BulletFactory.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Bullet\StandardBullet.cpp">
+      <Filter>Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\StandardEnemy.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\GameLoop.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Definition\StatusDefinition.cpp">
+      <Filter>Definition</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\ExplodeEnemy.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Camera.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\EnemyManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -85,7 +121,25 @@
     <ClInclude Include="Scripts\Object\Bullet\StandardBullet.h">
       <Filter>Object\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Manager\BulletManager.h">
+    <ClInclude Include="Scripts\Object\Actor\EnemyBase.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\ObjectManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\BulletFactory.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\StandardEnemy.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\GameLoop.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\ExplodeEnemy.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\EnemyManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
