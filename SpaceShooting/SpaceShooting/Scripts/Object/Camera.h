@@ -33,7 +33,7 @@ namespace shooting {
             auto length = vector.Length();
 
             if ( length == 0 ) { return; }  // バグ回避
-            if ( length >= LENGTH_LIMIT ) length = LENGTH_LIMIT;
+            if ( length >= LENGTH_LIMIT ) { length = LENGTH_LIMIT; }
 
             length /= SENSITIVITY;
 

@@ -15,6 +15,8 @@ namespace shooting::scene {
             if ( inputState == InputState::Pressed ) { ChangeScene( SceneDefs::Title ); }
         } );
 
+        bulletManager.lock()->Initialize();
+
         // オブジェクト
         objectList = std::vector<std::unique_ptr<object::ObjectBase>> {};
         objectList.push_back( std::make_unique<object::actor::Player>() );
@@ -28,9 +30,13 @@ namespace shooting::scene {
 
         Camera::Instance().lock()->Update();
         Camera::Instance().lock()->OffsetBy( InputManager::Instance().lock()->CursorPosition );
+
+        bulletManager.lock()->Update();
     }
 
     void InGameScene::Draw() {
+        bulletManager.lock()->Draw();
+
         std::for_each( objectList.begin(), objectList.end(), []( auto& element ) {
             element->Draw();
         } );

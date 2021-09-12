@@ -3,12 +3,18 @@
 #ifndef STATUS_DEFINITION_H
 #define STATUS_DEFINITION_H
 
-#include <cstdint>
+namespace shooting::object::status {
+    enum class BulletType {
+        StandardBullet,
+    };
 
-namespace shooting::object::actor::status {
     namespace player {
-        double SPEED = 120.0;
+        constexpr double SPEED = 120.0;
     }
-}  // namespace shooting::object::actor::status
+
+    namespace standardBullet {
+        constexpr double SPEED = 150.0;
+    }
+}  // namespace shooting::object::status
 
 #endif  // !STATUS_DEFINITION_H

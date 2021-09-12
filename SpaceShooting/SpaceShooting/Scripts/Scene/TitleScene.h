@@ -10,7 +10,7 @@ namespace shooting::scene {
        public:
         TitleScene() = default;
 
-        ~TitleScene() = default;
+        ~TitleScene() override = default;
 
        public:
         void Start() override;

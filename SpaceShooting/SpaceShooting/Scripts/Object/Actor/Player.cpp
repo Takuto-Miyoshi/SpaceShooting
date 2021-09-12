@@ -2,6 +2,7 @@
 
 #include "../../Definition/ImageDefinition.h"
 #include "../../Definition/StatusDefinition.h"
+#include "../../Manager/ImageManager.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
 #include "../ObjectBase.h"
@@ -15,13 +16,16 @@ namespace shooting::object::actor {
     }
 
     void Player::Start() {
-        graphicHandle = LoadGraph( image::PLAYER_PATH.c_str() );
+        ImageManager::Instance().lock()->LoadGraphHandle( image::player );
+        graphicHandle = ImageManager::Instance().lock()->Image( image::player.name );
 
         // キー登録
         InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_A, [this]( InputState inputState ) { MoveLeft( inputState ); } );
         InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_D, [this]( InputState inputState ) { MoveRight( inputState ); } );
         InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_W, [this]( InputState inputState ) { MoveUp( inputState ); } );
         InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_S, [this]( InputState inputState ) { MoveDown( inputState ); } );
+
+        camera.lock()->CenterTarget = std::make_shared<Vector2>( position );
     }
 
     void Player::MoveLeft( InputState inputState ) {

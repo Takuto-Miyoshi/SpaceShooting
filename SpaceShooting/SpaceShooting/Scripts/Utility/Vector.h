@@ -28,7 +28,7 @@ namespace shooting {
         [[nodiscard]] auto Length() const -> double { return sqrt( x * x + y * y ); }
 
         /// @brief 正規化したベクトルを取得
-        [[nodiscard]] auto Normalized() const -> Vector2 { return Vector2( x / Length(), y / Length() ); }
+        [[nodiscard]] auto Normalized() const -> Vector2 { return Vector2 { x / Length(), y / Length() }; }
 
         /// @brief ターゲットへの2点間のベクトルを取得
         /// @param target ターゲットの位置
@@ -42,6 +42,9 @@ namespace shooting {
             auto radian = atan2( vector.y, vector.x );
             return ( toUp ) ? ( radian + PI / 2 ) : radian;
         }
+
+        /// @brief ラジアンを単位ベクトルに変換
+        [[nodiscard]] static auto AngleToVector( float angle ) -> Vector2 { return Vector2 { sinf( angle ), -cosf( angle ) }.Normalized(); }
 
        public:
         auto operator+( Vector2 vector ) const -> Vector2 { return Vector2( x + vector.x, y + vector.y ); }

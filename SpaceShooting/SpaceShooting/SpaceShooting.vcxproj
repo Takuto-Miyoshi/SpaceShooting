@@ -175,6 +175,7 @@
     <ClInclude Include="Scripts\Definition\ImageDefinition.h" />
     <ClInclude Include="Scripts\Definition\InputDefinition.h" />
     <ClInclude Include="Scripts\Definition\SceneDefinition.h" />
+    <ClInclude Include="Scripts\Manager\BulletManager.h" />
     <ClInclude Include="Scripts\Manager\ImageManager.h" />
     <ClInclude Include="Scripts\Definition\StatusDefinition.h" />
     <ClInclude Include="Scripts\Manager\InputInvoker.h" />
@@ -182,6 +183,8 @@
     <ClInclude Include="Scripts\Manager\SceneManager.h" />
     <ClInclude Include="Scripts\Manager\TimeManager.h" />
     <ClInclude Include="Scripts\Object\Actor\Player.h" />
+    <ClInclude Include="Scripts\Object\Bullet\BulletBase.h" />
+    <ClInclude Include="Scripts\Object\Bullet\StandardBullet.h" />
     <ClInclude Include="Scripts\Object\Camera.h" />
     <ClInclude Include="Scripts\Object\ObjectBase.h" />
     <ClInclude Include="Scripts\Scene\InGameScene.h" />

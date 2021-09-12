@@ -1,20 +1,20 @@
-?¿<?xml version="1.0" encoding="utf-8"?>
+ï»¿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Scripts\main.cpp" />
-    <ClCompile Include="Scripts\Manager\InputManager.cpp">
+    <ClCompile Include="Scripts\Manager\InputInvoker.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Manager\InputInvoker.cpp">
+    <ClCompile Include="Scripts\Manager\InputManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Manager\SceneManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Scene\TitleScene.cpp">
+    <ClCompile Include="Scripts\Scene\InGameScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Scene\InGameScene.cpp">
+    <ClCompile Include="Scripts\Scene\TitleScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Object\Actor\Player.cpp">
@@ -22,31 +22,56 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{fbaa1b25-aae7-455d-918b-176c7c94aed6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{ec26879e-2f04-48ca-bd34-8a4c1f28b988}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Definition">
-      <UniqueIdentifier>{984d8ab1-b4b6-472d-b6a6-f8466676aede}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{af7ff7a1-fa2e-4fa6-8c79-df7f3ea9c13d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{9afe18c4-273f-4d30-82d7-0430a390f687}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Actor">
-      <UniqueIdentifier>{e41e3efe-1fc3-4935-916f-be7a09b560ee}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="Scripts\Object\Camera.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\ObjectBase.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\DxLibSetting.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\ImageDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\InputDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\SceneDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\StatusDefinition.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\ImageManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\InputInvoker.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\InputManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\SceneManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Manager\TimeManager.h">
       <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Scene\InGameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Scene\TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Scene\SceneBase.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\Player.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utility\Vector.h">
+      <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Utility\Property.h">
       <Filter>Utility</Filter>
@@ -54,53 +79,40 @@
     <ClInclude Include="Scripts\Utility\Singleton.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Manager\InputManager.h">
+    <ClInclude Include="Scripts\Object\Bullet\BulletBase.h">
+      <Filter>Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Bullet\StandardBullet.h">
+      <Filter>Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\BulletManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Definition\InputDefinition.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Utility\Vector.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Manager\InputInvoker.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Manager\SceneManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Scene\SceneBase.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Scene\TitleScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Definition\SceneDefinition.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Scene\InGameScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Definition\DxLibSetting.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Manager\ImageManager.h">
-      <Filter>Manager</Filter>
-    <ClInclude Include="Scripts\Object\Actor\Player.h">
-      <Filter>Object\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Definition\ImageDefinition.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Object\ObjectBase.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Definition\StatusDefinition.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Definition\ImageDefinition.h" />
-    <ClInclude Include="Scripts\Object\Camera.h">
-      <Filter>Object</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{694a2c80-7df4-4095-b834-b1910bed70d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{5d5ec427-f19d-4d2e-92a1-a2b783905b98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Bullet">
+      <UniqueIdentifier>{9bdc4dea-9925-4d03-bdfe-ff23d8bc3036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{5925868a-8e16-4869-bd6b-fe8be514a888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{2ccd4153-d895-4318-abcb-3abd092e75f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{e7369085-854a-484a-8313-78a3254ec944}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Definition">
+      <UniqueIdentifier>{a953619b-573c-494d-a3f0-06547f863cb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

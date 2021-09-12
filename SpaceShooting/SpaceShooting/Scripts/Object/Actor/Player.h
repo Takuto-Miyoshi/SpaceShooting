@@ -11,7 +11,7 @@ namespace shooting::object::actor {
        public:
         Player() = default;
 
-        ~Player() = default;
+        ~Player() override = default;
 
        public:
         void Update() override;
