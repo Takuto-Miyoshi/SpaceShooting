@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+#include "../Manager/BulletFactory.h"
 #include "../Manager/InputInvoker.h"
 #include "../Manager/InputManager.h"
 #include "../Object/Actor/Player.h"
@@ -15,38 +16,26 @@ namespace shooting::scene {
             if ( inputState == InputState::Pressed ) { ChangeScene( SceneDefs::Title ); }
         } );
 
-        bulletManager.lock()->Initialize();
+        object::BulletFactory().Instance().lock()->Initialize();
 
-        // オブジェクト
-        objectList = std::vector<std::unique_ptr<object::ObjectBase>> {};
-        objectList.push_back( std::make_unique<object::Player>() );
+        objectManager.lock()->Initialize();
+        objectManager.lock()->CreateObject<object::Player>();
     }
 
     void InGameScene::Update() {
-        std::for_each( objectList.begin(), objectList.end(), []( auto& element ) {
-            element->ReserveStart();
-            element->Update();
-        } );
+        objectManager.lock()->Update();
 
         Camera::Instance().lock()->Update();
         Camera::Instance().lock()->OffsetBy( InputManager::Instance().lock()->CursorPosition );
-
-        bulletManager.lock()->Update();
     }
 
     void InGameScene::Draw() {
-        bulletManager.lock()->Draw();
-
-        std::for_each( objectList.begin(), objectList.end(), []( auto& element ) {
-            element->Draw();
-        } );
+        objectManager.lock()->Draw();
 
         printfDx( "InGame" );
     }
 
     void InGameScene::Finalize() {
-        std::for_each( objectList.begin(), objectList.end(), []( auto& element ) {
-            element->Finalize();
-        } );
+        objectManager.lock()->Finalize();
     }
 }  // namespace shooting::scene

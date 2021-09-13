@@ -2,11 +2,11 @@
 
 #include "../../Definition/ImageDefinition.h"
 #include "../../Definition/StatusDefinition.h"
-#include "../../Manager/BulletManager.h"
+#include "../../Manager/BulletFactory.h"
 #include "../../Manager/ImageManager.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
-#include "../ObjectBase.h"
+#include "../Bullet/StandardBullet.h"
 
 namespace shooting::object {
     void Player::Update() {
@@ -52,7 +52,7 @@ namespace shooting::object {
 
     void Player::Shoot( InputState inputState ) {
         if ( inputState != InputState::Pressed ) { return; }
-        BulletManager::Instance().lock()->Generate( status::BulletType::StandardBullet, position, angle );
+        BulletFactory::Instance().lock()->Create( status::BulletType::StandardBullet, position, angle );
     }
 
     void Player::LookToCursor() {

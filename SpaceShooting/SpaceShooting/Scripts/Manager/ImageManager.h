@@ -33,10 +33,7 @@ namespace shooting {
                 return element.name == name;
             } );
 
-            // 最後の要素を警戒
-            if ( result == imageDataList.end() ) {
-                return ( result->name == name ) ? result->graphicHandle : -1;
-            }
+            if ( result == imageDataList.end() ) { return -1; }
 
             return result->graphicHandle;
         }
