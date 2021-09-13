@@ -15,23 +15,15 @@ namespace shooting::object {
         ~EnemyBase() override = default;
 
        public:
-        static void LoadEnemyData() {
-            ImageManager::Instance().lock()->LoadGraphHandle( image::enemy );
-        }
+        /// @brief 敵データの読み込み
+        static void LoadEnemyData();
 
-        void Update() override {
-            position.X += sinf( GetNowCount() / 1000.0f );
-            position.Y += cosf( GetNowCount() / 1000.0f );
-        }
+        void Update() override;
 
-        void Start() override {
-            graphicHandle = ImageManager::Instance().lock()->Image( image::enemy.name );
-        }
+        void Collide() override;
 
-        void Finalize() override {
-        }
-
-       private:
+       protected:
+        void Start() override;
     };
 }  // namespace shooting::object
 

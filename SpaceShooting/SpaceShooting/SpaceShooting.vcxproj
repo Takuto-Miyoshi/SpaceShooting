@@ -160,10 +160,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\main.cpp" />
+    <ClCompile Include="Scripts\Manager\BulletFactory.cpp" />
+    <ClCompile Include="Scripts\Manager\GameLoop.cpp" />
     <ClCompile Include="Scripts\Manager\InputInvoker.cpp" />
     <ClCompile Include="Scripts\Manager\InputManager.cpp" />
+    <ClCompile Include="Scripts\Manager\ObjectManager.cpp" />
     <ClCompile Include="Scripts\Manager\SceneManager.cpp" />
+    <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Player.cpp" />
+    <ClCompile Include="Scripts\Object\Bullet\BulletBase.cpp" />
+    <ClCompile Include="Scripts\Object\Bullet\StandardBullet.cpp" />
+    <ClCompile Include="Scripts\Object\ObjectBase.cpp" />
     <ClCompile Include="Scripts\Scene\InGameScene.cpp" />
     <ClCompile Include="Scripts\Scene\TitleScene.cpp" />
   </ItemGroup>
@@ -175,11 +182,13 @@
     <ClInclude Include="Scripts\Definition\ImageDefinition.h" />
     <ClInclude Include="Scripts\Definition\InputDefinition.h" />
     <ClInclude Include="Scripts\Definition\SceneDefinition.h" />
-    <ClInclude Include="Scripts\Manager\BulletManager.h" />
+    <ClInclude Include="Scripts\Manager\BulletFactory.h" />
+    <ClInclude Include="Scripts\Manager\GameLoop.h" />
     <ClInclude Include="Scripts\Manager\ImageManager.h" />
     <ClInclude Include="Scripts\Definition\StatusDefinition.h" />
     <ClInclude Include="Scripts\Manager\InputInvoker.h" />
     <ClInclude Include="Scripts\Manager\InputManager.h" />
+    <ClInclude Include="Scripts\Manager\ObjectManager.h" />
     <ClInclude Include="Scripts\Manager\SceneManager.h" />
     <ClInclude Include="Scripts\Manager\TimeManager.h" />
     <ClInclude Include="Scripts\Object\Actor\EnemyBase.h" />

@@ -1,52 +1,39 @@
 ﻿#include "InGameScene.h"
 
-#include <algorithm>
-
+#include "../Manager/ImageManager.h"
 #include "../Manager/InputInvoker.h"
 #include "../Manager/InputManager.h"
 #include "../Object/Actor/Player.h"
 #include "../Object/Camera.h"
 #include "DxLib.h"
 
+using shooting::object::status::ObjectKind;
+
 namespace shooting::scene {
     void InGameScene::Start() {
         // キー登録
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_SPACE, [this]( InputState inputState ) {
+        InputInvoker::Instance()->RegisterKey( KEY_INPUT_SPACE, [this]( InputState inputState ) {
             if ( inputState == InputState::Pressed ) { ChangeScene( SceneDefs::Title ); }
         } );
 
-        bulletManager.lock()->Initialize();
-
-        // オブジェクト
-        objectList = std::vector<std::unique_ptr<object::ObjectBase>> {};
-        objectList.push_back( std::make_unique<object::Player>() );
+        objectManager.lock()->Initialize();
+        objectManager.lock()->CreateObject<object::Player>( ObjectKind::Player );
     }
 
     void InGameScene::Update() {
-        std::for_each( objectList.begin(), objectList.end(), []( auto& element ) {
-            element->ReserveStart();
-            element->Update();
-        } );
+        objectManager.lock()->Update();
 
-        Camera::Instance().lock()->Update();
-        Camera::Instance().lock()->OffsetBy( InputManager::Instance().lock()->CursorPosition );
-
-        bulletManager.lock()->Update();
+        Camera::Instance()->Update();
+        Camera::Instance()->OffsetBy( InputManager::Instance()->CursorPosition );
     }
 
     void InGameScene::Draw() {
-        bulletManager.lock()->Draw();
-
-        std::for_each( objectList.begin(), objectList.end(), []( auto& element ) {
-            element->Draw();
-        } );
+        objectManager.lock()->Draw();
 
         printfDx( "InGame" );
     }
 
     void InGameScene::Finalize() {
-        std::for_each( objectList.begin(), objectList.end(), []( auto& element ) {
-            element->Finalize();
-        } );
+        objectManager.lock()->Finalize();
     }
 }  // namespace shooting::scene

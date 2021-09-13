@@ -5,6 +5,7 @@
 
 #include <cstdint>
 
+#include "../Definition/StatusDefinition.h"
 #include "../Manager/TimeManager.h"
 #include "../Utility/Vector.h"
 #include "Camera.h"
@@ -27,13 +28,31 @@ namespace shooting::object {
 
         virtual void Update() = 0;
 
-        virtual void Draw() {
+        virtual void Draw() const {
             DrawRotaGraphFast( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
                                static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
                                1.0f, angle, graphicHandle, TRUE );
+
+            DrawCircle( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
+                        static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
+                        static_cast<int32_t>( collisionRadius ), GetColor( 0, 255, 0 ), FALSE );
         }
 
-        virtual void Finalize() = 0;
+        virtual void Collide() = 0;
+
+        /// @brief アクティブにする
+        /// @param resetPosition アクティブにする位置
+        /// @param resetAngle アクティブにする角度
+        void Activate( const status::ObjectKind& objectKind, const Vector2& resetPosition, const float& resetAngle );
+
+       public:
+        ReadonlyProperty<bool> IsActive { isActive };
+
+        ReadonlyProperty<status::ObjectKind> Kind { kind };
+
+        ReadonlyProperty<Vector2> Position { position };
+
+        ReadonlyProperty<double> CollisionRadius { collisionRadius };
 
        protected:
         virtual void Start() = 0;
@@ -42,10 +61,15 @@ namespace shooting::object {
         std::weak_ptr<TimeManager> timeManager { TimeManager::Instance() };
         std::weak_ptr<Camera> camera { Camera::Instance() };
 
+        bool isActive { false };
         bool calledOnce { false };
+
         int32_t graphicHandle { 0 };
         Vector2 position { 0, 0 };
         float angle { 0.0f };
+        double collisionRadius { 0.0 };
+
+        status::ObjectKind kind;
     };
 }  // namespace shooting::object
 

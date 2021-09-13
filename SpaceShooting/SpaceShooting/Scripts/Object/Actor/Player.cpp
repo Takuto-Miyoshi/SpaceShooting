@@ -2,32 +2,34 @@
 
 #include "../../Definition/ImageDefinition.h"
 #include "../../Definition/StatusDefinition.h"
-#include "../../Manager/BulletManager.h"
+#include "../../Manager/BulletFactory.h"
 #include "../../Manager/ImageManager.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
-#include "../ObjectBase.h"
+#include "../Bullet/StandardBullet.h"
 
 namespace shooting::object {
+    void Player::Start() {
+        ImageManager::Instance()->LoadGraphHandle( image::PLAYER );
+        graphicHandle = ImageManager::Instance()->Image( image::PLAYER.name );
+        collisionRadius = status::player::COLLISION_RADIUS;
+
+        // キー登録
+        auto inputInvoker = InputInvoker::Instance();
+        inputInvoker->RegisterKey( KEY_INPUT_A, [this]( InputState inputState ) { MoveLeft( inputState ); } );
+        inputInvoker->RegisterKey( KEY_INPUT_D, [this]( InputState inputState ) { MoveRight( inputState ); } );
+        inputInvoker->RegisterKey( KEY_INPUT_W, [this]( InputState inputState ) { MoveUp( inputState ); } );
+        inputInvoker->RegisterKey( KEY_INPUT_S, [this]( InputState inputState ) { MoveDown( inputState ); } );
+        inputInvoker->RegisterMousebutton( MOUSEBUTTON_LEFT, [this]( InputState inputState ) { Shoot( inputState ); } );
+
+        camera.lock()->CenterTarget = std::make_shared<Vector2>( position );
+    }
+
     void Player::Update() {
         LookToCursor();
     }
 
-    void Player::Finalize() {
-    }
-
-    void Player::Start() {
-        ImageManager::Instance().lock()->LoadGraphHandle( image::player );
-        graphicHandle = ImageManager::Instance().lock()->Image( image::player.name );
-
-        // キー登録
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_A, [this]( InputState inputState ) { MoveLeft( inputState ); } );
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_D, [this]( InputState inputState ) { MoveRight( inputState ); } );
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_W, [this]( InputState inputState ) { MoveUp( inputState ); } );
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_S, [this]( InputState inputState ) { MoveDown( inputState ); } );
-        InputInvoker::Instance().lock()->RegisterMousebutton( MOUSEBUTTON_LEFT, [this]( InputState inputState ) { Shoot( inputState ); } );
-
-        camera.lock()->CenterTarget = std::make_shared<Vector2>( position );
+    void Player::Collide() {
     }
 
     void Player::MoveLeft( InputState inputState ) {
@@ -52,11 +54,11 @@ namespace shooting::object {
 
     void Player::Shoot( InputState inputState ) {
         if ( inputState != InputState::Pressed ) { return; }
-        BulletManager::Instance().lock()->Generate( status::BulletType::StandardBullet, position, angle );
+        BulletFactory::Instance()->Create( status::ObjectKind::PlayerBullet, status::BulletType::StandardBullet, position, angle );
     }
 
     void Player::LookToCursor() {
-        auto cursorPosition = InputManager::Instance().lock()->CursorPosition + camera.lock()->Position;
+        auto cursorPosition = InputManager::Instance()->CursorPosition + camera.lock()->Position;
         angle = static_cast<float>( position.Angle( cursorPosition, true ) );
     }
 }  // namespace shooting::object

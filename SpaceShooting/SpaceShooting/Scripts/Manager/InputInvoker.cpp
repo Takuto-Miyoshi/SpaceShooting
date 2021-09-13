@@ -6,34 +6,46 @@
 
 namespace shooting {
     void InputInvoker::Initialize() {
-        keyFunctions = std::vector<std::vector<std::function<void( InputState )>>>( NUMBER_OF_KEY );
-        mousebuttonFunctions = std::vector<std::vector<std::function<void( InputState )>>>( NUMBER_OF_MOUSEBUTTON );
+        for ( auto& element : keyFunctions ) {
+            element.reserve( input::FUNCTION_CAPACITY );
+        }
+
+        for ( auto& element : mousebuttonFunctions ) {
+            element.reserve( input::FUNCTION_CAPACITY );
+        }
     }
 
     void InputInvoker::Update() {
         uint32_t i = 0;
         // キー入力
-        std::for_each( keyFunctions.begin(), keyFunctions.end(), [&i]( auto& key ) {
+        for ( auto&& key : std::as_const( keyFunctions ) ) {
             if ( !key.empty() ) {
-                std::for_each( key.begin(), key.end(), [&i]( auto& function ) {
-                    // キーに登録された関数を実行
-                    function( InputManager::Instance().lock()->KeyState( i ) );
-                } );
+                for ( auto&& function : key ) {
+                    function( InputManager::Instance()->KeyState( i ) );
+                }
             }
-            // 次のキー
             i++;
-        } );
+        }
 
         i = 0;
         // マウス入力
-        std::for_each( mousebuttonFunctions.begin(), mousebuttonFunctions.end(), [&i]( auto& mousebutton ) {
+        for ( auto&& mousebutton : std::as_const( mousebuttonFunctions ) ) {
             if ( !mousebutton.empty() ) {
-                std::for_each( mousebutton.begin(), mousebutton.end(), [&i]( auto& function ) {
-                    function( InputManager::Instance().lock()->MousebuttonState( i ) );
-                } );
+                for ( auto&& function : mousebutton ) {
+                    function( InputManager::Instance()->MousebuttonState( i ) );
+                }
             }
-
             i++;
-        } );
+        }
+    }
+
+    void InputInvoker::Reset() {
+        for ( auto& element : keyFunctions ) {
+            element.clear();
+        }
+
+        for ( auto& element : mousebuttonFunctions ) {
+            element.clear();
+        }
     }
 }  // namespace shooting

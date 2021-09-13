@@ -2,12 +2,10 @@
 #include <crtdbg.h>
 
 #include <cstdint>
-#include <string>
 
 #include "Definition/DxLibSetting.h"
 #include "DxLib.h"
-#include "Manager/InputInvoker.h"
-#include "Manager/SceneManager.h"
+#include "Manager/GameLoop.h"
 
 #define new ::new ( _NORMAL_BLOCK, __FILE__, __LINE__ )
 
@@ -26,23 +24,7 @@ auto WINAPI WinMain( _In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     SetDrawScreen( DX_SCREEN_BACK );
     // ---------------------------------------
 
-    auto sceneManager = shooting::SceneManager::Instance();
-    sceneManager.lock()->Initialize();
-
-    while ( true ) {
-        if ( ProcessMessage() == FAIL ) { break; }
-
-        ClearDrawScreen();
-        clsDx();
-
-        sceneManager.lock()->Update();
-        if ( sceneManager.lock()->EndGame ) { break; }
-
-        ScreenFlip();
-    }
-
-    sceneManager.lock()->Finalize();
-    sceneManager.reset();
+    shooting::GameLoop().Exec();
 
     DxLib_End();
     return 0;
