@@ -24,7 +24,7 @@ namespace shooting::object {
         void Create( status::BulletType type, Vector2 position, float angle ) {
             switch ( type ) {
                 case shooting::object::status::BulletType::StandardBullet:
-                    objectManager.lock()->CreateObject<StandardBullet>().lock()->Activate( position, angle );
+                    objectManager.lock()->CreateObject<StandardBullet>( position, angle );
                     break;
             }
         }

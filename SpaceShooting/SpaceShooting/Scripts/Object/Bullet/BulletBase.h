@@ -40,23 +40,9 @@ namespace shooting::object {
         void Finalize() override {
         }
 
-        /// @brief 弾をアクティブにする
-        /// @param resetPosition アクティブにした時の位置
-        /// @param resetAngle アクティブにした時の角度
-        void Activate( Vector2 resetPosition, float resetAngle ) {
-            position = resetPosition;
-            angle = resetAngle;
-            isActive = true;
-        }
-
-       public:
-        /// @brief 弾が有効かどうか
-        ReadonlyProperty<bool> IsActive { isActive };
-
        protected:
         std::function<void()> update { [] {} };
 
-        bool isActive { false };  // 弾が有効かどうか
         double speed { 0.0 };  // 弾の移動速度
     };
 }  // namespace shooting::object

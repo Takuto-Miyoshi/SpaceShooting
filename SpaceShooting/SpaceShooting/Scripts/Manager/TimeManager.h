@@ -56,8 +56,8 @@ namespace shooting {
         Property<int32_t> FPS { fps };
 
        private:
-        static constexpr int32_t MS_CONVERT_SOURCE = 1000;
-        static constexpr float S_CONVERT_SOURCE = 1000.0f;
+        static constexpr int32_t MS_CONVERT_SOURCE { 1000 };
+        static constexpr float S_CONVERT_SOURCE { 1000.0f };
 
         int32_t startTime { 0 };  // deltaTime計測開始時間
         float deltaTime { 0.0f };  // 前回の処理にかかった時間
