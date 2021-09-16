@@ -26,10 +26,10 @@ namespace shooting {
         }
 
         /// @brief fromの位置に応じてカメラをずらす
-        void OffsetBy( Vector2 from ) {
+        void OffsetBy( const Vector2& from ) {
             const Vector2 screenCenter { dxlib::SCREEN_SIZE_X / 2, dxlib::SCREEN_SIZE_Y / 2 };
 
-            auto vector = screenCenter.VectorTo( std::move( from ) );
+            auto vector = screenCenter.VectorTo( from );
             auto length = vector.Length();
 
             if ( length == 0 ) { return; }  // バグ回避

@@ -13,19 +13,17 @@ namespace shooting::object {
         LookToCursor();
     }
 
-    void Player::Finalize() {
-    }
-
     void Player::Start() {
-        ImageManager::Instance().lock()->LoadGraphHandle( image::player );
-        graphicHandle = ImageManager::Instance().lock()->Image( image::player.name );
+        ImageManager::Instance()->LoadGraphHandle( image::PLAYER );
+        graphicHandle = ImageManager::Instance()->Image( image::PLAYER.name );
 
         // キー登録
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_A, [this]( InputState inputState ) { MoveLeft( inputState ); } );
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_D, [this]( InputState inputState ) { MoveRight( inputState ); } );
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_W, [this]( InputState inputState ) { MoveUp( inputState ); } );
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_S, [this]( InputState inputState ) { MoveDown( inputState ); } );
-        InputInvoker::Instance().lock()->RegisterMousebutton( MOUSEBUTTON_LEFT, [this]( InputState inputState ) { Shoot( inputState ); } );
+        auto inputInvoker = InputInvoker::Instance();
+        inputInvoker->RegisterKey( KEY_INPUT_A, [this]( InputState inputState ) { MoveLeft( inputState ); } );
+        inputInvoker->RegisterKey( KEY_INPUT_D, [this]( InputState inputState ) { MoveRight( inputState ); } );
+        inputInvoker->RegisterKey( KEY_INPUT_W, [this]( InputState inputState ) { MoveUp( inputState ); } );
+        inputInvoker->RegisterKey( KEY_INPUT_S, [this]( InputState inputState ) { MoveDown( inputState ); } );
+        inputInvoker->RegisterMousebutton( MOUSEBUTTON_LEFT, [this]( InputState inputState ) { Shoot( inputState ); } );
 
         camera.lock()->CenterTarget = std::make_shared<Vector2>( position );
     }
@@ -52,11 +50,11 @@ namespace shooting::object {
 
     void Player::Shoot( InputState inputState ) {
         if ( inputState != InputState::Pressed ) { return; }
-        BulletFactory::Instance().lock()->Create( status::BulletType::StandardBullet, position, angle );
+        BulletFactory::Instance()->Create( status::BulletType::StandardBullet, position, angle );
     }
 
     void Player::LookToCursor() {
-        auto cursorPosition = InputManager::Instance().lock()->CursorPosition + camera.lock()->Position;
+        auto cursorPosition = InputManager::Instance()->CursorPosition + camera.lock()->Position;
         angle = static_cast<float>( position.Angle( cursorPosition, true ) );
     }
 }  // namespace shooting::object

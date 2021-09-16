@@ -3,6 +3,7 @@
 #ifndef IMAGE_DEFINITION_H
 #define IMAGE_DEFINITION_H
 
+#include <cstdint>
 #include <string>
 
 namespace shooting::image {
@@ -11,11 +12,13 @@ namespace shooting::image {
         std::string name;  // 画像の登録名
     };
 
-    const ImageData player { "Images/Object/Actor/Player.png", "Player" };
+    constexpr uint32_t DATA_CAPACITY { 3 };
 
-    const ImageData enemy { "Images/Object/Actor/Enemy.png", "Enemy" };
+    const ImageData PLAYER { "Images/Object/Actor/Player.png", "Player" };
 
-    const ImageData standardBullet { "Images/Object/Bullet/StandardBullet.png", "StandardBullet" };
+    const ImageData ENEMY { "Images/Object/Actor/Enemy.png", "Enemy" };
+
+    const ImageData STANDARD_BULLET { "Images/Object/Bullet/StandardBullet.png", "StandardBullet" };
 }  // namespace shooting::image
 
 #endif  // !IMAGE_DEFINITION_H

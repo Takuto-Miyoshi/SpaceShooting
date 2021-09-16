@@ -20,6 +20,25 @@
     <ClCompile Include="Scripts\Object\Actor\Player.cpp">
       <Filter>Object\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Object\ObjectBase.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Bullet\BulletBase.cpp">
+      <Filter>Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\ObjectManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\BulletFactory.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Bullet\StandardBullet.cpp">
+      <Filter>Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Manager\GameLoop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -94,6 +113,7 @@
     <ClInclude Include="Scripts\Manager\BulletFactory.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Manager\GameLoop.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />

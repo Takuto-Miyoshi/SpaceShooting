@@ -3,11 +3,11 @@
 #ifndef BULLET_FACTORY_H
 #define BULLET_FACTORY_H
 
+#include <memory>
+
 #include "../Definition/StatusDefinition.h"
-#include "../Object/Bullet/BulletBase.h"
-#include "../Object/Bullet/StandardBullet.h"
 #include "../Utility/Singleton.h"
-#include "ObjectManager.h"
+#include "../Utility/Vector.h"
 
 namespace shooting::object {
     class BulletFactory : public Singleton<BulletFactory> {
@@ -17,20 +17,9 @@ namespace shooting::object {
         ~BulletFactory() = default;
 
        public:
-        void Initialize() {
-            BulletBase::LoadBulletData();
-        }
+        void Initialize();
 
-        void Create( status::BulletType type, Vector2 position, float angle ) {
-            switch ( type ) {
-                case shooting::object::status::BulletType::StandardBullet:
-                    objectManager.lock()->CreateObject<StandardBullet>( position, angle );
-                    break;
-            }
-        }
-
-       private:
-        std::weak_ptr<ObjectManager> objectManager { ObjectManager::Instance() };
+        void Create( const status::BulletType& type, const Vector2& position, const float& angle );
     };
 }  // namespace shooting::object
 

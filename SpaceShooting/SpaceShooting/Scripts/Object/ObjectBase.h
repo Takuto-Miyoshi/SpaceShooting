@@ -27,22 +27,16 @@ namespace shooting::object {
 
         virtual void Update() = 0;
 
-        virtual void Draw() {
+        virtual void Draw() const {
             DrawRotaGraphFast( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
                                static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
                                1.0f, angle, graphicHandle, TRUE );
         }
 
-        virtual void Finalize() = 0;
-
         /// @brief アクティブにする
         /// @param resetPosition アクティブにする位置
         /// @param resetAngle アクティブにする角度
-        void Activate( Vector2 resetPosition, float resetAngle ) {
-            position = resetPosition;
-            angle = resetAngle;
-            isActive = true;
-        }
+        void Activate( const Vector2& resetPosition, const float& resetAngle );
 
        public:
         ReadonlyProperty<bool> IsActive { isActive };

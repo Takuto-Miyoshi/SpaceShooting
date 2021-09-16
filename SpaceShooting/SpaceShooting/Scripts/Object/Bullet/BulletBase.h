@@ -17,32 +17,10 @@ namespace shooting::object {
         ~BulletBase() override = default;
 
        public:
-        static void LoadBulletData() {
-            // 弾画像を読み込んでおく
-            ImageManager::Instance().lock()->LoadGraphHandle( image::standardBullet );
-        }
-
-        void Update() override {
-            if ( !isActive ) { return; }
-
-            update();
-        }
-
-        void Draw() override {
-            if ( !isActive ) { return; }
-
-            ObjectBase::Draw();
-        }
-
-        void Start() override {
-        }
-
-        void Finalize() override {
-        }
+        /// @brief 弾データの読み込み
+        static void LoadBulletData();
 
        protected:
-        std::function<void()> update { [] {} };
-
         double speed { 0.0 };  // 弾の移動速度
     };
 }  // namespace shooting::object

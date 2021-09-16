@@ -16,8 +16,6 @@ namespace shooting::object {
        public:
         void Update() override;
 
-        void Finalize() override;
-
        protected:
         void Start() override;
 

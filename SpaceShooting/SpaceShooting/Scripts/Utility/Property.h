@@ -20,7 +20,7 @@ namespace shooting {
         /// @param target プロパティを適用する変数
         /// @param getter ゲッターのオーバーライド
         /// @param setter セッターのオーバーライド
-        explicit Property( T& target, std::function<T()> getter = nullptr, std::function<void( T )> setter = nullptr ) :
+        explicit Property( T& target, std::function<T()>&& getter = nullptr, std::function<void( T )>&& setter = nullptr ) :
             base( target ), get( std::move( getter ) ), set( std::move( setter ) ) {}
 
         ~Property() = default;
@@ -30,42 +30,42 @@ namespace shooting {
             return ( get ) ? get() : base;
         }
 
-        void operator=( const T value ) {
+        void operator=( const T& value ) {
             if ( set ) { set( value ); }
             else {
                 base = value;
             }
         }
 
-        void operator=( const Property<T> value ) {
+        void operator=( const Property<T>& value ) {
             if ( set ) { set( value.base ); }
             else {
                 base = value.base;
             }
         }
 
-        void operator+=( const T value ) {
+        void operator+=( const T& value ) {
             if ( set ) { set( base + value ); }
             else {
                 base += value;
             }
         }
 
-        void operator+=( const Property<T> value ) {
+        void operator+=( const Property<T>& value ) {
             if ( set ) { set( base + value.base ); }
             else {
                 base += value.base;
             }
         }
 
-        void operator-=( const T value ) {
+        void operator-=( const T& value ) {
             if ( set ) { set( base - value ); }
             else {
                 base -= value;
             }
         }
 
-        void operator-=( const Property<T> value ) {
+        void operator-=( const Property<T>& value ) {
             if ( set ) { set( base - value.base ); }
             else {
                 base -= value.base;
@@ -80,17 +80,19 @@ namespace shooting {
 
         auto operator/( T& right ) -> T { return base / right; }
 
-        auto operator+( Property<T>& right ) -> T { return base + right; }
+        auto operator+( Property<T>& right ) -> T { return base + right.base; }
 
-        auto operator-( Property<T>& right ) -> T { return base - right; }
+        auto operator-( Property<T>& right ) -> T { return base - right.base; }
 
-        auto operator*( Property<T>& right ) -> T { return base * right; }
+        auto operator*( Property<T>& right ) -> T { return base * right.base; }
 
-        auto operator/( Property<T>& right ) -> T { return base / right; }
+        auto operator/( Property<T>& right ) -> T { return base / right.base; }
 
         auto operator->() const -> T* { return &base; }
 
         auto operator&() const -> T* { return &base; }
+
+        auto operator*() const -> T& { return base; }
 
        private:
         T& base;
@@ -104,7 +106,7 @@ namespace shooting {
         /// @brief 読み取り専用プロパティ
         /// @param target プロパティを適用する変数
         /// @param getter ゲッターのオーバーライド
-        explicit ReadonlyProperty( T& target, std::function<T()> getter = nullptr ) :
+        explicit ReadonlyProperty( T& target, std::function<T()>&& getter = nullptr ) :
             base( target ), get( std::move( getter ) ) {}
 
         ~ReadonlyProperty() = default;
@@ -122,17 +124,19 @@ namespace shooting {
 
         auto operator/( T& right ) -> T { return base / right; }
 
-        auto operator+( ReadonlyProperty<T>& right ) -> T { return base + right; }
+        auto operator+( ReadonlyProperty<T>& right ) -> T { return base + right.base; }
 
-        auto operator-( ReadonlyProperty<T>& right ) -> T { return base - right; }
+        auto operator-( ReadonlyProperty<T>& right ) -> T { return base - right.base; }
 
-        auto operator*( ReadonlyProperty<T>& right ) -> T { return base * right; }
+        auto operator*( ReadonlyProperty<T>& right ) -> T { return base * right.base; }
 
-        auto operator/( ReadonlyProperty<T>& right ) -> T { return base / right; }
+        auto operator/( ReadonlyProperty<T>& right ) -> T { return base / right.base; }
 
         auto operator->() const -> T* { return &base; }
 
         auto operator&() const -> T* { return &base; }
+
+        auto operator*() const -> T& { return base; }
 
        private:
         T& base;
@@ -145,14 +149,14 @@ namespace shooting {
         /// @brief スマートポインタ(weak_ptr)用プロパティ
         /// @param target プロパティを適用するスマートポインタ(weak_ptr)
         /// @param getter ゲッターのオーバーライド
-        explicit SmartProperty( std::weak_ptr<T> target, std::function<std::weak_ptr<T>()> getter = nullptr ) :
-            base( target ), get( getter ) {}
+        explicit SmartProperty( std::weak_ptr<T>& target, std::function<std::weak_ptr<T>()>&& getter = nullptr ) :
+            base( target ), get( std::move( getter ) ) {}
 
         /// @brief スマートポインタ(weak_ptr)用プロパティ
         /// @param target プロパティを適用するスマートポインタ(shared_ptr)
         /// @param getter ゲッターのオーバーライド
-        explicit SmartProperty( std::shared_ptr<T> target, std::function<std::weak_ptr<T>()> getter = nullptr ) :
-            base( target ), get( getter ) {}
+        explicit SmartProperty( std::shared_ptr<T>& target, std::function<std::weak_ptr<T>()>&& getter = nullptr ) :
+            base( target ), get( std::move( getter ) ) {}
 
         ~SmartProperty() = default;
 
@@ -176,6 +180,10 @@ namespace shooting {
         }
 
         auto operator->() const -> T* { return base.lock().get(); }
+
+        auto operator&() const -> T* { return base.lock().get(); }
+
+        auto operator*() const -> T& { return *base.lock().get(); }
 
        private:
         std::weak_ptr<T> base;

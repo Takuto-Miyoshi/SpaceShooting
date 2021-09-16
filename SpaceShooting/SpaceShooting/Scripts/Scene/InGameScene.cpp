@@ -1,8 +1,7 @@
 ﻿#include "InGameScene.h"
 
-#include <algorithm>
-
 #include "../Manager/BulletFactory.h"
+#include "../Manager/ImageManager.h"
 #include "../Manager/InputInvoker.h"
 #include "../Manager/InputManager.h"
 #include "../Object/Actor/Player.h"
@@ -12,11 +11,11 @@
 namespace shooting::scene {
     void InGameScene::Start() {
         // キー登録
-        InputInvoker::Instance().lock()->RegisterKey( KEY_INPUT_SPACE, [this]( InputState inputState ) {
+        InputInvoker::Instance()->RegisterKey( KEY_INPUT_SPACE, [this]( InputState inputState ) {
             if ( inputState == InputState::Pressed ) { ChangeScene( SceneDefs::Title ); }
         } );
 
-        object::BulletFactory().Instance().lock()->Initialize();
+        object::BulletFactory().Instance()->Initialize();
 
         objectManager.lock()->Initialize();
         objectManager.lock()->CreateObject<object::Player>();
@@ -25,8 +24,8 @@ namespace shooting::scene {
     void InGameScene::Update() {
         objectManager.lock()->Update();
 
-        Camera::Instance().lock()->Update();
-        Camera::Instance().lock()->OffsetBy( InputManager::Instance().lock()->CursorPosition );
+        Camera::Instance()->Update();
+        Camera::Instance()->OffsetBy( InputManager::Instance()->CursorPosition );
     }
 
     void InGameScene::Draw() {
