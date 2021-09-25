@@ -24,11 +24,11 @@ namespace shooting::object {
         /// @brief オブジェクトを作成
         /// @tparam T 作成するオブジェクトの型 @n ObjectBaseを基底クラスに持っていること
         template<class T>
-        auto CreateObject( const status::ObjectKind& objectKind, const Vector2& position = Vector2( 0, 0 ), const float& angle = 0.0f ) -> std::weak_ptr<T> {
+        auto CreateObject( const status::ObjectKind& objectKind, const Vector2& position = Vector2( 0, 0 ), const float& angle = 0.0f ) -> ObjectBase* {
             auto obj = std::make_shared<T>();
             obj->Activate( objectKind, position, angle );
             objectList.emplace_back( obj );
-            return obj;
+            return &*objectList.back();
         }
 
         void Update();
@@ -39,6 +39,16 @@ namespace shooting::object {
 
         [[nodiscard]] auto PlayerPosition() -> Vector2 {
             return ( player ) ? player->Position : Vector2 { 0, 0 };
+        }
+
+        [[nodiscard]] auto NearEnemyPosition( const Vector2& from ) -> Vector2 {
+            Grouping();
+            if ( enemyList.empty() ) { return Vector2 { 0, 0 }; }
+            return std::min_element( enemyList.begin(), enemyList.end(), [&from]( auto& left, auto& right ) {
+                       return from.VectorTo( left->Position ).Length() < from.VectorTo( right->Position ).Length();
+                   } )
+                ->get()
+                ->Position;
         }
 
        private:

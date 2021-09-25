@@ -56,6 +56,12 @@
     <ClCompile Include="Scripts\Manager\EnemyManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Weapon\WeaponBase.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Weapon\StandardRifle.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -142,6 +148,12 @@
     <ClInclude Include="Scripts\Manager\EnemyManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Weapon\WeaponBase.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Weapon\StandardRifle.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
@@ -167,6 +179,9 @@
     </Filter>
     <Filter Include="Definition">
       <UniqueIdentifier>{a953619b-573c-494d-a3f0-06547f863cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Weapon">
+      <UniqueIdentifier>{31260d0f-84e7-44eb-96da-61d3185a81fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

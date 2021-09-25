@@ -4,6 +4,7 @@
 #define PLAYER_H
 
 #include "../../Definition/InputDefinition.h"
+#include "../../Weapon/WeaponBase.h"
 #include "../ObjectBase.h"
 
 namespace shooting::object {
@@ -38,6 +39,7 @@ namespace shooting::object {
 
        private:
         Vector2 previousPosition { 0, 0 };
+        std::unique_ptr<weapon::WeaponBase> usingWeapon;
     };
 }  // namespace shooting::object
 

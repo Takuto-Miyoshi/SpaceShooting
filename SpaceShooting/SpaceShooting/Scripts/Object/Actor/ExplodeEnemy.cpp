@@ -43,7 +43,12 @@ namespace shooting::object {
         float baseAngle = static_cast<float>( PI * 2 ) / status::ExplodeEnemy::DIFFUSION_INDEX;
         for ( uint32_t i = 0; i < status::ExplodeEnemy::DIFFUSION_INDEX; i++ ) {
             float shootAngle = angle + baseAngle * i;
-            BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet, status::BulletType::StandardBullet, position, shootAngle );
+            BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet,
+                                               status::BulletType::StandardBullet,
+                                               position,
+                                               shootAngle,
+                                               status::ExplodeEnemy::BULLET_SPEED,
+                                               status::ExplodeEnemy::ATTACK_POWER );
         }
 
         isActive = false;

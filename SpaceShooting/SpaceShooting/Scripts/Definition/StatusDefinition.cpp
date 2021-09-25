@@ -19,6 +19,8 @@ namespace shooting::object {
         const double StandardEnemy::COLLISION_RADIUS { 16.0 };
         const double StandardEnemy::MAX_HP { 30.0 };
         const double StandardEnemy::SPEED { 140.0 };
+        const double StandardEnemy::BULLET_SPEED { 200.0 };
+        const double StandardEnemy::ATTACK_POWER { 5.0 };
         const double StandardEnemy::SPAWN_RATE { 100.0 };
         const double StandardEnemy::CHAIN_RATE { 30.0 };
         const double StandardEnemy::SHOT_INTERVAL { 3.0 };
@@ -26,6 +28,8 @@ namespace shooting::object {
         const double ExplodeEnemy::COLLISION_RADIUS { 16.0 };
         const double ExplodeEnemy::MAX_HP { 20.0 };
         const double ExplodeEnemy::SPEED { 100.0 };
+        const double ExplodeEnemy::BULLET_SPEED { 300.0 };
+        const double ExplodeEnemy::ATTACK_POWER { 7.0 };
         const double ExplodeEnemy::SPAWN_RATE { 50.0 };
         const double ExplodeEnemy::CHAIN_RATE { 15.0 };
         const uint32_t ExplodeEnemy::DIFFUSION_INDEX { 8 };
@@ -34,8 +38,12 @@ namespace shooting::object {
         // --------- Bullet ----------
         const double Bullet::LIFE_SPAN_OF_BULLET { 5.0 };
 
-        const double StandardBullet::SPEED { 200.0 };
         const double StandardBullet::COLLISION_RADIUS { 8.0 };
-        const double StandardBullet::ATTACK_POWER { 5.0 };
+
+        namespace weapon {
+            const double StandardRifle::SPEED { 240.0 };
+            const double StandardRifle::ATTACK_POWER { 8.0 };
+            const double StandardRifle::INTERVAL { 1.0 };
+        }  // namespace weapon
     }  // namespace status
 }  // namespace shooting::object

@@ -39,6 +39,9 @@ namespace shooting::object {
             static const double MAX_HP;
             static const double SPEED;
 
+            static const double BULLET_SPEED;
+            static const double ATTACK_POWER;
+
             static const double SPAWN_RATE;
             static const double CHAIN_RATE;
 
@@ -49,6 +52,9 @@ namespace shooting::object {
             static const double COLLISION_RADIUS;
             static const double MAX_HP;
             static const double SPEED;
+
+            static const double BULLET_SPEED;
+            static const double ATTACK_POWER;
 
             static const double SPAWN_RATE;
             static const double CHAIN_RATE;
@@ -63,10 +69,15 @@ namespace shooting::object {
 
         struct StandardBullet {
             static const double COLLISION_RADIUS;
-            static const double SPEED;
-
-            static const double ATTACK_POWER;
         };
+
+        namespace weapon {
+            struct StandardRifle {
+                static const double SPEED;
+                static const double ATTACK_POWER;
+                static const double INTERVAL;
+            };
+        }  // namespace weapon
     }  // namespace status
 }  // namespace shooting::object
 

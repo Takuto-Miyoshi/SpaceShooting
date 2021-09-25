@@ -6,6 +6,7 @@
 #include "../../Manager/ImageManager.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
+#include "../../Weapon/StandardRifle.h"
 #include "../Bullet/StandardBullet.h"
 
 namespace shooting::object {
@@ -16,6 +17,9 @@ namespace shooting::object {
         maxHp = status::Player::MAX_HP;
         hp = maxHp;
         speed = status::Player::SPEED;
+
+        usingWeapon = std::make_unique<weapon::StandardRifle>();
+        usingWeapon->Initialize( *this );
 
         // キー登録
         auto inputInvoker = InputInvoker::Instance();
@@ -37,6 +41,7 @@ namespace shooting::object {
 
     void Player::Update() {
         LookToCursor();
+        usingWeapon->Update();
         previousPosition = position;
     }
 
@@ -68,8 +73,8 @@ namespace shooting::object {
     }
 
     void Player::Shoot( InputState inputState ) {
-        if ( inputState != InputState::Pressed ) { return; }
-        BulletFactory::Instance()->Create( status::ObjectKind::PlayerBullet, status::BulletType::StandardBullet, position, angle );
+        if ( inputState != InputState::Hold ) { return; }
+        usingWeapon->Shoot();
     }
 
     void Player::LookToCursor() {

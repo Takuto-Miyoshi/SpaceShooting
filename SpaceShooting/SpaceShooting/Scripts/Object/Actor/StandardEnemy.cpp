@@ -26,8 +26,14 @@ namespace shooting::object {
         shotCount += timeManager.lock()->DeltaTime;
         if ( shotCount >= status::StandardEnemy::SHOT_INTERVAL ) {
             shotCount = 0;
-            BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet, status::BulletType::StandardBullet,
-                                               position, position.Angle( ObjectManager::Instance()->PlayerPosition(), true ) );
+
+            float shootAngle = position.Angle( ObjectManager::Instance()->PlayerPosition(), true );
+            object::BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet,
+                                                       status::BulletType::StandardBullet,
+                                                       position,
+                                                       shootAngle,
+                                                       status::StandardEnemy::BULLET_SPEED,
+                                                       status::StandardEnemy::ATTACK_POWER );
         }
     }
 }  // namespace shooting::object

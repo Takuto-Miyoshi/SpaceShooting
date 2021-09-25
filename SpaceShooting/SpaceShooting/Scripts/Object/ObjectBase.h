@@ -48,7 +48,13 @@ namespace shooting::object {
 
         ReadonlyProperty<Vector2> Position { position };
 
+        ReadonlyProperty<float> Angle { angle };
+
         ReadonlyProperty<double> CollisionRadius { collisionRadius };
+
+        Property<double> Speed { speed };
+
+        Property<double> AttackPower { attackPower };
 
        protected:
         virtual void Start() = 0;
