@@ -2,48 +2,98 @@
 
 namespace shooting::object {
     // --------- Object ----------
-    const uint32_t Object::OBJECT_CAPACITY { 500 };
-    const double Object::VALID_DISTANCE { 1000.0 };
-    const double Object::SPAWN_INTERVAL { 5.0 };
 
+    const uint32_t ObjectSetting::OBJECT_CAPACITY { 500 };
+    const double ObjectSetting::VALID_DISTANCE { 1000.0 };
+    const double ObjectSetting::SPAWN_INTERVAL { 5.0 };
+
+    // --------------------------
     // --------- Lottery ----------
+
     const uint32_t Lottery::BOX_CAPACITY { 10 };
 
     namespace status {
-        // --------- Player ----------
-        const double Player::SPEED { 120.0 };
-        const double Player::COLLISION_RADIUS { 32.0 };
-        const double Player::MAX_HP { 100.0 };
+        const double BulletSetting::LIFE_SPAN_OF_BULLET { 5.0 };
 
-        // --------- Enemy ----------
-        const double StandardEnemy::COLLISION_RADIUS { 16.0 };
-        const double StandardEnemy::MAX_HP { 30.0 };
-        const double StandardEnemy::SPEED { 140.0 };
-        const double StandardEnemy::BULLET_SPEED { 200.0 };
-        const double StandardEnemy::ATTACK_POWER { 5.0 };
-        const double StandardEnemy::SPAWN_RATE { 100.0 };
-        const double StandardEnemy::CHAIN_RATE { 30.0 };
-        const double StandardEnemy::SHOT_INTERVAL { 3.0 };
+        // --------------------------
 
-        const double ExplodeEnemy::COLLISION_RADIUS { 16.0 };
-        const double ExplodeEnemy::MAX_HP { 20.0 };
-        const double ExplodeEnemy::SPEED { 100.0 };
-        const double ExplodeEnemy::BULLET_SPEED { 300.0 };
-        const double ExplodeEnemy::ATTACK_POWER { 7.0 };
-        const double ExplodeEnemy::SPAWN_RATE { 50.0 };
-        const double ExplodeEnemy::CHAIN_RATE { 15.0 };
-        const uint32_t ExplodeEnemy::DIFFUSION_INDEX { 8 };
-        const double ExplodeEnemy::IGNITION_DISTANCE { 100.0 };
+        const Object Player::OBJECT {
+            32.0  // CollisionRadius
+        };
+        const Actor Player::ACTOR {
+            100.0,  // MaxHp
+            100.0,  // Hp
+            120.0  // Speed
+        };
 
-        // --------- Bullet ----------
-        const double Bullet::LIFE_SPAN_OF_BULLET { 5.0 };
+        // --------------------------
 
-        const double StandardBullet::COLLISION_RADIUS { 8.0 };
+        namespace enemy {
+            const Object StandardEnemy::OBJECT {
+                16.0
+            };
+            const Actor StandardEnemy::ACTOR {
+                30.0,
+                30.0,
+                140.0
+            };
+            const Bullet StandardEnemy::BULLET {
+                200.0,  // BulletSpeed
+                5.0,  // AttackPower
+                0.0,  // Acceleration
+                0.0  // AngulerVelocity
+            };
+            const Spawn StandardEnemy::SPAWN {
+                100.0,  // SpawnRate
+                30.0  // ChainRate
+            };
+            const double StandardEnemy::SHOT_INTERVAL { 3.0 };
+
+            const Object ExplodeEnemy::OBJECT {
+                16.0
+            };
+            const Actor ExplodeEnemy::ACTOR {
+                20.0,
+                20.0,
+                100.0
+            };
+            const Bullet ExplodeEnemy::BULLET {
+                300.0,
+                7.0,
+                0.0,
+                0.0
+            };
+            const Spawn ExplodeEnemy::SPAWN {
+                50.0,
+                15.0
+            };
+            const uint32_t ExplodeEnemy::DIFFUSION_INDEX { 8 };
+            const double ExplodeEnemy::IGNITION_DISTANCE { 100.0 };
+        }  // namespace enemy
+
+        // --------------------------
+
+        namespace bullet {
+            const Object StandardBullet::OBJECT {
+                8.0
+            };
+        }
+
+        // --------------------------
 
         namespace weapon {
-            const double StandardRifle::SPEED { 240.0 };
-            const double StandardRifle::ATTACK_POWER { 8.0 };
-            const double StandardRifle::INTERVAL { 1.0 };
+            const Weapon StandardRifle::WEAPON {
+                1.0  // Interval
+            };
+            const Bullet StandardRifle::BULLET {
+                240.0,
+                8.0,
+                0.0,
+                0.0
+            };
         }  // namespace weapon
+
+        // --------------------------
+
     }  // namespace status
 }  // namespace shooting::object

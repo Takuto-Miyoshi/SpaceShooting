@@ -24,7 +24,7 @@ namespace shooting::weapon {
 
     void WeaponBase::ShootedProcess() {
         shootable = false;
-        timer = interval;
+        timer = weaponStatus.Interval;
     }
 
     auto WeaponBase::ConvertKind( const object::status::ObjectKind& source ) const -> object::status::ObjectKind {

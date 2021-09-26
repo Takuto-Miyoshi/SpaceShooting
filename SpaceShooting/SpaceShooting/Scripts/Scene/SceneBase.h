@@ -17,10 +17,10 @@ namespace shooting::scene {
         /// @brief シーンが作成された後一度だけ実行
         virtual void Start() = 0;
 
-        /// @brief 毎フレーム実行（計算）
+        /// @brief 更新
         virtual void Update() = 0;
 
-        /// @brief 毎フレーム実行（描画）
+        /// @brief 描画
         virtual void Draw() = 0;
 
         /// @brief 終了時に一度だけ実行

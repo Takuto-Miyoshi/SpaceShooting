@@ -20,8 +20,8 @@ namespace shooting {
 
        private:
         struct RegistData {
-            std::function<void( InputState )> function;
-            Target target;
+            std::function<void( InputState )> function;  // 実行する関数
+            Target target;  // 登録名
         };
 
        public:

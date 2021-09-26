@@ -35,12 +35,8 @@ namespace shooting {
         ImageManager::Instance().reset();
 
         switch ( next ) {
-            case scene::SceneDefs::Title:
-                currentScene = std::make_unique<scene::TitleScene>();
-                break;
-            case scene::SceneDefs::InGame:
-                currentScene = std::make_unique<scene::InGameScene>();
-                break;
+            case scene::SceneDefs::Title: currentScene = std::make_unique<scene::TitleScene>(); break;
+            case scene::SceneDefs::InGame: currentScene = std::make_unique<scene::InGameScene>(); break;
             default: endGame = true; break;
         }
 

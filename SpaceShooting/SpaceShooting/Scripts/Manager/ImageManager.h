@@ -26,6 +26,7 @@ namespace shooting {
         ~ImageManager() = default;
 
        public:
+        /// @brief 初期化
         void Initialize() {
             imageDataList.reserve( image::DATA_CAPACITY );
         }

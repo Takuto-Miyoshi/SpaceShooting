@@ -17,6 +17,7 @@ namespace shooting {
         ~InputManager() = default;
 
        public:
+        /// @brief 更新
         void Update();
 
        private:
@@ -28,6 +29,9 @@ namespace shooting {
 
         /// @brief マウスボタンの入力状態を更新
         void UpdateMousebuttonState();
+
+        /// @brief カーソル位置情報を更新
+        void UpdateCursorPosition();
 
        public:
         /// @brief キーの入力状態を取得

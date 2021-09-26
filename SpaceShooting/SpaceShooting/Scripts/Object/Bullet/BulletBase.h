@@ -20,17 +20,32 @@ namespace shooting::object {
         /// @brief 弾データの読み込み
         static void LoadBulletData();
 
-        void Initialize( const double& setSpeed, const double& setAttackPower, const double& setAcceleration, const float& setAngularVelocity );
+        void Initialize( const status::Bullet& bulletData );
 
         void Update() override;
 
-        auto Collide( const ObjectBase& hit ) -> bool override;
+        void Collide( const ObjectBase& hit ) override;
+
+       protected:
+        /// @brief 移動
+        virtual void Move() = 0;
+
+        /// @brief その他拡張処理
+        virtual void Extention() {};
+
+        /// @brief 向いている方向へ進む
+        void MoveToForward();
+
+        /// @brief directionの方向へ進む
+        void MoveTo( const Vector2& direction );
+
+        [[nodiscard]] virtual auto AttackPower() const -> double override;
+
+        [[nodiscard]] virtual auto TakeDamage( const double& attackPower ) -> bool override;
 
        protected:
         double lifeTime { 0.0 };  // 生成されてからの時間
-        double speed { 0.0 };  // 弾の移動速度
-        double acceleration { 0.0 };  // 加速度
-        float angularVelocity { 0.0f };  // 各速度
+        status::Bullet bulletStatus {};
     };
 }  // namespace shooting::object
 

@@ -12,7 +12,7 @@ namespace shooting {
     void Camera::OffsetBy( const Vector2& from ) {
         const Vector2 screenCenter { dxlib::SCREEN_SIZE_X / 2, dxlib::SCREEN_SIZE_Y / 2 };
 
-        auto vector = screenCenter.VectorTo( from );
+        auto vector = screenCenter.To( from );
         auto length = vector.Length();
 
         if ( length == 0 ) { return; }  // バグ回避

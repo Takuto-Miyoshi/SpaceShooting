@@ -11,11 +11,7 @@ namespace shooting {
 
         UpdateMousebuttonState();
 
-        // カーソル位置
-        int32_t x = 0;
-        int32_t y = 0;
-        GetMousePoint( &x, &y );
-        cursorPosition.Set( x, y );
+        UpdateCursorPosition();
     }
 
     constexpr auto InputManager::ConvertToState( const bool& current, const bool& previous ) -> InputState {
@@ -62,5 +58,12 @@ namespace shooting {
             previous++;
             numButton = numButton << 1;
         }
+    }
+
+    void InputManager::UpdateCursorPosition() {
+        int32_t x = 0;
+        int32_t y = 0;
+        GetMousePoint( &x, &y );
+        cursorPosition.Set( x, y );
     }
 }  // namespace shooting

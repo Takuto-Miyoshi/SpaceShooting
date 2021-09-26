@@ -5,10 +5,10 @@
 
 #include "../../Definition/InputDefinition.h"
 #include "../../Weapon/WeaponBase.h"
-#include "../ObjectBase.h"
+#include "ActorBase.h"
 
 namespace shooting::object {
-    class Player : public ObjectBase {
+    class Player : public ActorBase {
        public:
         Player() = default;
 
@@ -17,10 +17,10 @@ namespace shooting::object {
        public:
         void Update() override;
 
-        auto Collide( const ObjectBase& hit ) -> bool override;
-
        protected:
         void Start() override;
+
+        void DeathProcess() override;
 
         void OutOfValidArea() override;
 
@@ -35,11 +35,12 @@ namespace shooting::object {
 
         void Shoot( InputState inputState );
 
+        /// @brief カーソルの方向を向く
         void LookToCursor();
 
        private:
-        Vector2 previousPosition { 0, 0 };
-        std::unique_ptr<weapon::WeaponBase> usingWeapon;
+        Vector2 previousPosition { 0, 0 };  //前回の位置
+        std::unique_ptr<weapon::WeaponBase> usingWeapon;  // 使用する武器
     };
 }  // namespace shooting::object
 

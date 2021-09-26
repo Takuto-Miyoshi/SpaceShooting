@@ -5,15 +5,16 @@
 #include "ObjectManager.h"
 
 namespace shooting::object {
-    void BulletFactory::Create( const status::ObjectKind& objectKind, const status::BulletType& type, const Vector2& position, const float& angle, const double& speed, const double& attackPower, const double& acceleration, const float& angularVelocity ) {
-        BulletBase* bullet = nullptr;
+    void BulletFactory::Create( const status::ObjectKind& objectKind, const status::bullet::Type& type, const Vector2& position, const float& angle, const status::Bullet& bulletData ) {
+        ObjectBase* bullet = nullptr;
+
         switch ( type ) {
-            case shooting::object::status::BulletType::StandardBullet:
-                bullet = dynamic_cast<BulletBase*>( ObjectManager::Instance()->CreateObject<StandardBullet>( objectKind, position, angle ) );
+            case shooting::object::status::bullet::Type::StandardBullet:
+                bullet = ObjectManager::Instance()->CreateObject<StandardBullet>( objectKind, position, angle );
                 break;
             default: return;
         }
 
-        bullet->Initialize( speed, attackPower, acceleration, angularVelocity );
+        dynamic_cast<BulletBase*>( bullet )->Initialize( bulletData );
     }
 }  // namespace shooting::object

@@ -6,12 +6,6 @@
 #include <functional>
 #include <memory>
 
-// ゲッターメソッド
-#define Getter( method ) [this]() { method }
-
-// セッターメソッド
-#define Setter( value, method ) [this]( value ) { method }
-
 namespace shooting {
     template<typename T>
     class Property {

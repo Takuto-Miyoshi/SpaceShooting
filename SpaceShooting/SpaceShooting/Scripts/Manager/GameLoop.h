@@ -11,6 +11,7 @@ namespace shooting {
         ~GameLoop() = default;
 
        public:
+        /// @brief メインループを実行
         void Exec();
     };
 }  // namespace shooting

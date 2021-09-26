@@ -2,7 +2,6 @@
 
 #include <algorithm>
 
-#include "../Definition/StatusDefinition.h"
 #include "../Manager/ObjectManager.h"
 #include "../Manager/TimeManager.h"
 #include "../Object/Actor/ExplodeEnemy.h"
@@ -16,24 +15,24 @@ namespace shooting::object {
     }
 
     void EnemyManager::Update() {
-        spawnTimer -= TimeManager::Instance()->DeltaTime;
+        spawnTimer += TimeManager::Instance()->DeltaTime;
 
-        if ( spawnTimer <= 0 ) {
-            spawnTimer = Object::SPAWN_INTERVAL;
+        if ( spawnTimer >= ObjectSetting::SPAWN_INTERVAL ) {
+            spawnTimer = 0;
 
             auto enemy = Lottery();
             Generate( enemy.type, enemy.chainChance );
         }
     }
 
-    void EnemyManager::Register( EnemyType&& type, const double& spawnChance, const double& chainChance ) {
+    void EnemyManager::Register( status::enemy::Type&& type, const double& spawnChance, const double& chainChance ) {
         // 重複要素を排除
         Unregister( type );
 
         lotteryBox.emplace_back( type, spawnChance, chainChance );
     }
 
-    void EnemyManager::Unregister( const EnemyType& type ) {
+    void EnemyManager::Unregister( const status::enemy::Type& type ) {
         std::erase_if( lotteryBox, [&type]( auto& element ) { return element.type == type; } );
     }
 
@@ -48,11 +47,10 @@ namespace shooting::object {
         // 確率に応じて本抽選リストに登録
         std::copy_if( lotteryBox.begin(), lotteryBox.end(), box.begin(), [this]( auto& element ) { return HitOfTheTime( element.spawnChance ); } );
 
-        if ( box.empty() ) { return lotteryBox.front(); }
-        return box.at( GetRand( static_cast<int32_t>( box.size() - 1 ) ) );
+        return ( box.empty() ) ? lotteryBox.front() : box.at( GetRand( static_cast<int32_t>( box.size() - 1 ) ) );
     }
 
-    void EnemyManager::Generate( const EnemyType& type, double chainChance ) {
+    void EnemyManager::Generate( const status::enemy::Type& type, double chainChance ) {
         GenerateByType( type );
 
         if ( HitOfTheTime( chainChance ) ) {
@@ -61,11 +59,11 @@ namespace shooting::object {
         }
     }
 
-    void EnemyManager::GenerateByType( const EnemyType& type ) {
+    void EnemyManager::GenerateByType( const status::enemy::Type& type ) {
         auto objectManager = ObjectManager::Instance();
         switch ( type ) {
-            case EnemyType::StandardEnemy: objectManager->CreateObject<StandardEnemy>( status::ObjectKind::Enemy, RandomPosition() ); break;
-            case EnemyType::ExplodeEnemy: objectManager->CreateObject<ExplodeEnemy>( status::ObjectKind::Enemy, RandomPosition() ); break;
+            case status::enemy::Type::StandardEnemy: objectManager->CreateObject<StandardEnemy>( status::ObjectKind::Enemy, RandomPosition() ); break;
+            case status::enemy::Type::ExplodeEnemy: objectManager->CreateObject<ExplodeEnemy>( status::ObjectKind::Enemy, RandomPosition() ); break;
             default: break;
         }
     }
@@ -78,9 +76,9 @@ namespace shooting::object {
         Vector2 result;
         do {
             // 有効範囲内の位置を生成
-            result = Vector2 { static_cast<double>( GetRand( static_cast<int32_t>( Object::VALID_DISTANCE ) ) ) - Object::VALID_DISTANCE,
-                               static_cast<double>( GetRand( static_cast<int32_t>( Object::VALID_DISTANCE ) ) ) - Object::VALID_DISTANCE };
-        } while ( result.Length() >= Object::VALID_DISTANCE );
+            result = Vector2 { static_cast<double>( GetRand( static_cast<int32_t>( ObjectSetting::VALID_DISTANCE ) ) ) - ObjectSetting::VALID_DISTANCE,
+                               static_cast<double>( GetRand( static_cast<int32_t>( ObjectSetting::VALID_DISTANCE ) ) ) - ObjectSetting::VALID_DISTANCE };
+        } while ( result.Length() >= ObjectSetting::VALID_DISTANCE );
 
         return result;
     }

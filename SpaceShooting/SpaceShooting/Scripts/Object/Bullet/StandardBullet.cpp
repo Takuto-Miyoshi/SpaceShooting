@@ -5,11 +5,11 @@
 namespace shooting::object {
     void StandardBullet::Start() {
         graphicHandle = ImageManager::Instance()->Image( image::STANDARD_BULLET.name );
-        collisionRadius = status::StandardBullet::COLLISION_RADIUS;
+
+        objectStatus = status::bullet::StandardBullet::OBJECT;
     }
 
-    void StandardBullet::Update() {
-        BulletBase::Update();
-        position += Vector2::AngleToVector( angle ) * speed * timeManager.lock()->DeltaTime;
+    void StandardBullet::Move() {
+        MoveToForward();
     }
 }  // namespace shooting::object

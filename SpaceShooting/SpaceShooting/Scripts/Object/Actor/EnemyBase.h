@@ -5,10 +5,10 @@
 
 #include "../../Definition/ImageDefinition.h"
 #include "../../Manager/ImageManager.h"
-#include "../ObjectBase.h"
+#include "ActorBase.h"
 
 namespace shooting::object {
-    class EnemyBase : public ObjectBase {
+    class EnemyBase : public ActorBase {
        public:
         EnemyBase() = default;
 

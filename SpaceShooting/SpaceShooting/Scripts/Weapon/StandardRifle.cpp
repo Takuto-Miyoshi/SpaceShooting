@@ -5,15 +5,15 @@
 namespace shooting::weapon {
     void StandardRifle::Initialize( const object::ObjectBase& user ) {
         WeaponBase::Initialize( user );
-        interval = object::status::weapon::StandardRifle::INTERVAL;
+
+        weaponStatus = object::status::weapon::StandardRifle::WEAPON;
     }
 
     void StandardRifle::ShootProcess() {
         object::BulletFactory::Instance()->Create( kind,
-                                                   object::status::BulletType::StandardBullet,
+                                                   object::status::bullet::Type::StandardBullet,
                                                    *position,
                                                    *angle,
-                                                   object::status::weapon::StandardRifle::SPEED,
-                                                   object::status::weapon::StandardRifle::ATTACK_POWER );
+                                                   object::status::weapon::StandardRifle::BULLET );
     }
 }  // namespace shooting::weapon

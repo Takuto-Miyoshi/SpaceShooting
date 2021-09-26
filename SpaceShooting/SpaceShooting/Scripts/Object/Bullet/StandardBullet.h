@@ -12,10 +12,10 @@ namespace shooting::object {
 
         ~StandardBullet() override = default;
 
-       public:
+       protected:
         void Start() override;
 
-        void Update() override;
+        void Move() override;
     };
 }  // namespace shooting::object
 

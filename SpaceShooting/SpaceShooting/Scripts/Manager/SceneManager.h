@@ -17,15 +17,18 @@ namespace shooting {
         ~SceneManager() = default;
 
        public:
+        /// @brief 初期化
         void Initialize();
 
+        /// @brief 更新
         void Update();
 
        private:
+        /// @brief 実行するシーンを変更する
         void ChangeScene( const scene::SceneDefs& next );
 
        public:
-        /// @brief ゲームを終了する
+        /// @brief ゲームを終了するか
         ReadonlyProperty<bool> EndGame { endGame };
 
        private:

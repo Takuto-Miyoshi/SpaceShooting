@@ -31,21 +31,27 @@ namespace shooting::object {
             return &*objectList.back();
         }
 
+        /// @brief 更新
         void Update();
 
+        /// @brief 描画
         void Draw();
 
+        /// @brief 終了処理
         void Finalize();
 
+        /// @brief プレイヤーの位置を取得
+        /// @return プレイヤーが見つからなければVector2{0,0}を返す
         [[nodiscard]] auto PlayerPosition() -> Vector2 {
-            return ( player ) ? player->Position : Vector2 { 0, 0 };
+            return ( player ) ? player->Position : Vector2::Zero();
         }
 
+        /// @brief fromから一番近い敵(ObjectKind::Enemy)の位置を取得
+        /// @return 敵がいなければVector2{0,0}を返す
         [[nodiscard]] auto NearEnemyPosition( const Vector2& from ) -> Vector2 {
-            Grouping();
-            if ( enemyList.empty() ) { return Vector2 { 0, 0 }; }
+            if ( enemyList.empty() ) { return Vector2::Zero(); }
             return std::min_element( enemyList.begin(), enemyList.end(), [&from]( auto& left, auto& right ) {
-                       return from.VectorTo( left->Position ).Length() < from.VectorTo( right->Position ).Length();
+                       return from.To( left->Position ).Length() < from.To( right->Position ).Length();
                    } )
                 ->get()
                 ->Position;
@@ -55,10 +61,13 @@ namespace shooting::object {
         /// @brief アクティブでないオブジェクトをリストから削除
         void EraseUnactiveObject();
 
+        /// @brief 全てのオブジェクトに当たり判定処理を実行
         void CollisionDetection();
 
+        /// @brief オブジェクトをグループに分ける
         void Grouping();
 
+        /// @brief 2つのオブジェクトが接触しているかを取得
         auto Detection( const ObjectBase& objA, const ObjectBase& objB ) const -> bool;
 
        private:

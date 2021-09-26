@@ -19,8 +19,10 @@ namespace shooting::object {
         void Start() override;
 
        private:
+        /// @brief 移動
         void Move();
 
+        /// @brief 射撃
         void Shoot();
 
        private:

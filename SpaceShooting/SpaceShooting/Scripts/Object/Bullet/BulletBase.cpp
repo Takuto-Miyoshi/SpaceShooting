@@ -7,25 +7,41 @@ namespace shooting::object {
         ImageManager::Instance()->LoadGraphHandle( image::STANDARD_BULLET );
     }
 
-    void BulletBase::Initialize( const double& setSpeed, const double& setAttackPower, const double& setAcceleration, const float& setAngularVelocity ) {
-        speed = setSpeed;
-        attackPower = setAttackPower;
-        acceleration = setAcceleration;
-        angularVelocity = setAngularVelocity;
+    void BulletBase::Initialize( const status::Bullet& bulletData ) {
+        bulletStatus = bulletData;
     }
 
     void BulletBase::Update() {
         lifeTime += timeManager.lock()->DeltaTime;
-        if ( lifeTime >= status::Bullet::LIFE_SPAN_OF_BULLET ) {
+        if ( lifeTime >= status::BulletSetting::LIFE_SPAN_OF_BULLET ) {
             isActive = false;
         }
 
-        speed += acceleration * timeManager.lock()->DeltaTime;
-        angle += angularVelocity * timeManager.lock()->DeltaTime;
+        Move();
+        Extention();
+
+        bulletStatus.Speed += bulletStatus.Acceleration * timeManager.lock()->DeltaTime;
+        angle += bulletStatus.AngulerVelocity * timeManager.lock()->DeltaTime;
     }
 
-    auto BulletBase::Collide( const ObjectBase& hit ) -> bool {
+    void BulletBase::Collide( const ObjectBase& hit ) {
         isActive = false;
-        return !isActive;
+        DeathProcess();
+    }
+
+    void BulletBase::MoveToForward() {
+        ObjectBase::MoveToForward( bulletStatus.Speed );
+    }
+
+    void BulletBase::MoveTo( const Vector2& direction ) {
+        ObjectBase::MoveTo( direction, bulletStatus.Speed );
+    }
+
+    auto BulletBase::AttackPower() const -> double {
+        return bulletStatus.AttackPower;
+    }
+
+    auto BulletBase::TakeDamage( const double& attackPower ) -> bool {
+        return false;
     }
 }  // namespace shooting::object

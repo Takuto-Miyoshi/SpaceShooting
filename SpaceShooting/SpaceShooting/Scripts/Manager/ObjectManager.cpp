@@ -6,10 +6,10 @@
 
 namespace shooting::object {
     void ObjectManager::Initialize() {
-        objectList.reserve( Object::OBJECT_CAPACITY );
-        playerBulletList.reserve( Object::OBJECT_CAPACITY );
-        enemyList.reserve( Object::OBJECT_CAPACITY );
-        enemyBulletList.reserve( Object::OBJECT_CAPACITY );
+        objectList.reserve( ObjectSetting::OBJECT_CAPACITY );
+        playerBulletList.reserve( ObjectSetting::OBJECT_CAPACITY );
+        enemyList.reserve( ObjectSetting::OBJECT_CAPACITY );
+        enemyBulletList.reserve( ObjectSetting::OBJECT_CAPACITY );
 
         EnemyBase::LoadEnemyData();
         BulletBase::LoadBulletData();
@@ -31,8 +31,6 @@ namespace shooting::object {
         for ( auto&& obj : std::as_const( objectList ) ) {
             obj->Draw();
         }
-
-        printfDx( "object : %d\n", objectList.size() );
     }
 
     void ObjectManager::Finalize() {
@@ -96,6 +94,6 @@ namespace shooting::object {
     }
 
     auto ObjectManager::Detection( const ObjectBase& objA, const ObjectBase& objB ) const -> bool {
-        return ( objA.Position->VectorTo( objB.Position ).Length() <= ( objA.CollisionRadius + objB.CollisionRadius ) );
+        return ( objA.Position->To( objB.Position ).Length() <= ( objA.ObjectStatus->CollisionRadius + objB.ObjectStatus->CollisionRadius ) );
     }
 }  // namespace shooting::object

@@ -17,11 +17,13 @@ namespace shooting {
         ~TimeManager() = default;
 
        public:
+        /// @brief 初期化
         void Initialize() {
             startTime = GetNowCount();
             fpsStartTime = GetNowCount();
         }
 
+        /// @brief 更新
         void Update() {
             // deltaTime
             int32_t currentTime = GetNowCount();
@@ -29,6 +31,12 @@ namespace shooting {
             // 前回の処理にかかった時間
             deltaTime = ToSeconds( currentTime - startTime );
             startTime = currentTime;
+
+            // deltaTimeが大きすぎる場合は不具合を回避するためdeltaTimeを0に
+            if ( deltaTime >= TIME_SKIP ) {
+                deltaTime = 0.0f;
+                printfDx( "FPS : %d\n", fps );
+            }
 
             // fps
             fpsCount++;
@@ -50,12 +58,14 @@ namespace shooting {
 
        public:
         /// @brief 前回の処理にかかった時間(s)
-        Property<float> DeltaTime { deltaTime };
+        ReadonlyProperty<float> DeltaTime { deltaTime };
 
         /// @brief 1秒あたりの処理回数
-        Property<int32_t> FPS { fps };
+        ReadonlyProperty<int32_t> FPS { fps };
 
        private:
+        static constexpr float TIME_SKIP { 0.2f };  // deltaTimeはこの値を超えた場合0を返す
+
         static constexpr int32_t MS_CONVERT_SOURCE { 1000 };
         static constexpr float S_CONVERT_SOURCE { 1000.0f };
 

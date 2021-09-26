@@ -26,9 +26,6 @@
     <ClCompile Include="Scripts\Object\Bullet\BulletBase.cpp">
       <Filter>Object\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp">
-      <Filter>Object\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="Scripts\Manager\ObjectManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
@@ -38,17 +35,11 @@
     <ClCompile Include="Scripts\Object\Bullet\StandardBullet.cpp">
       <Filter>Object\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Object\Actor\StandardEnemy.cpp">
-      <Filter>Object\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="Scripts\Manager\GameLoop.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Definition\StatusDefinition.cpp">
       <Filter>Definition</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Object\Actor\ExplodeEnemy.cpp">
-      <Filter>Object\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Object\Camera.cpp">
       <Filter>Object</Filter>
@@ -61,6 +52,18 @@
     </ClCompile>
     <ClCompile Include="Scripts\Weapon\StandardRifle.cpp">
       <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\ExplodeEnemy.cpp">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\StandardEnemy.cpp">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\ActorBase.cpp">
+      <Filter>Object\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,23 +130,14 @@
     <ClInclude Include="Scripts\Object\Bullet\StandardBullet.h">
       <Filter>Object\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Object\Actor\EnemyBase.h">
-      <Filter>Object\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\Manager\ObjectManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Manager\BulletFactory.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Object\Actor\StandardEnemy.h">
-      <Filter>Object\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\Manager\GameLoop.h">
       <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Object\Actor\ExplodeEnemy.h">
-      <Filter>Object\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Manager\EnemyManager.h">
       <Filter>Manager</Filter>
@@ -153,6 +147,18 @@
     </ClInclude>
     <ClInclude Include="Scripts\Weapon\StandardRifle.h">
       <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\StandardEnemy.h">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\EnemyBase.h">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\ExplodeEnemy.h">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\ActorBase.h">
+      <Filter>Object\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +188,9 @@
     </Filter>
     <Filter Include="Weapon">
       <UniqueIdentifier>{31260d0f-84e7-44eb-96da-61d3185a81fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor\Enemy">
+      <UniqueIdentifier>{90b63fd4-0e32-4b10-87d2-bd52129966c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

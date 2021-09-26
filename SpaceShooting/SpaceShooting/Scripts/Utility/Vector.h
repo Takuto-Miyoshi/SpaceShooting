@@ -24,6 +24,21 @@ namespace shooting {
         ~Vector2() = default;
 
        public:
+        /// @brief Vector2{0,0}を取得
+        [[nodiscard]] static auto Zero() -> Vector2 { return Vector2 { 0, 0 }; }
+
+        /// @brief Vector2{0,-1}を取得
+        [[nodiscard]] static auto Up() -> Vector2 { return Vector2 { 0, -1 }; }
+
+        /// @brief Vector2{0,1}を取得
+        [[nodiscard]] static auto Down() -> Vector2 { return Vector2 { 0, 1 }; }
+
+        /// @brief Vector2{1,0}を取得
+        [[nodiscard]] static auto Right() -> Vector2 { return Vector2 { 1, 0 }; }
+
+        /// @brief Vector2{-1,0}を取得
+        [[nodiscard]] static auto Left() -> Vector2 { return Vector2 { -1, 0 }; }
+
         /// @brief ベクトルの長さを取得
         [[nodiscard]] auto Length() const -> double { return sqrt( x * x + y * y ); }
 
@@ -32,19 +47,19 @@ namespace shooting {
 
         /// @brief ターゲットへの2点間のベクトルを取得
         /// @param target ターゲットの位置
-        [[nodiscard]] auto VectorTo( const Vector2 &target ) const -> Vector2 { return target - *this; }
+        [[nodiscard]] auto To( const Vector2 &target ) const -> Vector2 { return target - *this; }
 
-        /// @brief ターゲットへの向きを取得 @n 右が0のラジアン
+        /// @brief ターゲットへの向きを取得
         /// @param target ターゲットの位置
         /// @param toUp 上を基準にするか
-        [[nodiscard]] auto Angle( const Vector2 &target, const bool &toUp = false ) const -> float {
-            auto vector = VectorTo( target );
+        [[nodiscard]] auto AngleTo( const Vector2 &target, const bool &toUp = true ) const -> float {
+            auto vector = To( target );
             auto radian = static_cast<float>( atan2( vector.y, vector.x ) );
             return ( toUp ) ? ( radian + static_cast<float>( PI / 2 ) ) : radian;
         }
 
         /// @brief ラジアンを単位ベクトルに変換
-        [[nodiscard]] static auto AngleToVector( const float &angle ) -> Vector2 { return Vector2 { sinf( angle ), -cosf( angle ) }.Normalized(); }
+        [[nodiscard]] static auto FromAngle( const float &angle ) -> Vector2 { return Vector2 { sinf( angle ), -cosf( angle ) }.Normalized(); }
 
        public:
         auto operator+( const Vector2 &vector ) const -> Vector2 { return Vector2( x + vector.x, y + vector.y ); }

@@ -8,7 +8,7 @@
 #include "../Object/Camera.h"
 #include "DxLib.h"
 
-using namespace shooting::object::status;
+using namespace shooting::object;
 using shooting::object::status::ObjectKind;
 
 namespace shooting::scene {
@@ -19,11 +19,11 @@ namespace shooting::scene {
         } );
 
         objectManager.lock()->Initialize();
-        objectManager.lock()->CreateObject<object::Player>( ObjectKind::Player );
+        objectManager.lock()->CreateObject<Player>( ObjectKind::Player );
 
         enemyManager.Initialize();
-        enemyManager.Register( object::EnemyManager::EnemyType::StandardEnemy, StandardEnemy::SPAWN_RATE, StandardEnemy::CHAIN_RATE );
-        enemyManager.Register( object::EnemyManager::EnemyType::ExplodeEnemy, ExplodeEnemy::SPAWN_RATE, ExplodeEnemy::CHAIN_RATE );
+        enemyManager.Register( status::enemy::Type::StandardEnemy, status::enemy::StandardEnemy::SPAWN.SpawnRate, status::enemy::StandardEnemy::SPAWN.ChainRate );
+        enemyManager.Register( status::enemy::Type::ExplodeEnemy, status::enemy::ExplodeEnemy::SPAWN.SpawnRate, status::enemy::ExplodeEnemy::SPAWN.ChainRate );
     }
 
     void InGameScene::Update() {
@@ -40,7 +40,7 @@ namespace shooting::scene {
         // DEBUG
         DrawCircle( static_cast<int32_t>( -Camera::Instance()->Position->X ),
                     static_cast<int32_t>( -Camera::Instance()->Position->Y ),
-                    static_cast<int32_t>( object::Object::VALID_DISTANCE ),
+                    static_cast<int32_t>( object::ObjectSetting::VALID_DISTANCE ),
                     GetColor( 255, 0, 0 ),
                     FALSE );
 

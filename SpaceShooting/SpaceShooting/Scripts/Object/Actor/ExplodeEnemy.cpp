@@ -6,49 +6,42 @@
 namespace shooting::object {
     void ExplodeEnemy::Start() {
         graphicHandle = ImageManager::Instance()->Image( image::EXPLODE_ENEMY.name );
-        collisionRadius = status::ExplodeEnemy::COLLISION_RADIUS;
-        maxHp = status::ExplodeEnemy::MAX_HP;
-        hp = maxHp;
-        speed = status::ExplodeEnemy::SPEED;
+
+        objectStatus = status::enemy::ExplodeEnemy::OBJECT;
+        actorStatus = status::enemy::ExplodeEnemy::ACTOR;
+    }
+
+    void ExplodeEnemy::DeathProcess() {
+        Explosion();
     }
 
     void ExplodeEnemy::Update() {
-        toPlayerVector = position.VectorTo( ObjectManager::Instance()->PlayerPosition() );
+        toPlayerVector = position.To( ObjectManager::Instance()->PlayerPosition() );
 
         Move();
 
-        if ( toPlayerVector.Length() <= status::ExplodeEnemy::IGNITION_DISTANCE ) {
+        if ( toPlayerVector.Length() <= status::enemy::ExplodeEnemy::IGNITION_DISTANCE ) {
             // 一定距離まで近づいたら爆発
             Explosion();
         }
     }
 
-    auto ExplodeEnemy::Collide( const ObjectBase& hit ) -> bool {
-        if ( ObjectBase::Collide( hit ) ) {
-            // 死んだら爆発
-            Explosion();
-        }
-
-        return !isActive;
-    }
-
     void ExplodeEnemy::Move() {
         auto direction = toPlayerVector.Normalized();
-        position += direction * speed * timeManager.lock()->DeltaTime;
+        MoveTo( direction );
 
-        angle = position.Angle( direction, true );
+        angle = position.AngleTo( direction );
     }
 
     void ExplodeEnemy::Explosion() {
-        float baseAngle = static_cast<float>( PI * 2 ) / status::ExplodeEnemy::DIFFUSION_INDEX;
-        for ( uint32_t i = 0; i < status::ExplodeEnemy::DIFFUSION_INDEX; i++ ) {
+        float baseAngle = static_cast<float>( PI * 2 ) / status::enemy::ExplodeEnemy::DIFFUSION_INDEX;
+        for ( uint32_t i = 0; i < status::enemy::ExplodeEnemy::DIFFUSION_INDEX; i++ ) {
             float shootAngle = angle + baseAngle * i;
             BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet,
-                                               status::BulletType::StandardBullet,
+                                               status::bullet::Type::StandardBullet,
                                                position,
                                                shootAngle,
-                                               status::ExplodeEnemy::BULLET_SPEED,
-                                               status::ExplodeEnemy::ATTACK_POWER );
+                                               status::enemy::ExplodeEnemy::BULLET );
         }
 
         isActive = false;

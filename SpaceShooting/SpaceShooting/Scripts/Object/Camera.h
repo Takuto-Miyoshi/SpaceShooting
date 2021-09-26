@@ -18,6 +18,7 @@ namespace shooting {
         ~Camera() = default;
 
        public:
+        /// @brief 更新
         void Update();
 
         /// @brief fromの位置に応じてカメラをずらす
@@ -28,8 +29,8 @@ namespace shooting {
         ReadonlyProperty<Vector2> Position { position };
 
        private:
-        static constexpr int32_t LENGTH_LIMIT = 250;  // 上限
-        static constexpr double SENSITIVITY = 2.5;  // カーソル感度
+        static constexpr int32_t LENGTH_LIMIT { 250 };  // 上限
+        static constexpr double SENSITIVITY { 2.5 };  // カーソル感度
 
         Vector2 position { 0, 0 };
     };

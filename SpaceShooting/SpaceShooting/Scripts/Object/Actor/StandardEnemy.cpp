@@ -6,10 +6,9 @@
 namespace shooting::object {
     void StandardEnemy::Start() {
         graphicHandle = ImageManager::Instance()->Image( image::STANDARD_ENEMY.name );
-        collisionRadius = status::StandardEnemy::COLLISION_RADIUS;
-        maxHp = status::StandardEnemy::MAX_HP;
-        hp = maxHp;
-        speed = status::StandardEnemy::SPEED;
+
+        objectStatus = status::enemy::StandardEnemy::OBJECT;
+        actorStatus = status::enemy::StandardEnemy::ACTOR;
     }
 
     void StandardEnemy::Update() {
@@ -18,22 +17,21 @@ namespace shooting::object {
     }
 
     void StandardEnemy::Move() {
-        position.X += sin( TimeManager::ToSeconds( GetNowCount() ) ) * speed * timeManager.lock()->DeltaTime;
-        position.Y += -cos( TimeManager::ToSeconds( GetNowCount() ) ) * speed * timeManager.lock()->DeltaTime;
+        angle += timeManager.lock()->DeltaTime;
+        MoveToForward();
     }
 
     void StandardEnemy::Shoot() {
         shotCount += timeManager.lock()->DeltaTime;
-        if ( shotCount >= status::StandardEnemy::SHOT_INTERVAL ) {
+        if ( shotCount >= status::enemy::StandardEnemy::SHOT_INTERVAL ) {
             shotCount = 0;
 
-            float shootAngle = position.Angle( ObjectManager::Instance()->PlayerPosition(), true );
+            float shootAngle = position.AngleTo( ObjectManager::Instance()->PlayerPosition() );
             object::BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet,
-                                                       status::BulletType::StandardBullet,
+                                                       status::bullet::Type::StandardBullet,
                                                        position,
                                                        shootAngle,
-                                                       status::StandardEnemy::BULLET_SPEED,
-                                                       status::StandardEnemy::ATTACK_POWER );
+                                                       status::enemy::StandardEnemy::BULLET );
         }
     }
 }  // namespace shooting::object

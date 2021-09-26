@@ -13,10 +13,9 @@ namespace shooting::object {
     void Player::Start() {
         ImageManager::Instance()->LoadGraphHandle( image::PLAYER );
         graphicHandle = ImageManager::Instance()->Image( image::PLAYER.name );
-        collisionRadius = status::Player::COLLISION_RADIUS;
-        maxHp = status::Player::MAX_HP;
-        hp = maxHp;
-        speed = status::Player::SPEED;
+
+        objectStatus = status::Player::OBJECT;
+        actorStatus = status::Player::ACTOR;
 
         usingWeapon = std::make_unique<weapon::StandardRifle>();
         usingWeapon->Initialize( *this );
@@ -35,6 +34,10 @@ namespace shooting::object {
             MOUSEBUTTON_LEFT, [this]( InputState inputState ) { Shoot( inputState ); }, InputInvoker::Target::Player );
     }
 
+    void Player::DeathProcess() {
+        InputInvoker::Instance()->UnregisterTarget( InputInvoker::Target::Player );
+    }
+
     void Player::OutOfValidArea() {
         position = previousPosition;
     }
@@ -45,31 +48,24 @@ namespace shooting::object {
         previousPosition = position;
     }
 
-    auto Player::Collide( const ObjectBase& hit ) -> bool {
-        if ( ObjectBase::Collide( hit ) ) {
-            InputInvoker::Instance()->UnregisterTarget( InputInvoker::Target::Player );
-        }
-        return !isActive;
-    }
-
     void Player::MoveLeft( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        position.X -= speed * timeManager.lock()->DeltaTime;
+        MoveTo( Vector2::Left() );
     }
 
     void Player::MoveRight( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        position.X += speed * timeManager.lock()->DeltaTime;
+        MoveTo( Vector2::Right() );
     }
 
     void Player::MoveUp( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        position.Y -= speed * timeManager.lock()->DeltaTime;
+        MoveTo( Vector2::Up() );
     }
 
     void Player::MoveDown( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        position.Y += speed * timeManager.lock()->DeltaTime;
+        MoveTo( Vector2::Down() );
     }
 
     void Player::Shoot( InputState inputState ) {
@@ -78,7 +74,7 @@ namespace shooting::object {
     }
 
     void Player::LookToCursor() {
-        auto cursorPosition = InputManager::Instance()->CursorPosition + camera.lock()->Position;
-        angle = static_cast<float>( position.Angle( cursorPosition, true ) );
+        auto&& cursorPosition = InputManager::Instance()->CursorPosition + camera.lock()->Position;
+        angle = static_cast<float>( position.AngleTo( cursorPosition ) );
     }
 }  // namespace shooting::object

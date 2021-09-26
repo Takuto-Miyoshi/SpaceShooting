@@ -15,18 +15,20 @@ namespace shooting::object {
        public:
         void Update() override;
 
-        auto Collide( const ObjectBase& hit ) -> bool override;
-
        protected:
         void Start() override;
 
+        void DeathProcess() override;
+
        private:
+        /// @brief 移動
         void Move();
 
+        /// @brief 爆発(拡散弾)
         void Explosion();
 
        private:
-        Vector2 toPlayerVector { 0, 0 };
+        Vector2 toPlayerVector { 0, 0 };  // プレイヤーの位置
     };
 }  // namespace shooting::object
 

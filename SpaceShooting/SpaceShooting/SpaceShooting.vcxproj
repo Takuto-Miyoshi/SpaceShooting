@@ -168,6 +168,7 @@
     <ClCompile Include="Scripts\Manager\InputManager.cpp" />
     <ClCompile Include="Scripts\Manager\ObjectManager.cpp" />
     <ClCompile Include="Scripts\Manager\SceneManager.cpp" />
+    <ClCompile Include="Scripts\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\ExplodeEnemy.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Player.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Scripts\Manager\ObjectManager.h" />
     <ClInclude Include="Scripts\Manager\SceneManager.h" />
     <ClInclude Include="Scripts\Manager\TimeManager.h" />
+    <ClInclude Include="Scripts\Object\Actor\ActorBase.h" />
     <ClInclude Include="Scripts\Object\Actor\EnemyBase.h" />
     <ClInclude Include="Scripts\Object\Actor\ExplodeEnemy.h" />
     <ClInclude Include="Scripts\Object\Actor\Player.h" />
