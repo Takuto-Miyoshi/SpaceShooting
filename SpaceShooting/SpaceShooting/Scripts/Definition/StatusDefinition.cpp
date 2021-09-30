@@ -77,7 +77,11 @@ namespace shooting::object {
             const Object StandardBullet::OBJECT {
                 8.0
             };
-        }
+
+            const Object HomingBullet::OBJECT {
+                8.0
+            };
+        }  // namespace bullet
 
         // --------------------------
 

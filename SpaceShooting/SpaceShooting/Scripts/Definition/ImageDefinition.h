@@ -12,7 +12,7 @@ namespace shooting::image {
         std::string name;  // 画像の登録名
     };
 
-    constexpr uint32_t DATA_CAPACITY { 3 };
+    constexpr uint32_t DATA_CAPACITY { 10 };
 
     const ImageData PLAYER { "Images/Object/Actor/Player.png", "Player" };
 
@@ -20,6 +20,7 @@ namespace shooting::image {
     const ImageData EXPLODE_ENEMY { "Images/Object/Actor/ExplodeEnemy.png", "ExplodeEnemy" };
 
     const ImageData STANDARD_BULLET { "Images/Object/Bullet/StandardBullet.png", "StandardBullet" };
+    const ImageData HOMING_BULLET { "Images/Object/Bullet/HomingBullet.png", "HomingBullet" };
 }  // namespace shooting::image
 
 #endif  // !IMAGE_DEFINITION_H

@@ -8,6 +8,7 @@
 #include "../Definition/StatusDefinition.h"
 #include "../Utility/Singleton.h"
 #include "../Utility/Vector.h"
+#include "ObjectManager.h"
 
 namespace shooting::object {
     class BulletFactory : public Singleton<BulletFactory> {
@@ -24,6 +25,12 @@ namespace shooting::object {
         /// @param angle 作成する向き
         /// @param bulletData 弾データ
         void Create( const status::ObjectKind& objectKind, const status::bullet::Type& type, const Vector2& position, const float& angle, const status::Bullet& bulletData );
+
+       private:
+        template<class T>
+        auto CreateBullet( const status::ObjectKind& objectKind, const Vector2& position, const float& angle ) -> ObjectBase* {
+            return ObjectManager::Instance()->CreateObject<T>( objectKind, position, angle );
+        }
     };
 }  // namespace shooting::object
 

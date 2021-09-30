@@ -108,9 +108,14 @@ namespace shooting::object {
             /// @brief 弾の種類
             enum class Type {
                 StandardBullet,
+                HomingBullet,
             };
 
             struct StandardBullet {
+                static const Object OBJECT;
+            };
+
+            struct HomingBullet {
                 static const Object OBJECT;
             };
         }  // namespace bullet

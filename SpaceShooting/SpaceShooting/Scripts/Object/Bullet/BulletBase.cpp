@@ -4,7 +4,9 @@
 
 namespace shooting::object {
     void BulletBase::LoadBulletData() {
-        ImageManager::Instance()->LoadGraphHandle( image::STANDARD_BULLET );
+        auto loadGraph = []( const image::ImageData& imgData ) { ImageManager::Instance()->LoadGraphHandle( imgData ); };
+        loadGraph( image::STANDARD_BULLET );
+        loadGraph( image::HOMING_BULLET );
     }
 
     void BulletBase::Initialize( const status::Bullet& bulletData ) {

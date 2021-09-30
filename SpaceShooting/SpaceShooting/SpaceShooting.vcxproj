@@ -174,6 +174,7 @@
     <ClCompile Include="Scripts\Object\Actor\Player.cpp" />
     <ClCompile Include="Scripts\Object\Actor\StandardEnemy.cpp" />
     <ClCompile Include="Scripts\Object\Bullet\BulletBase.cpp" />
+    <ClCompile Include="Scripts\Object\Bullet\HomingBullet.cpp" />
     <ClCompile Include="Scripts\Object\Bullet\StandardBullet.cpp" />
     <ClCompile Include="Scripts\Object\Camera.cpp" />
     <ClCompile Include="Scripts\Object\ObjectBase.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Scripts\Object\Actor\Player.h" />
     <ClInclude Include="Scripts\Object\Actor\StandardEnemy.h" />
     <ClInclude Include="Scripts\Object\Bullet\BulletBase.h" />
+    <ClInclude Include="Scripts\Object\Bullet\HomingBullet.h" />
     <ClInclude Include="Scripts\Object\Bullet\StandardBullet.h" />
     <ClInclude Include="Scripts\Object\Camera.h" />
     <ClInclude Include="Scripts\Object\ObjectBase.h" />
