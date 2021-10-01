@@ -181,6 +181,7 @@
     <ClCompile Include="Scripts\Object\ObjectBase.cpp" />
     <ClCompile Include="Scripts\Scene\InGameScene.cpp" />
     <ClCompile Include="Scripts\Scene\TitleScene.cpp" />
+    <ClCompile Include="Scripts\Weapon\MachineGun.cpp" />
     <ClCompile Include="Scripts\Weapon\StandardRifle.cpp" />
     <ClCompile Include="Scripts\Weapon\WeaponBase.cpp" />
   </ItemGroup>
@@ -216,9 +217,11 @@
     <ClInclude Include="Scripts\Scene\InGameScene.h" />
     <ClInclude Include="Scripts\Scene\SceneBase.h" />
     <ClInclude Include="Scripts\Scene\TitleScene.h" />
+    <ClInclude Include="Scripts\Utility\Functions.h" />
     <ClInclude Include="Scripts\Utility\Property.h" />
     <ClInclude Include="Scripts\Utility\Singleton.h" />
     <ClInclude Include="Scripts\Utility\Vector.h" />
+    <ClInclude Include="Scripts\Weapon\MachineGun.h" />
     <ClInclude Include="Scripts\Weapon\StandardRifle.h" />
     <ClInclude Include="Scripts\Weapon\WeaponBase.h" />
   </ItemGroup>

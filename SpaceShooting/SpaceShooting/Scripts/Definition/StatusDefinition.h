@@ -134,6 +134,13 @@ namespace shooting::object {
                 static const Weapon WEAPON;
                 static const Bullet BULLET;
             };
+
+            struct MachineGun {
+                static const Weapon WEAPON;
+                static const Bullet BULLET;
+
+                static const float DEVIATION;
+            };
         }  // namespace weapon
 
         // ----------------------------

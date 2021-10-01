@@ -6,7 +6,7 @@
 #include "../../Manager/ImageManager.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
-#include "../../Weapon/StandardRifle.h"
+#include "../../Weapon/MachineGun.h"
 #include "../Bullet/StandardBullet.h"
 
 namespace shooting::object {
@@ -17,7 +17,7 @@ namespace shooting::object {
         objectStatus = status::Player::OBJECT;
         actorStatus = status::Player::ACTOR;
 
-        usingWeapon = std::make_unique<weapon::StandardRifle>();
+        usingWeapon = std::make_unique<weapon::MachineGun>();
         usingWeapon->Initialize( *this );
 
         // キー登録

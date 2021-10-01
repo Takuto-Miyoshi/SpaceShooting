@@ -95,6 +95,17 @@ namespace shooting::object {
                 0.0,
                 0.0
             };
+
+            const Weapon MachineGun::WEAPON {
+                0.2
+            };
+            const Bullet MachineGun::BULLET {
+                260.0,
+                3.0,
+                -30.0,
+                0.0,
+            };
+            const float MachineGun::DEVIATION { 0.3f };
         }  // namespace weapon
 
         // --------------------------

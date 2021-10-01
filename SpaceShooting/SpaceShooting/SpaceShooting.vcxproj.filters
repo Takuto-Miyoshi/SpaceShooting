@@ -71,6 +71,9 @@
     <ClCompile Include="Scripts\Object\Bullet\TransBullet.cpp">
       <Filter>Object\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Weapon\MachineGun.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -171,6 +174,12 @@
     </ClInclude>
     <ClInclude Include="Scripts\Object\Bullet\TransBullet.h">
       <Filter>Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Weapon\MachineGun.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utility\Functions.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
