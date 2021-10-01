@@ -2,13 +2,11 @@
 
 #include "../../Definition/ImageDefinition.h"
 #include "../../Definition/StatusDefinition.h"
-#include "../../Manager/BulletFactory.h"
 #include "../../Manager/ImageManager.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
 #include "../../Weapon/MachineGun.h"
 #include "../../Weapon/StandardRifle.h"
-#include "../Bullet/StandardBullet.h"
 
 namespace shooting::object {
     void Player::Start() {
