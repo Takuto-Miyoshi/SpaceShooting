@@ -2,12 +2,11 @@
 
 #include "../../Definition/ImageDefinition.h"
 #include "../../Definition/StatusDefinition.h"
-#include "../../Manager/BulletFactory.h"
 #include "../../Manager/ImageManager.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
 #include "../../Weapon/MachineGun.h"
-#include "../Bullet/StandardBullet.h"
+#include "../../Weapon/StandardRifle.h"
 
 namespace shooting::object {
     void Player::Start() {
@@ -17,8 +16,9 @@ namespace shooting::object {
         objectStatus = status::Player::OBJECT;
         actorStatus = status::Player::ACTOR;
 
-        usingWeapon = std::make_unique<weapon::MachineGun>();
-        usingWeapon->Initialize( *this );
+        weaponList.emplace_back( new weapon::StandardRifle() )->Initialize( *this );
+        weaponList.emplace_back( new weapon::MachineGun() )->Initialize( *this );
+        usingWeapon = weaponList.begin();
 
         // キー登録
         auto inputInvoker = InputInvoker::Instance();
@@ -32,6 +32,8 @@ namespace shooting::object {
             KEY_INPUT_S, [this]( InputState inputState ) { MoveDown( inputState ); }, InputInvoker::Target::Player );
         inputInvoker->RegisterMousebutton(
             MOUSEBUTTON_LEFT, [this]( InputState inputState ) { Shoot( inputState ); }, InputInvoker::Target::Player );
+        inputInvoker->RegisterMousebutton(
+            MOUSEBUTTON_RIGHT, [this]( InputState inputState ) { ChangeWeapon( inputState ); }, InputInvoker::Target::Player );
     }
 
     void Player::DeathProcess() {
@@ -44,7 +46,7 @@ namespace shooting::object {
 
     void Player::Update() {
         LookToCursor();
-        usingWeapon->Update();
+        usingWeapon->get()->Update();
         previousPosition = position;
     }
 
@@ -70,7 +72,13 @@ namespace shooting::object {
 
     void Player::Shoot( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        usingWeapon->Shoot();
+        usingWeapon->get()->Shoot();
+    }
+
+    void Player::ChangeWeapon( InputState inputState ) {
+        if ( inputState != InputState::Pressed ) { return; }
+        usingWeapon++;
+        if ( usingWeapon == weaponList.end() ) { usingWeapon = weaponList.begin(); }
     }
 
     void Player::LookToCursor() {

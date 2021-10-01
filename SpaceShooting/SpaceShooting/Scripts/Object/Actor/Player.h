@@ -35,12 +35,15 @@ namespace shooting::object {
 
         void Shoot( InputState inputState );
 
+        void ChangeWeapon( InputState inputState );
+
         /// @brief カーソルの方向を向く
         void LookToCursor();
 
        private:
         Vector2 previousPosition { 0, 0 };  //前回の位置
-        std::unique_ptr<weapon::WeaponBase> usingWeapon;  // 使用する武器
+        std::vector<std::shared_ptr<weapon::WeaponBase>> weaponList;
+        std::vector<std::shared_ptr<weapon::WeaponBase>>::iterator usingWeapon;
     };
 }  // namespace shooting::object
 
