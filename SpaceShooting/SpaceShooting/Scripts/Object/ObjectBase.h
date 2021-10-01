@@ -62,7 +62,7 @@ namespace shooting::object {
         virtual void MoveTo( const Vector2& direction, const double& speed );
 
        public:
-        ReadonlyProperty<bool> IsActive { isActive };
+        Property<bool> IsActive { isActive };
 
         ReadonlyProperty<Vector2> Position { position };
 

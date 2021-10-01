@@ -53,7 +53,7 @@ namespace shooting::object {
             double Speed { 0.0 };  // 発射する弾の速度
             double AttackPower { 0.0 };  // 発射する弾の威力
             double Acceleration { 0.0 };  // 加速度
-            float AngulerVelocity { 0.0f };  // 角速度
+            float AngularVelocity { 0.0f };  // 角速度
         };
 
         // 武器データ
@@ -72,6 +72,31 @@ namespace shooting::object {
             static const Object OBJECT;
             static const Actor ACTOR;
         };
+
+        // ----------------------------
+
+        namespace bullet {
+            /// @brief 弾の種類
+            enum class Type {
+                StandardBullet,
+                HomingBullet,
+            };
+
+            // 変化弾データ
+            struct TransData {
+                bullet::Type TransTo;  // 変化先
+                Bullet ToBulletData;  // 変化先の弾データ
+                double TimeToTrans;  // 変化するまでの時間
+            };
+
+            struct StandardBullet {
+                static const Object OBJECT;
+            };
+
+            struct HomingBullet {
+                static const Object OBJECT;
+            };
+        }  // namespace bullet
 
         // ----------------------------
 
@@ -101,24 +126,6 @@ namespace shooting::object {
                 static const double IGNITION_DISTANCE;
             };
         }  // namespace enemy
-
-        // ----------------------------
-
-        namespace bullet {
-            /// @brief 弾の種類
-            enum class Type {
-                StandardBullet,
-                HomingBullet,
-            };
-
-            struct StandardBullet {
-                static const Object OBJECT;
-            };
-
-            struct HomingBullet {
-                static const Object OBJECT;
-            };
-        }  // namespace bullet
 
         // ----------------------------
 

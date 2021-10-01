@@ -23,7 +23,7 @@ namespace shooting::object {
         Extention();
 
         bulletStatus.Speed += bulletStatus.Acceleration * timeManager.lock()->DeltaTime;
-        angle += bulletStatus.AngulerVelocity * timeManager.lock()->DeltaTime;
+        angle += bulletStatus.AngularVelocity * timeManager.lock()->DeltaTime;
     }
 
     void BulletBase::Collide( const ObjectBase& hit ) {

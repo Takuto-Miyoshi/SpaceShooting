@@ -68,6 +68,9 @@
     <ClCompile Include="Scripts\Object\Bullet\HomingBullet.cpp">
       <Filter>Object\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Object\Bullet\TransBullet.cpp">
+      <Filter>Object\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -164,6 +167,9 @@
       <Filter>Object\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Object\Bullet\HomingBullet.h">
+      <Filter>Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Bullet\TransBullet.h">
       <Filter>Object\Bullet</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,6 +6,8 @@
 #include <memory>
 
 #include "../Definition/StatusDefinition.h"
+#include "../Object/Bullet/BulletBase.h"
+#include "../Object/Bullet/TransBullet.h"
 #include "../Utility/Singleton.h"
 #include "../Utility/Vector.h"
 #include "ObjectManager.h"
@@ -24,7 +26,12 @@ namespace shooting::object {
         /// @param position 作成する位置
         /// @param angle 作成する向き
         /// @param bulletData 弾データ
-        void Create( const status::ObjectKind& objectKind, const status::bullet::Type& type, const Vector2& position, const float& angle, const status::Bullet& bulletData );
+        auto Create( const status::ObjectKind& objectKind, const status::bullet::Type& type, const Vector2& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase*;
+
+        /// @brief 変化弾を作成
+        /// @param transTarget 変化させる弾 @n BulletManager::Createで作成した弾を想定
+        /// @param transData 変化データ
+        auto CreateTrans( BulletBase* transTarget, const status::bullet::TransData& transData ) -> TransBullet*;
 
        private:
         template<class T>

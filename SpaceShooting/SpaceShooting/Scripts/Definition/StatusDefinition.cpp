@@ -28,6 +28,18 @@ namespace shooting::object {
 
         // --------------------------
 
+        namespace bullet {
+            const Object StandardBullet::OBJECT {
+                8.0
+            };
+
+            const Object HomingBullet::OBJECT {
+                8.0
+            };
+        }  // namespace bullet
+
+        // --------------------------
+
         namespace enemy {
             const Object StandardEnemy::OBJECT {
                 16.0
@@ -70,18 +82,6 @@ namespace shooting::object {
             const uint32_t ExplodeEnemy::DIFFUSION_INDEX { 8 };
             const double ExplodeEnemy::IGNITION_DISTANCE { 100.0 };
         }  // namespace enemy
-
-        // --------------------------
-
-        namespace bullet {
-            const Object StandardBullet::OBJECT {
-                8.0
-            };
-
-            const Object HomingBullet::OBJECT {
-                8.0
-            };
-        }  // namespace bullet
 
         // --------------------------
 

@@ -8,7 +8,7 @@
 using namespace shooting::object::status::bullet;
 
 namespace shooting::object {
-    void BulletFactory::Create( const status::ObjectKind& objectKind, const status::bullet::Type& type, const Vector2& position, const float& angle, const status::Bullet& bulletData ) {
+    auto BulletFactory::Create( const status::ObjectKind& objectKind, const status::bullet::Type& type, const Vector2& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase* {
         ObjectBase* bullet = nullptr;
 
         switch ( type ) {
@@ -18,9 +18,19 @@ namespace shooting::object {
             case Type::HomingBullet:
                 bullet = CreateBullet<HomingBullet>( objectKind, position, angle );
                 break;
-            default: return;
+            default: return nullptr;
         }
 
-        dynamic_cast<BulletBase*>( bullet )->Initialize( bulletData );
+        auto castBullet = dynamic_cast<BulletBase*>( bullet );
+        castBullet->Initialize( bulletData );
+        return castBullet;
     }
+
+    auto BulletFactory::CreateTrans( BulletBase* transTarget, const status::bullet::TransData& transData ) -> TransBullet* {
+        auto bulletTemp = CreateBullet<TransBullet>( transTarget->Kind, Vector2::Zero(), 0.0f );
+        auto bullet = dynamic_cast<TransBullet*>( bulletTemp );
+        bullet->Initialize( transTarget, transData );
+        return bullet;
+    }
+
 }  // namespace shooting::object

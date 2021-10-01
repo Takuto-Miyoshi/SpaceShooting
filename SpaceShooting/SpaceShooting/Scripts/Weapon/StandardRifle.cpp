@@ -10,10 +10,10 @@ namespace shooting::weapon {
     }
 
     void StandardRifle::ShootProcess() {
-        object::BulletFactory::Instance()->Create( kind,
-                                                   object::status::bullet::Type::StandardBullet,
-                                                   *position,
-                                                   *angle,
-                                                   object::status::weapon::StandardRifle::BULLET );
+        auto bullet = object::BulletFactory::Instance()->Create( kind,
+                                                                 object::status::bullet::Type::StandardBullet,
+                                                                 *position,
+                                                                 *angle,
+                                                                 object::status::weapon::StandardRifle::BULLET );
     }
 }  // namespace shooting::weapon
