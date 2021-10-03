@@ -4,8 +4,8 @@
 
 #include "../Manager/ObjectManager.h"
 #include "../Manager/TimeManager.h"
-#include "../Object/Actor/ExplodeEnemy.h"
-#include "../Object/Actor/StandardEnemy.h"
+#include "../Object/Actor/Enemy/ExplodeEnemy.h"
+#include "../Object/Actor/Enemy/StandardEnemy.h"
 #include "DxLib.h"
 
 namespace shooting::object {

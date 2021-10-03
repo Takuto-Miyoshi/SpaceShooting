@@ -3,9 +3,9 @@
 #ifndef ENEMY_BASE_H
 #define ENEMY_BASE_H
 
-#include "../../Definition/ImageDefinition.h"
-#include "../../Manager/ImageManager.h"
-#include "ActorBase.h"
+#include "../../../Definition/ImageDefinition.h"
+#include "../../../Manager/ImageManager.h"
+#include "../ActorBase.h"
 
 namespace shooting::object {
     class EnemyBase : public ActorBase {

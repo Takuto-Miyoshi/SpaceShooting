@@ -53,15 +53,6 @@
     <ClCompile Include="Scripts\Weapon\StandardRifle.cpp">
       <Filter>Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp">
-      <Filter>Object\Actor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Object\Actor\ExplodeEnemy.cpp">
-      <Filter>Object\Actor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Object\Actor\StandardEnemy.cpp">
-      <Filter>Object\Actor\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Scripts\Object\Actor\ActorBase.cpp">
       <Filter>Object\Actor</Filter>
     </ClCompile>
@@ -73,6 +64,15 @@
     </ClCompile>
     <ClCompile Include="Scripts\Weapon\MachineGun.cpp">
       <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\Enemy\ExplodeEnemy.cpp">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\Enemy\StandardEnemy.cpp">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\Enemy\EnemyBase.cpp">
+      <Filter>Object\Actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -157,15 +157,6 @@
     <ClInclude Include="Scripts\Weapon\StandardRifle.h">
       <Filter>Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Object\Actor\StandardEnemy.h">
-      <Filter>Object\Actor\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Object\Actor\EnemyBase.h">
-      <Filter>Object\Actor\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Object\Actor\ExplodeEnemy.h">
-      <Filter>Object\Actor\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\Object\Actor\ActorBase.h">
       <Filter>Object\Actor</Filter>
     </ClInclude>
@@ -180,6 +171,15 @@
     </ClInclude>
     <ClInclude Include="Scripts\Utility\Functions.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\Enemy\EnemyBase.h">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\Enemy\ExplodeEnemy.h">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\Enemy\StandardEnemy.h">
+      <Filter>Object\Actor\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
