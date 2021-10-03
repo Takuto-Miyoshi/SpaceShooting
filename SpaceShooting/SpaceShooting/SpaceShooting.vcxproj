@@ -169,10 +169,10 @@
     <ClCompile Include="Scripts\Manager\ObjectManager.cpp" />
     <ClCompile Include="Scripts\Manager\SceneManager.cpp" />
     <ClCompile Include="Scripts\Object\Actor\ActorBase.cpp" />
-    <ClCompile Include="Scripts\Object\Actor\EnemyBase.cpp" />
-    <ClCompile Include="Scripts\Object\Actor\ExplodeEnemy.cpp" />
+    <ClCompile Include="Scripts\Object\Actor\Enemy\EnemyBase.cpp" />
+    <ClCompile Include="Scripts\Object\Actor\Enemy\ExplodeEnemy.cpp" />
+    <ClCompile Include="Scripts\Object\Actor\Enemy\StandardEnemy.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Player.cpp" />
-    <ClCompile Include="Scripts\Object\Actor\StandardEnemy.cpp" />
     <ClCompile Include="Scripts\Object\Bullet\BulletBase.cpp" />
     <ClCompile Include="Scripts\Object\Bullet\HomingBullet.cpp" />
     <ClCompile Include="Scripts\Object\Bullet\StandardBullet.cpp" />
@@ -204,10 +204,10 @@
     <ClInclude Include="Scripts\Manager\SceneManager.h" />
     <ClInclude Include="Scripts\Manager\TimeManager.h" />
     <ClInclude Include="Scripts\Object\Actor\ActorBase.h" />
-    <ClInclude Include="Scripts\Object\Actor\EnemyBase.h" />
-    <ClInclude Include="Scripts\Object\Actor\ExplodeEnemy.h" />
+    <ClInclude Include="Scripts\Object\Actor\Enemy\EnemyBase.h" />
+    <ClInclude Include="Scripts\Object\Actor\Enemy\ExplodeEnemy.h" />
+    <ClInclude Include="Scripts\Object\Actor\Enemy\StandardEnemy.h" />
     <ClInclude Include="Scripts\Object\Actor\Player.h" />
-    <ClInclude Include="Scripts\Object\Actor\StandardEnemy.h" />
     <ClInclude Include="Scripts\Object\Bullet\BulletBase.h" />
     <ClInclude Include="Scripts\Object\Bullet\HomingBullet.h" />
     <ClInclude Include="Scripts\Object\Bullet\StandardBullet.h" />

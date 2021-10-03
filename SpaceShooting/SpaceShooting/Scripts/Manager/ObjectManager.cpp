@@ -1,7 +1,7 @@
 ﻿#include "ObjectManager.h"
 
 #include "../Definition/StatusDefinition.h"
-#include "../Object/Actor/EnemyBase.h"
+#include "../Object/Actor/Enemy/EnemyBase.h"
 #include "../Object/Bullet/BulletBase.h"
 
 namespace shooting::object {

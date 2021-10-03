@@ -1,7 +1,7 @@
 ﻿#include "ExplodeEnemy.h"
 
-#include "../../Manager/BulletFactory.h"
-#include "../../Manager/ObjectManager.h"
+#include "../../../Manager/BulletFactory.h"
+#include "../../../Manager/ObjectManager.h"
 
 namespace shooting::object {
     void ExplodeEnemy::Start() {
