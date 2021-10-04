@@ -13,7 +13,7 @@ namespace shooting::weapon {
         ~MachineGun() override = default;
 
        public:
-        void Initialize( const object::ObjectBase& user ) override;
+        void Initialize( const object::ActorBase& user, const uint8_t& rarity ) override;
 
         void ShootProcess() override;
     };

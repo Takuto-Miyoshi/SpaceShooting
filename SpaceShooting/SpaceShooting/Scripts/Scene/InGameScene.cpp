@@ -22,8 +22,8 @@ namespace shooting::scene {
         objectManager.lock()->CreateObject<Player>( ObjectKind::Player );
 
         enemyManager.Initialize();
-        enemyManager.Register( status::enemy::Type::StandardEnemy, status::enemy::StandardEnemy::SPAWN.SpawnRate, status::enemy::StandardEnemy::SPAWN.ChainRate );
-        enemyManager.Register( status::enemy::Type::ExplodeEnemy, status::enemy::ExplodeEnemy::SPAWN.SpawnRate, status::enemy::ExplodeEnemy::SPAWN.ChainRate );
+        enemyManager.Register( status::enemy::Type::StandardEnemy, status::enemy::StandardEnemy::ENEMY.SpawnRate, status::enemy::StandardEnemy::ENEMY.ChainRate );
+        enemyManager.Register( status::enemy::Type::ExplodeEnemy, status::enemy::ExplodeEnemy::ENEMY.SpawnRate, status::enemy::ExplodeEnemy::ENEMY.ChainRate );
     }
 
     void InGameScene::Update() {

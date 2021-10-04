@@ -7,8 +7,10 @@
 #include <vector>
 
 #include "../Definition/StatusDefinition.h"
+#include "../Object/Actor/Enemy/EnemyBase.h"
 #include "../Utility/Property.h"
 #include "../Utility/Vector.h"
+#include "ObjectManager.h"
 
 namespace shooting::object {
     class EnemyManager {
@@ -55,11 +57,19 @@ namespace shooting::object {
         /// @brief タイプをもとに敵を生成する
         void GenerateByType( const status::enemy::Type& type );
 
+        template<class T>
+        auto GenerateEnemy() -> EnemyBase* {
+            return dynamic_cast<EnemyBase*>( ObjectManager::Instance()->CreateObject<T>( status::ObjectKind::Enemy, RandomPosition() ) );
+        }
+
         /// @brief 百分率の確率にヒットしたかを取得
         auto HitOfTheTime( const double& chance ) -> bool;
 
         /// @brief 有効距離内でランダムな位置を取得
         auto RandomPosition() -> Vector2;
+
+        /// @brief レベルの設定
+        void LevelSetting( EnemyBase& enemy );
 
        private:
         static constexpr double DECREASE_RATE { 0.9 };  // chainChanceの減少率

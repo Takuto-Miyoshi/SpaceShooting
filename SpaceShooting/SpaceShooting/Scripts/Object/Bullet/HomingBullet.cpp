@@ -12,7 +12,7 @@ namespace shooting::object {
     void HomingBullet::Move() {
         auto target = TargetPosition();
         if ( target != Vector2::Zero() ) {
-            angle = position.AngleTo( target );
+            angle = SLerp<float>( angle, position.AngleTo( target ), status::bullet::HomingBullet::LERP_POWER * timeManager.lock()->DeltaTime );
         }
 
         MoveToForward();

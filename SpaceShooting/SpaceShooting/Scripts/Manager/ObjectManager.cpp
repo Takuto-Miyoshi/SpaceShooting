@@ -2,6 +2,7 @@
 
 #include "../Definition/StatusDefinition.h"
 #include "../Object/Actor/Enemy/EnemyBase.h"
+#include "../Object/Actor/Player.h"
 #include "../Object/Bullet/BulletBase.h"
 
 namespace shooting::object {
@@ -35,6 +36,10 @@ namespace shooting::object {
 
     void ObjectManager::Finalize() {
         objectList.clear();
+    }
+
+    void ObjectManager::GiveExp( const int32_t& exp ) {
+        dynamic_cast<Player*>( &*player )->AddExp( exp );
     }
 
     void ObjectManager::EraseUnactiveObject() {

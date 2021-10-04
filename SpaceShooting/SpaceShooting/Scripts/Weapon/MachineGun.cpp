@@ -1,23 +1,18 @@
 ﻿#include "MachineGun.h"
 
-#include "../Manager/BulletFactory.h"
 #include "../Utility/Functions.h"
 
-namespace shooting::weapon {
-    void MachineGun::Initialize( const object::ObjectBase& user ) {
-        WeaponBase::Initialize( user );
+using namespace shooting::object;
 
-        weaponStatus = object::status::weapon::MachineGun::WEAPON;
+namespace shooting::weapon {
+    void MachineGun::Initialize( const object::ActorBase& user, const uint8_t& rarity ) {
+        WeaponBase::Initialize( user, rarity );
+        auto data = status::weapon::MachineGun::list.at( rare );
+        InitializeWeapon( data.WEAPON, data.BULLET );
     }
 
     void MachineGun::ShootProcess() {
-        auto shootAngle = *angle + RandomFloat( object::status::weapon::MachineGun::DEVIATION );
-
-        object::BulletFactory::Instance()->Create(
-            kind,
-            object::status::bullet::Type::StandardBullet,
-            *position,
-            shootAngle,
-            object::status::weapon::MachineGun::BULLET );
+        auto shootAngle = *angle + RandomReal<float>( status::weapon::MachineGun::list.at( rare ).DEVIATION );
+        ShootTo( shootAngle );
     }
 }  // namespace shooting::weapon

@@ -17,7 +17,7 @@ namespace shooting::object {
         transTime -= timeManager.lock()->DeltaTime;
         if ( transTime <= 0 ) {
             target->IsActive = false;
-            target = BulletFactory::Instance()->Create( target->Kind, next.TransTo, target->Position, target->Angle, next.ToBulletData );
+            target = BulletFactory::Instance()->Create( target->Kind, target->Position, target->Angle, next.ToBulletData );
 
             if ( transStack.empty() ) {
                 isActive = false;

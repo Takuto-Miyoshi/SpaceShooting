@@ -34,7 +34,7 @@ namespace shooting {
 
             // deltaTimeが大きすぎる場合は不具合を回避するためdeltaTimeを0に
             if ( deltaTime >= TIME_SKIP ) {
-                deltaTime = 0.0f;
+                deltaTime = TIME_SKIP;
                 printfDx( "FPS : %d\n", fps );
             }
 
@@ -64,7 +64,7 @@ namespace shooting {
         ReadonlyProperty<int32_t> FPS { fps };
 
        private:
-        static constexpr float TIME_SKIP { 0.2f };  // deltaTimeはこの値を超えた場合0を返す
+        static constexpr float TIME_SKIP { 0.2f };  // deltaTimeはこの値を超えた場合この値に設定される
 
         static constexpr int32_t MS_CONVERT_SOURCE { 1000 };
         static constexpr float S_CONVERT_SOURCE { 1000.0f };

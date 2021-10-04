@@ -5,13 +5,16 @@
 
 namespace shooting::object {
     void StandardEnemy::Start() {
-        graphicHandle = ImageManager::Instance()->Image( image::STANDARD_ENEMY.name );
-
-        objectStatus = status::enemy::StandardEnemy::OBJECT;
-        actorStatus = status::enemy::StandardEnemy::ACTOR;
+        Initialize( image::STANDARD_ENEMY.name,
+                    status::enemy::StandardEnemy::OBJECT,
+                    status::enemy::StandardEnemy::ACTOR,
+                    status::enemy::StandardEnemy::ENEMY.Exp,
+                    status::enemy::StandardEnemy::BULLET );
     }
 
     void StandardEnemy::Update() {
+        EnemyBase::Update();
+
         Shoot();
         Move();
     }
@@ -26,12 +29,8 @@ namespace shooting::object {
         if ( shotCount >= status::enemy::StandardEnemy::SHOT_INTERVAL ) {
             shotCount = 0;
 
-            float shootAngle = position.AngleTo( ObjectManager::Instance()->PlayerPosition() );
-            object::BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet,
-                                                       status::bullet::Type::StandardBullet,
-                                                       position,
-                                                       shootAngle,
-                                                       status::enemy::StandardEnemy::BULLET );
+            float target = position.AngleTo( ObjectManager::Instance()->PlayerPosition() );
+            ShootTo( target );
         }
     }
 }  // namespace shooting::object

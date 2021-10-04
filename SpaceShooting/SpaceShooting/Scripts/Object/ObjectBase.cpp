@@ -1,6 +1,7 @@
 ﻿#include "ObjectBase.h"
 
 #include "../Definition/StatusDefinition.h"
+#include "../Manager/ImageManager.h"
 
 namespace shooting::object {
     void ObjectBase::Draw() const {
@@ -47,5 +48,12 @@ namespace shooting::object {
         position = resetPosition;
         angle = resetAngle;
         isActive = true;
+    }
+
+    void ObjectBase::Initialize( const std::string& imageName, const status::Object& objectData ) {
+        graphicHandle = ImageManager::Instance()->Image( imageName );
+
+        objectStatusBase = objectData;
+        objectStatus = objectStatusBase;
     }
 }  // namespace shooting::object
