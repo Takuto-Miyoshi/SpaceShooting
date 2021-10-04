@@ -5,20 +5,24 @@
 #include "../../Manager/ImageManager.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
+#include "../../Utility/Functions.h"
 #include "../../Weapon/MachineGun.h"
 #include "../../Weapon/StandardRifle.h"
 
 namespace shooting::object {
     void Player::Start() {
         ImageManager::Instance()->LoadGraphHandle( image::PLAYER );
-        graphicHandle = ImageManager::Instance()->Image( image::PLAYER.name );
 
-        objectStatus = status::Player::OBJECT;
-        actorStatus = status::Player::ACTOR;
+        Initialize( image::PLAYER.name, status::Player::OBJECT, status::Player::ACTOR );
 
-        weaponList.emplace_back( new weapon::StandardRifle() )->Initialize( *this );
-        weaponList.emplace_back( new weapon::MachineGun() )->Initialize( *this );
+        weaponList.emplace_back( new weapon::StandardRifle() )->Initialize( *this, status::WeaponSetting::Rare::NORMAL );
+        weaponList.emplace_back( new weapon::MachineGun() )->Initialize( *this, status::WeaponSetting::Rare::BROKEN );
+        weaponList.emplace_back( new weapon::MachineGun() )->Initialize( *this, status::WeaponSetting::Rare::LEGENDERY );
         usingWeapon = weaponList.begin();
+
+        // 経験値データを初期化
+        level = 1;
+        NextExpSetting();
 
         // キー登録
         auto inputInvoker = InputInvoker::Instance();
@@ -45,9 +49,41 @@ namespace shooting::object {
     }
 
     void Player::Update() {
+        ActorBase::Update();
+
         LookToCursor();
         usingWeapon->get()->Update();
         previousPosition = position;
+    }
+
+    void Player::Draw() const {
+        ActorBase::Draw();
+
+        // 経験値表示 DEBUG
+        DrawString( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
+                    static_cast<int32_t>( position.Y - camera.lock()->Position->Y - 15 ),
+                    ( "EXP:" + std::to_string( experience.Point ) + "/" + std::to_string( experience.Next ) ).c_str(),
+                    GetColor( 255, 255, 255 ) );
+    }
+
+    void Player::AddExp( const int32_t& exp ) {
+        experience.Point += exp;
+
+        if ( level > ObjectSetting::MAX_LEVEL ) { return; }
+        // レベルアップ
+        while ( experience.Point >= experience.Next ) {
+            level++;
+
+            NextExpSetting();
+
+            LevelUp();
+        }
+
+        UpdateStatus();
+    }
+
+    void Player::NextExpSetting() {
+        experience.Next += ( level + PercentOf( experience.Next, status::ExperienceSetting::RATE_OF_NEXT_LEVEL ) ) * status::ExperienceSetting::MULTIPLE_OF_NEXT_LEVEL + level;
     }
 
     void Player::MoveLeft( InputState inputState ) {

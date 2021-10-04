@@ -46,6 +46,9 @@ namespace shooting::object {
             return ( player ) ? player->Position : Vector2::Zero();
         }
 
+        /// @brief プレイヤーに経験値を付与
+        void GiveExp( const int32_t& exp );
+
         /// @brief fromから一番近い敵(ObjectKind::Enemy)の位置を取得
         /// @return 敵がいなければVector2{0,0}を返す
         [[nodiscard]] auto NearEnemyPosition( const Vector2& from ) -> Vector2 {

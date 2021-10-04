@@ -17,6 +17,10 @@ namespace shooting::object {
        public:
         void Update() override;
 
+        void Draw() const override;
+
+        void AddExp( const int32_t& exp );
+
        protected:
         void Start() override;
 
@@ -25,6 +29,8 @@ namespace shooting::object {
         void OutOfValidArea() override;
 
        private:
+        void NextExpSetting();
+
         void MoveLeft( InputState inputState );
 
         void MoveRight( InputState inputState );
@@ -42,8 +48,11 @@ namespace shooting::object {
 
        private:
         Vector2 previousPosition { 0, 0 };  //前回の位置
+
         std::vector<std::shared_ptr<weapon::WeaponBase>> weaponList;
         std::vector<std::shared_ptr<weapon::WeaponBase>>::iterator usingWeapon;
+
+        status::Experience experience;  // 経験値情報
     };
 }  // namespace shooting::object
 

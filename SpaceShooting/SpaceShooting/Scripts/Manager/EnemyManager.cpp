@@ -2,10 +2,10 @@
 
 #include <algorithm>
 
-#include "../Manager/ObjectManager.h"
 #include "../Manager/TimeManager.h"
 #include "../Object/Actor/Enemy/ExplodeEnemy.h"
 #include "../Object/Actor/Enemy/StandardEnemy.h"
+#include "../Utility/Functions.h"
 #include "DxLib.h"
 
 namespace shooting::object {
@@ -60,12 +60,13 @@ namespace shooting::object {
     }
 
     void EnemyManager::GenerateByType( const status::enemy::Type& type ) {
-        auto objectManager = ObjectManager::Instance();
+        EnemyBase* enemy = nullptr;
         switch ( type ) {
-            case status::enemy::Type::StandardEnemy: objectManager->CreateObject<StandardEnemy>( status::ObjectKind::Enemy, RandomPosition() ); break;
-            case status::enemy::Type::ExplodeEnemy: objectManager->CreateObject<ExplodeEnemy>( status::ObjectKind::Enemy, RandomPosition() ); break;
-            default: break;
+            case status::enemy::Type::StandardEnemy: enemy = GenerateEnemy<StandardEnemy>(); break;
+            case status::enemy::Type::ExplodeEnemy: enemy = GenerateEnemy<ExplodeEnemy>(); break;
+            default: return;
         }
+        LevelSetting( *enemy );
     }
 
     auto EnemyManager::HitOfTheTime( const double& chance ) -> bool {
@@ -81,5 +82,10 @@ namespace shooting::object {
         } while ( result.Length() >= ObjectSetting::VALID_DISTANCE );
 
         return result;
+    }
+
+    void EnemyManager::LevelSetting( EnemyBase& enemy ) {
+        // 1~100の値で設定
+        enemy.Level = RandomInt<int32_t>( 1, ObjectSetting::MAX_LEVEL );
     }
 }  // namespace shooting::object

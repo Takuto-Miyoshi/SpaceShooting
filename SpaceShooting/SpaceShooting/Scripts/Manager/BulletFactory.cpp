@@ -8,10 +8,10 @@
 using namespace shooting::object::status::bullet;
 
 namespace shooting::object {
-    auto BulletFactory::Create( const status::ObjectKind& objectKind, const status::bullet::Type& type, const Vector2& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase* {
+    auto BulletFactory::Create( const status::ObjectKind& objectKind, const Vector2& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase* {
         ObjectBase* bullet = nullptr;
 
-        switch ( type ) {
+        switch ( bulletData.BulletType ) {
             case Type::StandardBullet:
                 bullet = CreateBullet<StandardBullet>( objectKind, position, angle );
                 break;

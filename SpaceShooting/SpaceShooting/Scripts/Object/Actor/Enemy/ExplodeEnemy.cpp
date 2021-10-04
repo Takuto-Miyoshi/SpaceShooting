@@ -2,20 +2,25 @@
 
 #include "../../../Manager/BulletFactory.h"
 #include "../../../Manager/ObjectManager.h"
+#include "../../../Utility/Functions.h"
 
 namespace shooting::object {
     void ExplodeEnemy::Start() {
-        graphicHandle = ImageManager::Instance()->Image( image::EXPLODE_ENEMY.name );
-
-        objectStatus = status::enemy::ExplodeEnemy::OBJECT;
-        actorStatus = status::enemy::ExplodeEnemy::ACTOR;
+        Initialize( image::EXPLODE_ENEMY.name,
+                    status::enemy::ExplodeEnemy::OBJECT,
+                    status::enemy::ExplodeEnemy::ACTOR,
+                    status::enemy::ExplodeEnemy::ENEMY.Exp,
+                    status::enemy::ExplodeEnemy::BULLET );
     }
 
     void ExplodeEnemy::DeathProcess() {
         Explosion();
+        EnemyBase::DeathProcess();
     }
 
     void ExplodeEnemy::Update() {
+        EnemyBase::Update();
+
         toPlayerVector = position.To( ObjectManager::Instance()->PlayerPosition() );
 
         Move();
@@ -36,12 +41,8 @@ namespace shooting::object {
     void ExplodeEnemy::Explosion() {
         float baseAngle = static_cast<float>( PI * 2 ) / status::enemy::ExplodeEnemy::DIFFUSION_INDEX;
         for ( uint32_t i = 0; i < status::enemy::ExplodeEnemy::DIFFUSION_INDEX; i++ ) {
-            float shootAngle = angle + baseAngle * i;
-            BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet,
-                                               status::bullet::Type::StandardBullet,
-                                               position,
-                                               shootAngle,
-                                               status::enemy::ExplodeEnemy::BULLET );
+            float target = angle + baseAngle * i;
+            ShootTo( target );
         }
 
         isActive = false;

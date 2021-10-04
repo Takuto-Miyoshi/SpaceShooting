@@ -5,9 +5,8 @@
 
 #include <cmath>
 
+#include "Functions.h"
 #include "Property.h"
-
-constexpr double PI { 3.14159 };
 
 namespace shooting {
     /// @brief 2次元ベクトル

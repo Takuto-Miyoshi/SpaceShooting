@@ -1,15 +1,20 @@
 ﻿#include "WeaponBase.h"
 
+#include "../Manager/BulletFactory.h"
 #include "../Manager/TimeManager.h"
 
 namespace shooting::weapon {
-    void WeaponBase::Initialize( const object::ObjectBase& user ) {
+    void WeaponBase::Initialize( const object::ActorBase& user, const uint8_t& rarity ) {
         position = &user.Position;
         angle = &user.Angle;
+        level = &user.Level;
         kind = ConvertKind( user.Kind );
+        rare = rarity;
     }
 
     void WeaponBase::Update() {
+        UpdateBulletStatus();
+
         timer -= TimeManager::Instance()->DeltaTime;
         if ( timer <= 0 ) {
             shootable = true;
@@ -25,6 +30,33 @@ namespace shooting::weapon {
     void WeaponBase::ShootedProcess() {
         shootable = false;
         timer = weaponStatus.Interval;
+    }
+
+    void WeaponBase::InitializeWeapon( const object::status::Weapon& weaponData, const object::status::Bullet& bulletData ) {
+        weaponStatus = weaponData;
+        baseBulletData = bulletData;
+        bulletStatus = baseBulletData;
+    }
+
+    void WeaponBase::UpdateBulletStatus() {
+        // 初期レベルは1なので99.0+1=100%
+        bulletStatus.AttackPower = PercentOf( baseBulletData.AttackPower, ( 99.0 + pow( *level, 2 ) ) );
+    }
+
+    auto WeaponBase::ShootForward() -> object::BulletBase* {
+        return ShootTo( *position, *angle );
+    }
+
+    auto WeaponBase::ShootTo( const Vector2& shootPosition ) -> object::BulletBase* {
+        return ShootTo( shootPosition, *angle );
+    }
+
+    auto WeaponBase::ShootTo( const float& shootAngle ) -> object::BulletBase* {
+        return ShootTo( *position, shootAngle );
+    }
+
+    auto WeaponBase::ShootTo( const Vector2& shootPosition, const float& shootAngle ) -> object::BulletBase* {
+        return object::BulletFactory::Instance()->Create( kind, shootPosition, shootAngle, bulletStatus );
     }
 
     auto WeaponBase::ConvertKind( const object::status::ObjectKind& source ) const -> object::status::ObjectKind {

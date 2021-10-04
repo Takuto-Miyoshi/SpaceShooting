@@ -1,14 +1,39 @@
 ﻿#include "ActorBase.h"
 
 namespace shooting::object {
+    void ActorBase::Update() {
+        UpdateStatus();
+    }
+
     void ActorBase::Draw() const {
         ObjectBase::Draw();
 
         // HPを表示
         DrawString( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
                     static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
-                    ( std::to_string( static_cast<int32_t>( actorStatus.Hp ) ) + "/" + std::to_string( static_cast<int32_t>( actorStatus.MaxHp ) ) ).c_str(),
+                    ( "HP:" + std::to_string( static_cast<double>( actorStatus.Hp ) ) + "/" + std::to_string( static_cast<double>( actorStatus.MaxHp ) ) ).c_str(),
                     GetColor( 255, 255, 255 ) );
+        // レベルを表示
+        DrawString( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
+                    static_cast<int32_t>( position.Y - camera.lock()->Position->Y - 30 ),
+                    ( "LEVEL:" + std::to_string( level ) ).c_str(),
+                    GetColor( 255, 255, 255 ) );
+    }
+
+    void ActorBase::Initialize( const std::string& imageName, const status::Object& objectData, const status::Actor& actorData ) {
+        ObjectBase::Initialize( imageName, objectData );
+        actorStatusBase = actorData;
+        actorStatus = actorStatusBase;
+    }
+
+    void ActorBase::UpdateStatus() {
+        objectStatus = objectStatusBase;
+        actorStatus.MaxHp = actorStatusBase.MaxHp;
+        actorStatus.Speed = actorStatusBase.Speed;
+    }
+
+    void ActorBase::LevelUp() {
+        actorStatusBase.LevelUp();
     }
 
     void ActorBase::MoveToForward() {
