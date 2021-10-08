@@ -1,21 +1,17 @@
 ﻿#include "StandardEnemy.h"
 
+#include "../../../Definition/StatusLoaderKey.h"
 #include "../../../Manager/BulletFactory.h"
 #include "../../../Manager/ObjectManager.h"
 
 namespace shooting::object {
     void StandardEnemy::Start() {
-        Initialize( image::STANDARD_ENEMY.name,
-                    status::enemy::StandardEnemy::OBJECT,
-                    status::enemy::StandardEnemy::ACTOR,
-                    status::enemy::StandardEnemy::ENEMY.Exp,
-                    status::enemy::StandardEnemy::BULLET );
+        Initialize( status::loaderKey::object::enemy::STANDARD );
     }
 
     void StandardEnemy::Update() {
         EnemyBase::Update();
 
-        Shoot();
         Move();
     }
 
@@ -25,12 +21,7 @@ namespace shooting::object {
     }
 
     void StandardEnemy::Shoot() {
-        shotCount += timeManager.lock()->DeltaTime;
-        if ( shotCount >= status::enemy::StandardEnemy::SHOT_INTERVAL ) {
-            shotCount = 0;
-
-            float target = position.AngleTo( ObjectManager::Instance()->PlayerPosition() );
-            ShootTo( target );
-        }
+        float target = position.AngleTo( ObjectManager::Instance()->PlayerPosition() );
+        ShootTo( target );
     }
 }  // namespace shooting::object

@@ -1,14 +1,9 @@
 ﻿#include "BulletBase.h"
 
 #include "../../Definition/StatusDefinition.h"
+#include "../../Manager/StatusLoader.h"
 
 namespace shooting::object {
-    void BulletBase::LoadBulletData() {
-        auto loadGraph = []( const image::ImageData& imgData ) { ImageManager::Instance()->LoadGraphHandle( imgData ); };
-        loadGraph( image::STANDARD_BULLET );
-        loadGraph( image::HOMING_BULLET );
-    }
-
     void BulletBase::Initialize( const status::Bullet& bulletData ) {
         bulletStatus = bulletData;
     }

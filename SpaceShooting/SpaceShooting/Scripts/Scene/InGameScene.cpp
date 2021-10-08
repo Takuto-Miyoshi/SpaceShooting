@@ -1,9 +1,9 @@
 ﻿#include "InGameScene.h"
 
 #include "../Definition/StatusDefinition.h"
-#include "../Manager/ImageManager.h"
 #include "../Manager/InputInvoker.h"
 #include "../Manager/InputManager.h"
+#include "../Manager/StatusLoader.h"
 #include "../Object/Actor/Player.h"
 #include "../Object/Camera.h"
 #include "DxLib.h"
@@ -13,6 +13,8 @@ using shooting::object::status::ObjectKind;
 
 namespace shooting::scene {
     void InGameScene::Start() {
+        status::StatusLoader::Instance()->Load();
+
         // キー登録
         InputInvoker::Instance()->RegisterKey( KEY_INPUT_SPACE, [this]( InputState inputState ) {
             if ( inputState == InputState::Pressed ) { ChangeScene( SceneDefs::Title ); }
@@ -22,8 +24,7 @@ namespace shooting::scene {
         objectManager.lock()->CreateObject<Player>( ObjectKind::Player );
 
         enemyManager.Initialize();
-        enemyManager.Register( status::enemy::Type::StandardEnemy, status::enemy::StandardEnemy::ENEMY.SpawnRate, status::enemy::StandardEnemy::ENEMY.ChainRate );
-        enemyManager.Register( status::enemy::Type::ExplodeEnemy, status::enemy::ExplodeEnemy::ENEMY.SpawnRate, status::enemy::ExplodeEnemy::ENEMY.ChainRate );
+        enemyManager.UseGroup = 1;
     }
 
     void InGameScene::Update() {

@@ -3,7 +3,6 @@
 #ifndef STATUS_DEFINITION_H
 #define STATUS_DEFINITION_H
 
-#include <array>
 #include <cstdint>
 #include <functional>
 
@@ -32,9 +31,19 @@ namespace shooting::object {
             EnemyBullet  // 敵の放った弾
         };
 
+        namespace enemy {
+            /// @brief 敵の種類
+            enum class Type {
+                None,
+                StandardEnemy,
+                ExplodeEnemy,
+            };
+        }  // namespace enemy
+
         namespace bullet {
             /// @brief 弾の種類
             enum class Type {
+                None,
                 StandardBullet,
                 HomingBullet,
             };
@@ -46,6 +55,7 @@ namespace shooting::object {
         // オブジェクトのデータ
         struct Object {
             double CollisionRadius { 0.0 };  // 当たり判定の半径
+            int32_t GraphicHandle { 0 };  // 画像ハンドル
         };
 
         // 成長データ
@@ -95,20 +105,30 @@ namespace shooting::object {
 
             // レア度
             struct Rare {
-                static constexpr uint8_t BROKEN { 0 };  // こわれた : 0
-                static constexpr uint8_t NORMAL { 1 };  // ふつう : 1
-                static constexpr uint8_t GREAT { 2 };  // すぐれた : 2
-                static constexpr uint8_t MASTER { 3 };  // たつじん : 3
-                static constexpr uint8_t LEGENDERY { 4 };  // でんせつ : 4
+                static constexpr uint8_t BROKEN { 1 };  // こわれた : 1
+                static constexpr uint8_t NORMAL { 2 };  // ふつう : 2
+                static constexpr uint8_t GREAT { 3 };  // すぐれた : 3
+                static constexpr uint8_t MASTER { 4 };  // たつじん : 4
+                static constexpr uint8_t LEGENDARY { 5 };  // でんせつ : 5
             };
         };
 
         // 敵データ
         struct Enemy {
-            double SpawnRate { 0.0 };  // 出現する確率
+            uint32_t Exp { 0 };  // 得られる経験値
+            double Interval { 0.0 };  // 攻撃間隔
+        };
+
+        // 敵出現データ
+        struct SpawnData {
+            uint32_t Group { 0 };  // 所属グループ
+            enemy::Type SpawnType {};  // 出現する敵
+            double SpawnRate { 0.0 };  // 出現リストに登録される確率
             double ChainRate { 0.0 };  // 連鎖して出現する確率
 
-            uint32_t Exp { 0 };  // 得られる経験値
+            uint32_t MinLevel { 0 };  // 最小レベル
+            uint32_t MaxLevel { 0 };  // 最大レベル
+            double NextInterval { 0.0 };  // 次の敵が出現するまでの時間
         };
 
         // 弾データ
@@ -133,13 +153,7 @@ namespace shooting::object {
         // 武器データ
         struct Weapon {
             double Interval { 1.0 };  // 弾の発射間隔
-        };
-
-        // ----------------------------
-
-        struct Player {
-            static const Object OBJECT;
-            static const Actor ACTOR;
+            uint32_t Rarity { 0 };  // 武器のレア度
         };
 
         // ----------------------------
@@ -147,77 +161,11 @@ namespace shooting::object {
         namespace bullet {
             // 変化弾データ
             struct TransData {
-                bullet::Type TransTo;  // 変化先
-                Bullet ToBulletData;  // 変化先の弾データ
-                double TimeToTrans;  // 変化するまでの時間
-            };
-
-            struct StandardBullet {
-                static const Object OBJECT;
-            };
-
-            struct HomingBullet {
-                static const Object OBJECT;
-                static const double LERP_POWER;  // 角度変化のための線形補完の強さ @n ×deltaTimeされる
+                bullet::Type TransTo {};  // 変化先
+                Bullet ToBulletData {};  // 変化先の弾データ
+                double TimeToTrans { 0.0 };  // 変化するまでの時間
             };
         }  // namespace bullet
-
-        // ----------------------------
-
-        namespace enemy {
-            /// @brief 敵の種類
-            enum class Type {
-                StandardEnemy,
-                ExplodeEnemy,
-            };
-
-            struct StandardEnemy {
-                static const Object OBJECT;
-                static const Actor ACTOR;
-                static const Bullet BULLET;
-                static const Enemy ENEMY;
-
-                static const double SHOT_INTERVAL;  // 射撃間隔
-            };
-
-            struct ExplodeEnemy {
-                static const Object OBJECT;
-                static const Actor ACTOR;
-                static const Bullet BULLET;
-                static const Enemy ENEMY;
-
-                static const uint32_t DIFFUSION_INDEX;
-                static const double IGNITION_DISTANCE;
-            };
-        }  // namespace enemy
-
-        // ----------------------------
-
-        // 武器の種類
-        namespace weaponList {
-            struct StandardRifle {
-                Weapon WEAPON;
-                Bullet BULLET;
-            };
-
-            struct MachineGun {
-                Weapon WEAPON;
-                Bullet BULLET;
-
-                float DEVIATION;
-            };
-        }  // namespace weaponList
-
-        // レア度設定された武器
-        namespace weapon {
-            struct StandardRifle {
-                static const std::array<weaponList::StandardRifle, WeaponSetting::MAX_RARE> list;
-            };
-
-            struct MachineGun {
-                static const std::array<weaponList::MachineGun, WeaponSetting::MAX_RARE> list;
-            };
-        }  // namespace weapon
 
         // ----------------------------
 

@@ -1,8 +1,7 @@
 ﻿#include "Player.h"
 
-#include "../../Definition/ImageDefinition.h"
 #include "../../Definition/StatusDefinition.h"
-#include "../../Manager/ImageManager.h"
+#include "../../Definition/StatusLoaderKey.h"
 #include "../../Manager/InputInvoker.h"
 #include "../../Manager/InputManager.h"
 #include "../../Utility/Functions.h"
@@ -11,13 +10,11 @@
 
 namespace shooting::object {
     void Player::Start() {
-        ImageManager::Instance()->LoadGraphHandle( image::PLAYER );
-
-        Initialize( image::PLAYER.name, status::Player::OBJECT, status::Player::ACTOR );
+        Initialize( status::loaderKey::object::PLAYER );
 
         weaponList.emplace_back( new weapon::StandardRifle() )->Initialize( *this, status::WeaponSetting::Rare::NORMAL );
         weaponList.emplace_back( new weapon::MachineGun() )->Initialize( *this, status::WeaponSetting::Rare::BROKEN );
-        weaponList.emplace_back( new weapon::MachineGun() )->Initialize( *this, status::WeaponSetting::Rare::LEGENDERY );
+        weaponList.emplace_back( new weapon::MachineGun() )->Initialize( *this, status::WeaponSetting::Rare::LEGENDARY );
         usingWeapon = weaponList.begin();
 
         // 経験値データを初期化

@@ -74,6 +74,9 @@
     <ClCompile Include="Scripts\Object\Actor\Enemy\EnemyBase.cpp">
       <Filter>Object\Actor\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Manager\StatusLoader.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -85,9 +88,6 @@
     <ClInclude Include="Scripts\Definition\DxLibSetting.h">
       <Filter>Definition</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Definition\ImageDefinition.h">
-      <Filter>Definition</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\Definition\InputDefinition.h">
       <Filter>Definition</Filter>
     </ClInclude>
@@ -96,9 +96,6 @@
     </ClInclude>
     <ClInclude Include="Scripts\Definition\StatusDefinition.h">
       <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Manager\ImageManager.h">
-      <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Manager\InputInvoker.h">
       <Filter>Manager</Filter>
@@ -180,6 +177,12 @@
     </ClInclude>
     <ClInclude Include="Scripts\Object\Actor\Enemy\StandardEnemy.h">
       <Filter>Object\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Manager\StatusLoader.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Definition\StatusLoaderKey.h">
+      <Filter>Definition</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

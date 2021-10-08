@@ -19,6 +19,9 @@ namespace shooting::object {
 
        private:
         auto TargetPosition() const -> Vector2;
+
+       private:
+        double lerpPower { 0.0 };  // 線形補完の強さ
     };
 }  // namespace shooting::object
 

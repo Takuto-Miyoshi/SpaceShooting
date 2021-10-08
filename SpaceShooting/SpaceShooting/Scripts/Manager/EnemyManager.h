@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "../Definition/StatusDefinition.h"
+#include "../Manager/StatusLoader.h"
 #include "../Object/Actor/Enemy/EnemyBase.h"
 #include "../Utility/Property.h"
 #include "../Utility/Vector.h"
@@ -14,13 +15,6 @@
 
 namespace shooting::object {
     class EnemyManager {
-       private:
-        struct LotteryData {
-            status::enemy::Type type;
-            double spawnChance;
-            double chainChance;
-        };
-
        public:
         EnemyManager() = default;
 
@@ -33,29 +27,20 @@ namespace shooting::object {
         /// @brief 更新
         void Update();
 
-        /// @brief 抽選リストに登録
-        /// @param type 登録する敵
-        /// @param spawnChance 本抽選に登録される確率
-        /// @param chainChance 連鎖して召喚される確率
-        void Register( status::enemy::Type&& type, const double& spawnChance, const double& chainChance );
-
-        /// @brief 抽選リストから登録解除
-        void Unregister( const status::enemy::Type& type );
-
         /// @brief 抽選リストを全てリセット
         void Reset();
 
        private:
         /// @brief 抽選リストの中から敵データをランダムに取得
-        auto Lottery() -> LotteryData;
+        auto Lottery() -> status::SpawnData;
 
         /// @brief 敵を生成
         /// @param type 敵のタイプ
         /// @param chainChance 連鎖して生成する確率
-        void Generate( const status::enemy::Type& type, double chainChance );
+        void Generate( status::SpawnData spawnData );
 
         /// @brief タイプをもとに敵を生成する
-        void GenerateByType( const status::enemy::Type& type );
+        void GenerateByType( const status::SpawnData& spawnData );
 
         template<class T>
         auto GenerateEnemy() -> EnemyBase* {
@@ -69,15 +54,26 @@ namespace shooting::object {
         auto RandomPosition() -> Vector2;
 
         /// @brief レベルの設定
-        void LevelSetting( EnemyBase& enemy );
+        void LevelSetting( EnemyBase& enemy, const status::SpawnData& spawnData );
+
+       public:
+        Property<uint32_t> UseGroup {
+            useGroup, nullptr, [this]( uint32_t value ) {
+                useGroup = value;
+                lotteryBox = status::StatusLoader::Instance()->GetGroup( useGroup );
+            }
+        };
 
        private:
         static constexpr double DECREASE_RATE { 0.9 };  // chainChanceの減少率
 
-        std::vector<LotteryData> lotteryBox {};  // 抽選登録用リスト
-        std::vector<LotteryData> box {};  // 本抽選用リスト
+        std::vector<status::SpawnData> lotteryBox {};  // 抽選登録用リスト
+        std::vector<status::SpawnData> box {};  // 本抽選用リスト
+
+        uint32_t useGroup { 0 };  // 使用する敵グループのID
 
         double spawnTimer { 0.0 };
+        double interval { 0.0 };
     };
 }  // namespace shooting::object
 

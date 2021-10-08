@@ -1,18 +1,21 @@
 ﻿#include "HomingBullet.h"
 
+#include "../../Definition/StatusLoaderKey.h"
 #include "../../Manager/ObjectManager.h"
+#include "../../Manager/StatusLoader.h"
 
 namespace shooting::object {
     void HomingBullet::Start() {
-        graphicHandle = ImageManager::Instance()->Image( image::HOMING_BULLET.name );
+        ObjectBase::Initialize( status::loaderKey::object::bullet::HOMING );
 
-        objectStatus = status::bullet::HomingBullet::OBJECT;
+        auto& data = status::StatusLoader::Instance()->Get_a( status::loaderKey::object::bullet::HOMING );
+        lerpPower = data.ExtraParam1;
     }
 
     void HomingBullet::Move() {
         auto target = TargetPosition();
         if ( target != Vector2::Zero() ) {
-            angle = SLerp<float>( angle, position.AngleTo( target ), status::bullet::HomingBullet::LERP_POWER * timeManager.lock()->DeltaTime );
+            angle = SLerp<float>( angle, position.AngleTo( target ), lerpPower * timeManager.lock()->DeltaTime );
         }
 
         MoveToForward();

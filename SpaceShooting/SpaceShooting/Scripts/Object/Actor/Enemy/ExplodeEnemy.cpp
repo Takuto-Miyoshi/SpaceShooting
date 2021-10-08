@@ -1,16 +1,18 @@
 ﻿#include "ExplodeEnemy.h"
 
+#include "../../../Definition/StatusLoaderKey.h"
 #include "../../../Manager/BulletFactory.h"
 #include "../../../Manager/ObjectManager.h"
+#include "../../../Manager/StatusLoader.h"
 #include "../../../Utility/Functions.h"
 
 namespace shooting::object {
     void ExplodeEnemy::Start() {
-        Initialize( image::EXPLODE_ENEMY.name,
-                    status::enemy::ExplodeEnemy::OBJECT,
-                    status::enemy::ExplodeEnemy::ACTOR,
-                    status::enemy::ExplodeEnemy::ENEMY.Exp,
-                    status::enemy::ExplodeEnemy::BULLET );
+        Initialize( status::loaderKey::object::enemy::EXPLODE );
+
+        auto& data = status::StatusLoader::Instance()->Get_a( status::loaderKey::object::enemy::EXPLODE );
+        diffusionIndex = static_cast<uint32_t>( data.ExtraParam1 );
+        ignitionDistance = data.ExtraParam2;
     }
 
     void ExplodeEnemy::DeathProcess() {
@@ -25,7 +27,7 @@ namespace shooting::object {
 
         Move();
 
-        if ( toPlayerVector.Length() <= status::enemy::ExplodeEnemy::IGNITION_DISTANCE ) {
+        if ( toPlayerVector.Length() <= ignitionDistance ) {
             // 一定距離まで近づいたら爆発
             Explosion();
         }
@@ -39,8 +41,8 @@ namespace shooting::object {
     }
 
     void ExplodeEnemy::Explosion() {
-        float baseAngle = static_cast<float>( PI * 2 ) / status::enemy::ExplodeEnemy::DIFFUSION_INDEX;
-        for ( uint32_t i = 0; i < status::enemy::ExplodeEnemy::DIFFUSION_INDEX; i++ ) {
+        float baseAngle = static_cast<float>( PI * 2 ) / diffusionIndex;
+        for ( uint32_t i = 0; i < diffusionIndex; i++ ) {
             float target = angle + baseAngle * i;
             ShootTo( target );
         }

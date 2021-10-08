@@ -1,13 +1,13 @@
 ﻿#include "ObjectBase.h"
 
 #include "../Definition/StatusDefinition.h"
-#include "../Manager/ImageManager.h"
+#include "../Manager/StatusLoader.h"
 
 namespace shooting::object {
     void ObjectBase::Draw() const {
         DrawRotaGraphFast( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
                            static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
-                           1.0f, angle, graphicHandle, TRUE );
+                           1.0f, angle, objectStatus.GraphicHandle, TRUE );
 
         // DEBUG
         DrawCircle( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
@@ -50,10 +50,9 @@ namespace shooting::object {
         isActive = true;
     }
 
-    void ObjectBase::Initialize( const std::string& imageName, const status::Object& objectData ) {
-        graphicHandle = ImageManager::Instance()->Image( imageName );
-
-        objectStatusBase = objectData;
+    void ObjectBase::Initialize( const std::string& objectName ) {
+        auto& data = status::StatusLoader::Instance()->Get_a( objectName );
+        objectStatusBase = data.ObjectData;
         objectStatus = objectStatusBase;
     }
 }  // namespace shooting::object

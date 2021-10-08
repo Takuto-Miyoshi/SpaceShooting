@@ -1,0 +1,10 @@
+command,,,,,,,
+constant,GROUP,SPAWN_TYPE,SPAWN_RATE,CHAIN_RATE,MIN_LEVEL,MAX_LEVEL,NEXT_INTERVAL
+variablename,Group,SpawnType,SpawnRate,ChainRate,MinLevel,MaxLevel,NextInterval
+description,敵グループ,,,連鎖する度 0.9倍,1以上,100以下,次の敵の出現まで
+type,uint8_t,enemy::Type,double,double,uint32_t,uint32_t,double
+start,0,1,100,20,1,10,3
+,0,2,30,10,3,8,5
+,1,1,50,10,3,10,2
+,1,2,80,40,5,7,6
+end,,,,,,,

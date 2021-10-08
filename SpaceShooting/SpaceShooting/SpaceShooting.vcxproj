@@ -168,6 +168,7 @@
     <ClCompile Include="Scripts\Manager\InputManager.cpp" />
     <ClCompile Include="Scripts\Manager\ObjectManager.cpp" />
     <ClCompile Include="Scripts\Manager\SceneManager.cpp" />
+    <ClCompile Include="Scripts\Manager\StatusLoader.cpp" />
     <ClCompile Include="Scripts\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Enemy\ExplodeEnemy.cpp" />
@@ -190,18 +191,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Definition\DxLibSetting.h" />
-    <ClInclude Include="Scripts\Definition\ImageDefinition.h" />
     <ClInclude Include="Scripts\Definition\InputDefinition.h" />
     <ClInclude Include="Scripts\Definition\SceneDefinition.h" />
+    <ClInclude Include="Scripts\Definition\StatusLoaderKey.h" />
     <ClInclude Include="Scripts\Manager\BulletFactory.h" />
     <ClInclude Include="Scripts\Manager\EnemyManager.h" />
     <ClInclude Include="Scripts\Manager\GameLoop.h" />
-    <ClInclude Include="Scripts\Manager\ImageManager.h" />
     <ClInclude Include="Scripts\Definition\StatusDefinition.h" />
     <ClInclude Include="Scripts\Manager\InputInvoker.h" />
     <ClInclude Include="Scripts\Manager\InputManager.h" />
     <ClInclude Include="Scripts\Manager\ObjectManager.h" />
     <ClInclude Include="Scripts\Manager\SceneManager.h" />
+    <ClInclude Include="Scripts\Manager\StatusLoader.h" />
     <ClInclude Include="Scripts\Manager\TimeManager.h" />
     <ClInclude Include="Scripts\Object\Actor\ActorBase.h" />
     <ClInclude Include="Scripts\Object\Actor\Enemy\EnemyBase.h" />

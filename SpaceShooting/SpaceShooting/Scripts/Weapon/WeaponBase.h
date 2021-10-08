@@ -20,7 +20,7 @@ namespace shooting::weapon {
        public:
         /// @brief 初期化
         /// @param user この武器の使用者
-        virtual void Initialize( const object::ActorBase& user, const uint8_t& rarity );
+        virtual void Initialize( const object::ActorBase& user, const uint8_t& useRarity );
 
         /// @brief 更新
         virtual void Update();
@@ -36,7 +36,7 @@ namespace shooting::weapon {
         virtual void ShootedProcess();
 
         /// @brief 武器データの初期化 @n レア度は事前に設定
-        void InitializeWeapon( const object::status::Weapon& weaponData, const object::status::Bullet& bulletData );
+        void InitializeWeapon( const std::string& objectName );
 
         /// @brief 弾ステータスの更新
         virtual void UpdateBulletStatus();
@@ -67,7 +67,7 @@ namespace shooting::weapon {
         object::status::Bullet bulletStatus {};
         object::status::Bullet baseBulletData {};
 
-        uint8_t rare { 0 };
+        uint8_t rarity { 0 };
 
         double timer { 0.0 };
         bool shootable { false };

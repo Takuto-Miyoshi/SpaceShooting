@@ -13,9 +13,12 @@ namespace shooting::weapon {
         ~MachineGun() override = default;
 
        public:
-        void Initialize( const object::ActorBase& user, const uint8_t& rarity ) override;
+        void Initialize( const object::ActorBase& user, const uint8_t& useRarity ) override;
 
         void ShootProcess() override;
+
+       private:
+        float deviation { 0.0f };  // 振れ幅
     };
 }  // namespace shooting::weapon
 

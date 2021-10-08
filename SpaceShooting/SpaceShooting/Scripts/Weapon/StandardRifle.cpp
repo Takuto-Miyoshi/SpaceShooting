@@ -1,12 +1,14 @@
 ﻿#include "StandardRifle.h"
 
+#include "../Definition/StatusLoaderKey.h"
+
 using namespace shooting::object;
 
 namespace shooting::weapon {
-    void StandardRifle::Initialize( const object::ActorBase& user, const uint8_t& rarity ) {
-        WeaponBase::Initialize( user, rarity );
-        auto data = status::weapon::StandardRifle::list.at( rare );
-        InitializeWeapon( data.WEAPON, data.BULLET );
+    void StandardRifle::Initialize( const object::ActorBase& user, const uint8_t& useRarity ) {
+        WeaponBase::Initialize( user, useRarity );
+
+        InitializeWeapon( status::loaderKey::object::weapon::STANDARD_RIFLE );
     }
 
     void StandardRifle::ShootProcess() {

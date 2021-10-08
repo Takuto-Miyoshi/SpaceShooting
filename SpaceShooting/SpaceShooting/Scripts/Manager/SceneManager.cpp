@@ -2,7 +2,6 @@
 
 #include <memory>
 
-#include "../Manager/ImageManager.h"
 #include "../Scene/InGameScene.h"
 #include "../Scene/TitleScene.h"
 
@@ -10,7 +9,6 @@ namespace shooting {
     void SceneManager::Initialize() {
         inputInvoker.lock()->Initialize();
         timeManager.lock()->Initialize();
-        ImageManager::Instance()->Initialize();
 
         ChangeScene( scene::SceneDefs::Title );
     }
@@ -32,7 +30,6 @@ namespace shooting {
     void SceneManager::ChangeScene( const scene::SceneDefs& next ) {
         inputInvoker.lock()->Reset();
         if ( currentScene ) { currentScene->Finalize(); }
-        ImageManager::Instance().reset();
 
         switch ( next ) {
             case scene::SceneDefs::Title: currentScene = std::make_unique<scene::TitleScene>(); break;

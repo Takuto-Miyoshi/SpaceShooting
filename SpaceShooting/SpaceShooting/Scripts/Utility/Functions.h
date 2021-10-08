@@ -4,6 +4,7 @@
 #define FUNCTIONS_H
 
 #include <random>
+#include <string>
 
 constexpr double PI { 3.14159 };
 
@@ -69,6 +70,11 @@ namespace shooting {
         auto rightDistance = abs( right - fromCast );
 
         return static_cast<T>( std::lerp( fromCast, ( leftDistance < rightDistance ) ? left : right, percentage ) );
+    }
+
+    static constexpr auto EqualString( const std::string& str1, const std::string& str2 ) -> bool {
+        if ( str1.size() != str2.size() ) { return false; }
+        return std::equal( str1.begin(), str1.end(), str2.begin(), str2.end(), []( auto& s1, auto& s2 ) { return s1 == s2; } );
     }
 }  // namespace shooting
 

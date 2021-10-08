@@ -11,13 +11,11 @@ namespace shooting::object {
         playerBulletList.reserve( ObjectSetting::OBJECT_CAPACITY );
         enemyList.reserve( ObjectSetting::OBJECT_CAPACITY );
         enemyBulletList.reserve( ObjectSetting::OBJECT_CAPACITY );
-
-        EnemyBase::LoadEnemyData();
-        BulletBase::LoadBulletData();
     }
 
     void ObjectManager::Update() {
         for ( auto&& obj : std::as_const( objectList ) ) {
+            if ( !obj ) { continue; }
             obj->ReserveStart();
             obj->CheckOutOfValidArea();
             obj->Update();
@@ -30,6 +28,7 @@ namespace shooting::object {
 
     void ObjectManager::Draw() {
         for ( auto&& obj : std::as_const( objectList ) ) {
+            if ( !obj ) { continue; }
             obj->Draw();
         }
     }
@@ -54,6 +53,7 @@ namespace shooting::object {
         // Player * EnemyBullet
         if ( !enemyBulletList.empty() && player ) {
             for ( auto&& bullet : std::as_const( enemyBulletList ) ) {
+                if ( !bullet ) { continue; }
                 if ( Detection( *player, *bullet ) ) {
                     player->Collide( *bullet );
                     bullet->Collide( *player );
@@ -64,7 +64,9 @@ namespace shooting::object {
         // Enemy * PlayerBullet
         if ( !enemyList.empty() && !playerBulletList.empty() ) {
             for ( auto&& enemy : std::as_const( enemyList ) ) {
+                if ( !enemy ) { continue; }
                 for ( auto&& bullet : std::as_const( playerBulletList ) ) {
+                    if ( !bullet ) { continue; }
                     if ( Detection( *enemy, *bullet ) ) {
                         enemy->Collide( *bullet );
                         bullet->Collide( *enemy );

@@ -3,8 +3,6 @@
 #ifndef BULLET_BASE_H
 #define BULLET_BASE_H
 
-#include "../../Definition/ImageDefinition.h"
-#include "../../Manager/ImageManager.h"
 #include "../../Utility/Property.h"
 #include "../../Utility/Vector.h"
 #include "../ObjectBase.h"
@@ -17,9 +15,6 @@ namespace shooting::object {
         ~BulletBase() override = default;
 
        public:
-        /// @brief 弾データの読み込み
-        static void LoadBulletData();
-
         void Initialize( const status::Bullet& bulletData );
 
         void Update() override;

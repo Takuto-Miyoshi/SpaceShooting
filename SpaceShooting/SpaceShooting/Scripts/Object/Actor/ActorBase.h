@@ -18,7 +18,7 @@ namespace shooting::object {
         void Draw() const override;
 
        protected:
-        virtual void Initialize( const std::string& imageName, const status::Object& objectData, const status::Actor& actorData );
+        virtual void Initialize( const std::string& objectName );
 
         /// @brief ステータスの更新
         virtual void UpdateStatus();

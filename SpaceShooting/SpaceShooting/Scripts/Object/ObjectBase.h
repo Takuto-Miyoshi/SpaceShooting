@@ -46,7 +46,7 @@ namespace shooting::object {
         void Activate( const status::ObjectKind& objectKind, const Vector2& resetPosition, const float& resetAngle );
 
        protected:
-        virtual void Initialize( const std::string& imageName, const status::Object& objectData );
+        virtual void Initialize( const std::string& objectName );
 
         /// @brief 更新の最初に呼び出される
         virtual void Start() = 0;
@@ -89,7 +89,6 @@ namespace shooting::object {
         bool isActive { false };
         bool calledOnce { false };
 
-        int32_t graphicHandle { 0 };
         Vector2 position { 0, 0 };
         float angle { 0.0f };
 

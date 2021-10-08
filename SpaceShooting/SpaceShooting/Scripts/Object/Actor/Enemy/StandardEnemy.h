@@ -18,15 +18,12 @@ namespace shooting::object {
        protected:
         void Start() override;
 
+        /// @brief 射撃
+        void Shoot() override;
+
        private:
         /// @brief 移動
         void Move();
-
-        /// @brief 射撃
-        void Shoot();
-
-       private:
-        double shotCount { 0.0 };
     };
 }  // namespace shooting::object
 

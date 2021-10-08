@@ -1,0 +1,24 @@
+command,,,,,,,,,,,,skip,,,,,,,,,skip,skip,skip,,,,,,,
+constant,CATEGORY,NAME,ID,OBJECT_COLLISION_RADIUS,GRAPHIC_PATH,ACTOR_MAX_HP,ACTOR_HP,ACTOR_SPEED,ACTOR_GROWHP_FIXED,ACTOR_GROWHP_FLUCTUATION,ACTOR_GROWHP_USE_RATIO,,BULLET_SPEED,BULLET_ATTACK_POWER,BULLET_ACCELERATION,BULLET_ANGULER_VELOCITY,BULLET_TYPE,BULLET_GROWATTACKPOWER_FIXED,BULLET_GROWATTACKPOWER_FLUCTUATION,BULLET_GROWATTACKPOWER_USE_RATIO,,ENEMY_SPAWN_RATE,ENEMY_CHAIN_RATE,ENEMY_EXP,ENEMY_INTERVAL,WEAPON_INTERVAL,WEAPON_RARITY,EXTRA_PARAM1,EXTRA_PARAM2,EXTRA_PARAM3
+group,,,,Object,,,,,Actor,,,,,,,Bullet,,,,,,,Enemy,,,Weapon,,,ExtraParameter,
+subgroup,,,,,,,,,,,Grow,,,,,,,,Grow,,,,,,,,,,,
+variablename,,Name,Id,CollisionRadius,GraphicPath,MaxHp,Hp,Speed,,,GrowHp,,Speed,AttackPower,Acceleration,AngulerVelocity,Type,,GrowAttackPower,,,SpawnRate,ChainRate,Exp,Interval,Interval,Rarity,Param1,Param2,Param3
+subvariablename,,,,,,,,,Fixed,Fluctuation,UseRatio,,,,,,,Fixed,Fluctuation,UseRatio,,,,,,,,,,
+description,カテゴリ,,,中心からの半径,"""Images/"" から始まる",,,×DeltaTime,固定値,変動値,使用率,値の範囲,,,,けっこう曲がる,,,,,値の範囲,,連鎖する度0.9倍,,,,1~5,,,
+type,string,string,int32_t,double,,double,double,double,double,double,double,,double,double,double,float,bullet::Type,double,double,double,,double,double,uint32_t,double,double,uint8_t,double,double,double
+start,Player,Player,1,32,Images/Object/Actor/Player.png,100,100,120,5,3,85,1.7 ~ 6.8,0,0,0,0,0,0,0,0,0 ~ 0,0,0,0,0,0,0,0,0,0
+,Enemy,StandardEnemy,2,16,Images/Object/Actor/StandardEnemy.png,30,30,140,4,2.5,95,1.425 ~ 6.175,200,5,0,0,1,2.5,1.5,30,0.3 ~ 1.2,100,30,1,3,0,0,0,0,0
+,Enemy,ExplodeEnemy,3,16,Images/Object/Actor/ExplodeEnemy.png,20,20,100,3.5,1,100,2.5 ~ 4.5,300,7,0,0,1,1,0.5,80,0.4 ~ 1.2,50,15,14,0,0,0,8,100,0
+,Bullet,StandardBullet,4,8,Images/Object/Bullet/StandardBullet.png,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ~ 0,0,0,0,0,0,0,0,0,0
+,Bullet,HomingBullet,5,8,Images/Object/Bullet/HomingBullet.png,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ~ 0,0,0,0,0,0,0,1.6,0,0
+,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,210,7,-20,0,1,0,0,0,0 ~ 0,0,0,0,0,1.1,1,0,0,0
+,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,230,8,0,0,1,0,0,0,0 ~ 0,0,0,0,0,1,2,0,0,0
+,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,240,9,30,0,1,0,0,0,0 ~ 0,0,0,0,0,0.8,3,0,0,0
+,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,260,10,50,0,1,0,0,0,0 ~ 0,0,0,0,0,0.7,4,0,0,0
+,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,280,12,80,0,1,0,0,0,0 ~ 0,0,0,0,0,0.6,5,0,0,0
+,Weapon,MachineGun,7,0,None,0,0,0,0,0,0,0,230,2,-40,0,1,0,0,0,0 ~ 0,0,0,0,0,0.35,1,0.45,0,0
+,Weapon,MachineGun,7,0,None,0,0,0,0,0,0,0,250,3.5,-30,0,1,0,0,0,0 ~ 0,0,0,0,0,0.3,2,0.4,0,0
+,Weapon,MachineGun,7,0,None,0,0,0,0,0,0,0,260,4.5,-20,0,1,0,0,0,0 ~ 0,0,0,0,0,0.25,3,0.3,0,0
+,Weapon,MachineGun,7,0,None,0,0,0,0,0,0,0,280,6,-10,0,1,0,0,0,0 ~ 0,0,0,0,0,0.2,4,0.23,0,0
+,Weapon,MachineGun,7,0,None,0,0,0,0,0,0,0,300,7,0,0,1,0,0,0,0 ~ 0,0,0,0,0,0.15,5,0.15,0,0
+end,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

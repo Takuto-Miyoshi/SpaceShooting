@@ -1,5 +1,7 @@
 ﻿#include "ActorBase.h"
 
+#include "../../Manager/StatusLoader.h"
+
 namespace shooting::object {
     void ActorBase::Update() {
         UpdateStatus();
@@ -20,9 +22,11 @@ namespace shooting::object {
                     GetColor( 255, 255, 255 ) );
     }
 
-    void ActorBase::Initialize( const std::string& imageName, const status::Object& objectData, const status::Actor& actorData ) {
-        ObjectBase::Initialize( imageName, objectData );
-        actorStatusBase = actorData;
+    void ActorBase::Initialize( const std::string& objectName ) {
+        ObjectBase::Initialize( objectName );
+
+        auto& data = status::StatusLoader::Instance()->Get_a( objectName );
+        actorStatusBase = data.ActorData;
         actorStatus = actorStatusBase;
     }
 

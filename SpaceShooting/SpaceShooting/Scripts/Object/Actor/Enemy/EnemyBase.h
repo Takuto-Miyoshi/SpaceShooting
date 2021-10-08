@@ -3,8 +3,6 @@
 #ifndef ENEMY_BASE_H
 #define ENEMY_BASE_H
 
-#include "../../../Definition/ImageDefinition.h"
-#include "../../../Manager/ImageManager.h"
 #include "../../Bullet/BulletBase.h"
 #include "../ActorBase.h"
 
@@ -16,13 +14,10 @@ namespace shooting::object {
         ~EnemyBase() override = default;
 
        public:
-        /// @brief 敵データの読み込み
-        static void LoadEnemyData();
-
         void Update() override;
 
        protected:
-        virtual void Initialize( const std::string& imageName, const status::Object& objectData, const status::Actor& actorData, const uint32_t& elliminateExp, const status::Bullet& bulletData );
+        virtual void Initialize( const std::string& objectName );
 
         /// @brief expを設定
         virtual void ExpSetting( const int32_t& defaultExp );
@@ -30,6 +25,8 @@ namespace shooting::object {
         void LevelUp() override;
 
         virtual void DeathProcess() override;
+
+        virtual void Shoot() = 0;
 
         /// @brief positionからangleへ弾を発射 @n baseBulletDataをもとにしている
         auto ShootForward() -> BulletBase*;
@@ -55,6 +52,8 @@ namespace shooting::object {
 
         uint32_t exp { 0 };
         uint32_t expBase { 0 };
+        double timer { 0.0 };
+        double interval { 0.0 };
     };
 }  // namespace shooting::object
 

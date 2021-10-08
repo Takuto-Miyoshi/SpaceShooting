@@ -20,6 +20,8 @@ namespace shooting::object {
 
         void DeathProcess() override;
 
+        void Shoot() override {}
+
        private:
         /// @brief 移動
         void Move();
@@ -29,6 +31,9 @@ namespace shooting::object {
 
        private:
         Vector2 toPlayerVector { 0, 0 };  // プレイヤーの位置
+
+        uint32_t diffusionIndex { 0 };  // 拡散する個数
+        double ignitionDistance { 0.0 };  // 起爆する距離
     };
 }  // namespace shooting::object
 

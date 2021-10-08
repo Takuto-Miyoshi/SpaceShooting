@@ -1,15 +1,16 @@
 ﻿#include "WeaponBase.h"
 
 #include "../Manager/BulletFactory.h"
+#include "../Manager/StatusLoader.h"
 #include "../Manager/TimeManager.h"
 
 namespace shooting::weapon {
-    void WeaponBase::Initialize( const object::ActorBase& user, const uint8_t& rarity ) {
+    void WeaponBase::Initialize( const object::ActorBase& user, const uint8_t& useRarity ) {
         position = &user.Position;
         angle = &user.Angle;
         level = &user.Level;
         kind = ConvertKind( user.Kind );
-        rare = rarity;
+        rarity = useRarity;
     }
 
     void WeaponBase::Update() {
@@ -32,9 +33,11 @@ namespace shooting::weapon {
         timer = weaponStatus.Interval;
     }
 
-    void WeaponBase::InitializeWeapon( const object::status::Weapon& weaponData, const object::status::Bullet& bulletData ) {
-        weaponStatus = weaponData;
-        baseBulletData = bulletData;
+    void WeaponBase::InitializeWeapon( const std::string& objectName ) {
+        auto& data = object::status::StatusLoader::Instance()->Get_a( objectName, rarity );
+
+        weaponStatus = data.WeaponData;
+        baseBulletData = data.BulletData;
         bulletStatus = baseBulletData;
     }
 

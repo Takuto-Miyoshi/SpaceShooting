@@ -13,7 +13,7 @@ namespace shooting::weapon {
         ~StandardRifle() override = default;
 
        public:
-        void Initialize( const object::ActorBase& user, const uint8_t& rarity ) override;
+        void Initialize( const object::ActorBase& user, const uint8_t& useRarity ) override;
 
         void ShootProcess() override;
     };

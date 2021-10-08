@@ -2,22 +2,30 @@
 
 #include "../../../Manager/BulletFactory.h"
 #include "../../../Manager/ObjectManager.h"
+#include "../../../Manager/StatusLoader.h"
 #include "../../../Utility/Functions.h"
 
 namespace shooting::object {
-    void EnemyBase::LoadEnemyData() {
-        ImageManager::Instance()->LoadGraphHandle( image::STANDARD_ENEMY );
-        ImageManager::Instance()->LoadGraphHandle( image::EXPLODE_ENEMY );
-    }
-
     void EnemyBase::Update() {
         ActorBase::Update();
+        timer -= timeManager.lock()->DeltaTime;
+        if ( timer <= 0.0 ) {
+            timer = interval;
+            Shoot();
+        }
     }
 
-    void EnemyBase::Initialize( const std::string& imageName, const status::Object& objectData, const status::Actor& actorData, const uint32_t& elliminateExp, const status::Bullet& bulletData ) {
-        ActorBase::Initialize( imageName, objectData, actorData );
-        ExpSetting( elliminateExp );
-        baseBuletData = bulletData;
+    void EnemyBase::Initialize( const std::string& objectName ) {
+        ActorBase::Initialize( objectName );
+
+        auto& data = status::StatusLoader::Instance()->Get_a( objectName );
+
+        ExpSetting( data.EnemyData.Exp );
+
+        interval = data.EnemyData.Interval;
+        timer = interval;
+
+        baseBuletData = data.BulletData;
 
         // ステータスが現在のレベルに合うようにする
         for ( uint32_t i = 1; i < level; i++ ) {
