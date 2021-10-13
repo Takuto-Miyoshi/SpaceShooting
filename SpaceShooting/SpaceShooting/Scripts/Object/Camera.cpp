@@ -15,12 +15,12 @@ namespace shooting {
         auto vector = screenCenter.To( from );
         auto length = vector.Length();
 
-        if ( length == 0 ) { return; }  // バグ回避
+        if ( length == 0 ) [[unlikely]] { return; }  // バグ回避
         if ( length >= LENGTH_LIMIT ) { length = LENGTH_LIMIT; }
 
         length /= SENSITIVITY;
 
-        auto offset = vector.Normalized() * length;
+        auto&& offset = vector.Normalized() * length;
         position += offset;
     }
 }  // namespace shooting

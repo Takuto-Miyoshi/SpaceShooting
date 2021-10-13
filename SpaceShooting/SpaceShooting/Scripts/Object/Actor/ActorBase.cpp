@@ -11,15 +11,10 @@ namespace shooting::object {
         ObjectBase::Draw();
 
         // HPを表示
-        DrawString( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
-                    static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
-                    ( "HP:" + std::to_string( static_cast<double>( actorStatus.Hp ) ) + "/" + std::to_string( static_cast<double>( actorStatus.MaxHp ) ) ).c_str(),
-                    GetColor( 255, 255, 255 ) );
+        DrawStringOnHead( "HP:" + std::to_string( actorStatus.Hp ) + "/" + std::to_string( actorStatus.MaxHp ) );
+
         // レベルを表示
-        DrawString( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
-                    static_cast<int32_t>( position.Y - camera.lock()->Position->Y - 30 ),
-                    ( "LEVEL:" + std::to_string( level ) ).c_str(),
-                    GetColor( 255, 255, 255 ) );
+        DrawStringOnHead( "LEVEL:" + std::to_string( level ), -30.0f );
     }
 
     void ActorBase::Initialize( const std::string& objectName ) {

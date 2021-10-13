@@ -178,10 +178,13 @@
     <ClInclude Include="Scripts\Object\Actor\Enemy\StandardEnemy.h">
       <Filter>Object\Actor\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Definition\StatusLoaderKey.h">
+      <Filter>Definition</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Manager\StatusLoader.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Definition\StatusLoaderKey.h">
+    <ClInclude Include="Scripts\Definition\GeneralConcepts.h">
       <Filter>Definition</Filter>
     </ClInclude>
   </ItemGroup>

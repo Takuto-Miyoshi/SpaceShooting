@@ -21,14 +21,14 @@ namespace shooting::object {
 
         void Update() override;
 
-        void Draw() const override;
+        void Draw() const override {}
 
        protected:
-        void Start() override;
+        void Start() override {}
 
-        [[nodiscard]] virtual auto AttackPower() const -> double override;
+        [[nodiscard]] virtual auto AttackPower() const -> double override { return 0.0; }
 
-        [[nodiscard]] virtual auto TakeDamage( const double& attackPower ) -> bool override;
+        [[nodiscard]] virtual auto TakeDamage( const double& attackPower ) -> bool override { return false; }
 
        private:
         double transTime { 0.0 };

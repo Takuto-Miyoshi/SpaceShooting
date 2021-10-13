@@ -8,6 +8,7 @@
 namespace shooting::object {
     void EnemyBase::Update() {
         ActorBase::Update();
+
         timer -= timeManager.lock()->DeltaTime;
         if ( timer <= 0.0 ) {
             timer = interval;

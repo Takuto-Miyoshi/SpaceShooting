@@ -9,9 +9,9 @@
 namespace shooting::dxlib {
     constexpr int32_t FAIL { -1 };
 
-    constexpr int32_t SCREEN_SIZE_X { 1280 };
-    constexpr int32_t SCREEN_SIZE_Y { 720 };
-    constexpr int32_t COLOR_BIT_DEPTH { 32 };
+    constexpr uint32_t SCREEN_SIZE_X { 1280 };
+    constexpr uint32_t SCREEN_SIZE_Y { 720 };
+    constexpr uint32_t COLOR_BIT_DEPTH { 32 };
 
     const std::string WINDOW_NAME { "Shooting" };
 }  // namespace shooting::dxlib

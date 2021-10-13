@@ -38,6 +38,7 @@ namespace shooting::object::status {
 
         file.close();
 
+        // 読み込み完了
         loaded = true;
     }
 
@@ -135,41 +136,41 @@ namespace shooting::object::status {
     auto StatusLoader::TranslateObjectBuffer() -> ObjectStates {
         ObjectStates states {};
 
-        states.Category = buffer.StringFrom( parameter::Category );
-        states.Name = buffer.StringFrom( parameter::Name );
-        states.Id = buffer.UIntFrom( parameter::Id );
+        states.Category = buffer.Get<std::string>( parameter::CATEGORY );
+        states.Name = buffer.Get<std::string>( parameter::NAME );
+        states.Id = buffer.Get<uint32_t>( parameter::ID );
 
-        states.ObjectData.CollisionRadius = buffer.DoubleFrom( parameter::object::CollisionRadius );
-        auto path = buffer.StringFrom( parameter::object::GraphicPath );
+        states.ObjectData.CollisionRadius = buffer.Get<double>( parameter::object::COLLISION_RADIUS );
+        auto path = buffer.Get<std::string>( parameter::object::GRAPHIC_PATH );
         if ( path != command::NONE ) {
             states.ObjectData.GraphicHandle = LoadGraph( path.c_str() );
         }
 
-        states.ActorData.MaxHp = buffer.DoubleFrom( parameter::actor::MaxHp );
-        states.ActorData.Hp = buffer.DoubleFrom( parameter::actor::Hp );
-        states.ActorData.Speed = buffer.DoubleFrom( parameter::actor::Speed );
-        states.ActorData.GrowHp.Fixed = buffer.DoubleFrom( parameter::actor::grow::Fixed );
-        states.ActorData.GrowHp.Fluctuation = buffer.DoubleFrom( parameter::actor::grow::Fluctuation );
-        states.ActorData.GrowHp.UseRatio = buffer.DoubleFrom( parameter::actor::grow::UseRatio );
+        states.ActorData.MaxHp = buffer.Get<double>( parameter::actor::MAX_HP );
+        states.ActorData.Hp = buffer.Get<double>( parameter::actor::HP );
+        states.ActorData.Speed = buffer.Get<double>( parameter::actor::SPEED );
+        states.ActorData.GrowHp.Fixed = buffer.Get<double>( parameter::actor::grow::FIXED );
+        states.ActorData.GrowHp.Fluctuation = buffer.Get<double>( parameter::actor::grow::FLUCTUATION );
+        states.ActorData.GrowHp.UseRatio = buffer.Get<double>( parameter::actor::grow::USE_RATIO );
 
-        states.BulletData.Speed = buffer.DoubleFrom( parameter::bullet::Speed );
-        states.BulletData.AttackPower = buffer.DoubleFrom( parameter::bullet::AttackPower );
-        states.BulletData.Acceleration = buffer.DoubleFrom( parameter::bullet::Acceleration );
-        states.BulletData.AngularVelocity = buffer.FloatFrom( parameter::bullet::AngulerVelocity );
-        states.BulletData.BulletType = buffer.EnumFrom<bullet::Type>( parameter::bullet::Type );
-        states.BulletData.GrowAttackPower.Fixed = buffer.DoubleFrom( parameter::bullet::grow::Fixed );
-        states.BulletData.GrowAttackPower.Fluctuation = buffer.DoubleFrom( parameter::bullet::grow::Fluctuation );
-        states.BulletData.GrowAttackPower.UseRatio = buffer.DoubleFrom( parameter::bullet::grow::UseRatio );
+        states.BulletData.Speed = buffer.Get<double>( parameter::bullet::SPEED );
+        states.BulletData.AttackPower = buffer.Get<double>( parameter::bullet::ATTACK_POWER );
+        states.BulletData.Acceleration = buffer.Get<double>( parameter::bullet::ACCELERATION );
+        states.BulletData.AngularVelocity = buffer.Get<float>( parameter::bullet::ANGULER_VELOCITY );
+        states.BulletData.BulletType = buffer.Get<bullet::Type>( parameter::bullet::TYPE );
+        states.BulletData.GrowAttackPower.Fixed = buffer.Get<double>( parameter::bullet::grow::FIXED );
+        states.BulletData.GrowAttackPower.Fluctuation = buffer.Get<double>( parameter::bullet::grow::FLUCTUATION );
+        states.BulletData.GrowAttackPower.UseRatio = buffer.Get<double>( parameter::bullet::grow::USE_RATIO );
 
-        states.EnemyData.Exp = buffer.UIntFrom( parameter::enemy::Exp );
-        states.EnemyData.Interval = buffer.DoubleFrom( parameter::enemy::Interval );
+        states.EnemyData.Exp = buffer.Get<uint32_t>( parameter::enemy::EXP );
+        states.EnemyData.Interval = buffer.Get<double>( parameter::enemy::INTERVAL );
 
-        states.WeaponData.Interval = buffer.DoubleFrom( parameter::weapon::Interval );
-        states.WeaponData.Rarity = buffer.UIntFrom( parameter::weapon::Rarity );
+        states.WeaponData.Interval = buffer.Get<double>( parameter::weapon::INTERVAL );
+        states.WeaponData.Rarity = buffer.Get<uint32_t>( parameter::weapon::RARITY );
 
-        states.ExtraParam1 = buffer.DoubleFrom( parameter::extra::Param1 );
-        states.ExtraParam2 = buffer.DoubleFrom( parameter::extra::Param2 );
-        states.ExtraParam3 = buffer.DoubleFrom( parameter::extra::Param3 );
+        states.ExtraParam1 = buffer.Get<double>( parameter::extra::PARAM1 );
+        states.ExtraParam2 = buffer.Get<double>( parameter::extra::PARAM2 );
+        states.ExtraParam3 = buffer.Get<double>( parameter::extra::PARAM3 );
 
         return states;
     }
@@ -177,13 +178,13 @@ namespace shooting::object::status {
     auto StatusLoader::TranslateSpawnBuffer() -> SpawnData {
         SpawnData data {};
 
-        data.Group = buffer.UIntFrom( spawn::GROUP, read::SPAWN );
-        data.SpawnType = buffer.EnumFrom<status::enemy::Type>( spawn::SPAWN_TYPE, read::SPAWN );
-        data.SpawnRate = buffer.DoubleFrom( spawn::SPAWN_RATE, read::SPAWN );
-        data.ChainRate = buffer.DoubleFrom( spawn::CHAIN_RATE, read::SPAWN );
-        data.MinLevel = buffer.UIntFrom( spawn::MIN_LEVEL, read::SPAWN );
-        data.MaxLevel = buffer.UIntFrom( spawn::MAX_LEVEL, read::SPAWN );
-        data.NextInterval = buffer.DoubleFrom( spawn::NEXT_INTERVAL, read::SPAWN );
+        data.Group = buffer.Get<uint32_t>( spawn::GROUP, read::SPAWN );
+        data.SpawnType = buffer.Get<status::enemy::Type>( spawn::SPAWN_TYPE, read::SPAWN );
+        data.SpawnRate = buffer.Get<double>( spawn::SPAWN_RATE, read::SPAWN );
+        data.ChainRate = buffer.Get<double>( spawn::CHAIN_RATE, read::SPAWN );
+        data.MinLevel = buffer.Get<uint32_t>( spawn::MIN_LEVEL, read::SPAWN );
+        data.MaxLevel = buffer.Get<uint32_t>( spawn::MAX_LEVEL, read::SPAWN );
+        data.NextInterval = buffer.Get<double>( spawn::NEXT_INTERVAL, read::SPAWN );
 
         return data;
     }

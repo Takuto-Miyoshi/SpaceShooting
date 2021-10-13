@@ -42,8 +42,10 @@ namespace shooting::object {
         /// @brief タイプをもとに敵を生成する
         void GenerateByType( const status::SpawnData& spawnData );
 
-        template<class T>
-        auto GenerateEnemy() -> EnemyBase* {
+        /// @brief 敵を作成
+        /// @tparam T EnemyBaseを継承のみ許容
+        template<typename T>
+        auto GenerateEnemy() -> typename std::enable_if<std::derived_from<T, EnemyBase>, EnemyBase>::type* {
             return dynamic_cast<EnemyBase*>( ObjectManager::Instance()->CreateObject<T>( status::ObjectKind::Enemy, RandomPosition() ) );
         }
 

@@ -5,6 +5,7 @@
 
 #include <cmath>
 
+#include "../Definition/GeneralConcepts.h"
 #include "Functions.h"
 #include "Property.h"
 
@@ -81,10 +82,16 @@ namespace shooting {
 
         auto operator==( const Vector2 &vector ) const -> bool { return x == vector.x && y == vector.y; }
 
-        /// @brief 値を設定する
-        constexpr void Set( const double &xValue, const double &yValue ) {
+        /// @brief 値を設定する @n double
+        constexpr void Set( const std::same_as<double> auto &xValue, const std::same_as<double> auto &yValue ) {
             x = xValue;
             y = yValue;
+        }
+
+        /// @brief 値を設定する @n double以外の数値はキャストされる
+        constexpr void Set( const concepts::not_double auto &xValue, const concepts::not_double auto &yValue ) {
+            x = static_cast<double>( xValue );
+            y = static_cast<double>( yValue );
         }
 
         Property<double> X { x };

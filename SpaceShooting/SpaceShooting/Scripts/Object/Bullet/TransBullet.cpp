@@ -13,8 +13,11 @@ namespace shooting::object {
     }
 
     void TransBullet::Update() {
+        // すでに0以下なら次の時間を設定
         if ( transTime <= 0 ) { transTime = next.TimeToTrans; }
+
         transTime -= timeManager.lock()->DeltaTime;
+
         if ( transTime <= 0 ) {
             target->IsActive = false;
             target = BulletFactory::Instance()->Create( target->Kind, target->Position, target->Angle, next.ToBulletData );
@@ -23,24 +26,11 @@ namespace shooting::object {
                 isActive = false;
                 return;
             }
+
             next = transStack.front();
             transStack.pop();
         }
 
         isActive = target->IsActive;
-    }
-
-    void TransBullet::Draw() const {
-    }
-
-    void TransBullet::Start() {
-    }
-
-    auto TransBullet::AttackPower() const -> double {
-        return 0.0;
-    }
-
-    auto TransBullet::TakeDamage( const double& attackPower ) -> bool {
-        return false;
     }
 }  // namespace shooting::object

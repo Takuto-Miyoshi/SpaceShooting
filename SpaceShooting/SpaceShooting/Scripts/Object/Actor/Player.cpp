@@ -57,10 +57,7 @@ namespace shooting::object {
         ActorBase::Draw();
 
         // 経験値表示 DEBUG
-        DrawString( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
-                    static_cast<int32_t>( position.Y - camera.lock()->Position->Y - 15 ),
-                    ( "EXP:" + std::to_string( experience.Point ) + "/" + std::to_string( experience.Next ) ).c_str(),
-                    GetColor( 255, 255, 255 ) );
+        DrawStringOnHead( "EXP:" + std::to_string( experience.Point ) + "/" + std::to_string( experience.Next ), -15 );
     }
 
     void Player::AddExp( const int32_t& exp ) {

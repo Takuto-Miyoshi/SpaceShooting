@@ -17,7 +17,7 @@ namespace shooting::object {
         void Update() override;
 
        protected:
-        virtual void Initialize( const std::string& objectName );
+        void Initialize( const std::string& objectName ) override;
 
         /// @brief expを設定
         virtual void ExpSetting( const int32_t& defaultExp );

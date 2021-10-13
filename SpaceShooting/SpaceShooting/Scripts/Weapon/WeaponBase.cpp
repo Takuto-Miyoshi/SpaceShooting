@@ -23,7 +23,7 @@ namespace shooting::weapon {
     }
 
     void WeaponBase::Shoot() {
-        if ( shootable == false ) { return; }
+        if ( shootable == false ) [[likely]] { return; }
         ShootProcess();
         ShootedProcess();
     }

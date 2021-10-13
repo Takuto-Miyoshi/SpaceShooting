@@ -14,7 +14,7 @@ namespace shooting::object {
 
     void HomingBullet::Move() {
         auto target = TargetPosition();
-        if ( target != Vector2::Zero() ) {
+        if ( target != Vector2::Zero() ) [[likely]] {
             angle = SLerp<float>( angle, position.AngleTo( target ), lerpPower * timeManager.lock()->DeltaTime );
         }
 

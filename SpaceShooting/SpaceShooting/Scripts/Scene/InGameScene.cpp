@@ -31,14 +31,15 @@ namespace shooting::scene {
         enemyManager.Update();
         objectManager.lock()->Update();
 
-        Camera::Instance()->Update();
-        Camera::Instance()->OffsetBy( InputManager::Instance()->CursorPosition );
+        auto& camera = Camera::Instance();
+        camera->Update();
+        camera->OffsetBy( InputManager::Instance()->CursorPosition );
     }
 
     void InGameScene::Draw() {
         objectManager.lock()->Draw();
 
-        // DEBUG
+        // DEBUG 有効範囲を表示
         DrawCircle( static_cast<int32_t>( -Camera::Instance()->Position->X ),
                     static_cast<int32_t>( -Camera::Instance()->Position->Y ),
                     static_cast<int32_t>( object::ObjectSetting::VALID_DISTANCE ),

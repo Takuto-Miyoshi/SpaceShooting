@@ -3,7 +3,6 @@
 #ifndef STATUS_LOADER_KEY_H
 #define STATUS_LOADER_KEY_H
 
-#include <any>
 #include <map>
 #include <string>
 
@@ -36,84 +35,84 @@ namespace shooting::object::status::loaderKey {
     }  // namespace category
 
     namespace parameter {
-        static const std::string Category { "CATEGORY" };
-        static const std::string Name { "NAME" };
-        static const std::string Id { "ID" };
+        static const std::string CATEGORY { "CATEGORY" };
+        static const std::string NAME { "NAME" };
+        static const std::string ID { "ID" };
 
         namespace object {
-            static const std::string CollisionRadius { "OBJECT_COLLISION_RADIUS" };
-            static const std::string GraphicPath { "GRAPHIC_PATH" };
+            static const std::string COLLISION_RADIUS { "OBJECT_COLLISION_RADIUS" };
+            static const std::string GRAPHIC_PATH { "GRAPHIC_PATH" };
         }  // namespace object
 
         namespace actor {
-            static const std::string MaxHp { "ACTOR_MAX_HP" };
-            static const std::string Hp { "ACTOR_HP" };
-            static const std::string Speed { "ACTOR_SPEED" };
+            static const std::string MAX_HP { "ACTOR_MAX_HP" };
+            static const std::string HP { "ACTOR_HP" };
+            static const std::string SPEED { "ACTOR_SPEED" };
 
             namespace grow {
-                static const std::string Fixed { "ACTOR_GROWHP_FIXED" };
-                static const std::string Fluctuation { "ACTOR_GROWHP_FLUCTUATION" };
-                static const std::string UseRatio { "ACTOR_GROWHP_USE_RATIO" };
+                static const std::string FIXED { "ACTOR_GROWHP_FIXED" };
+                static const std::string FLUCTUATION { "ACTOR_GROWHP_FLUCTUATION" };
+                static const std::string USE_RATIO { "ACTOR_GROWHP_USE_RATIO" };
             }  // namespace grow
         }  // namespace actor
 
         namespace bullet {
-            static const std::string Speed { "BULLET_SPEED" };
-            static const std::string AttackPower { "BULLET_ATTACK_POWER" };
-            static const std::string Acceleration { "BULLET_ACCELERATION" };
-            static const std::string AngulerVelocity { "BULLET_ANGULER_VELOCITY" };
-            static const std::string Type { "BULLET_TYPE" };
+            static const std::string SPEED { "BULLET_SPEED" };
+            static const std::string ATTACK_POWER { "BULLET_ATTACK_POWER" };
+            static const std::string ACCELERATION { "BULLET_ACCELERATION" };
+            static const std::string ANGULER_VELOCITY { "BULLET_ANGULER_VELOCITY" };
+            static const std::string TYPE { "BULLET_TYPE" };
 
             namespace grow {
-                static const std::string Fixed { "BULLET_GROWATTACKPOWER_FIXED" };
-                static const std::string Fluctuation { "BULLET_GROWATTACKPOWER_FLUCTUATION" };
-                static const std::string UseRatio { "BULLET_GROWATTACKPOWER_USE_RATIO" };
+                static const std::string FIXED { "BULLET_GROWATTACKPOWER_FIXED" };
+                static const std::string FLUCTUATION { "BULLET_GROWATTACKPOWER_FLUCTUATION" };
+                static const std::string USE_RATIO { "BULLET_GROWATTACKPOWER_USE_RATIO" };
             }  // namespace grow
         }  // namespace bullet
 
         namespace enemy {
-            static const std::string Exp { "ENEMY_EXP" };
-            static const std::string Interval { "ENEMY_INTERVAL" };
+            static const std::string EXP { "ENEMY_EXP" };
+            static const std::string INTERVAL { "ENEMY_INTERVAL" };
         }  // namespace enemy
 
         namespace weapon {
-            static const std::string Interval { "WEAPON_INTERVAL" };
-            static const std::string Rarity { "WEAPON_RARITY" };
+            static const std::string INTERVAL { "WEAPON_INTERVAL" };
+            static const std::string RARITY { "WEAPON_RARITY" };
         }  // namespace weapon
 
         namespace extra {
-            static const std::string Param1 { "EXTRA_PARAM1" };
-            static const std::string Param2 { "EXTRA_PARAM2" };
-            static const std::string Param3 { "EXTRA_PARAM3" };
+            static const std::string PARAM1 { "EXTRA_PARAM1" };
+            static const std::string PARAM2 { "EXTRA_PARAM2" };
+            static const std::string PARAM3 { "EXTRA_PARAM3" };
         }  // namespace extra
 
         static std::map<std::string, uint32_t> List {
-            { Category, 0 },
-            { Name, 0 },
-            { Id, 0 },
-            { object::CollisionRadius, 0 },
-            { object::GraphicPath, 0 },
-            { actor::MaxHp, 0 },
-            { actor::Hp, 0 },
-            { actor::Speed, 0 },
-            { actor::grow::Fixed, 0 },
-            { actor::grow::Fluctuation, 0 },
-            { actor::grow::UseRatio, 0 },
-            { bullet::Speed, 0 },
-            { bullet::AttackPower, 0 },
-            { bullet::Acceleration, 0 },
-            { bullet::AngulerVelocity, 0 },
-            { bullet::Type, 0 },
-            { bullet::grow::Fixed, 0 },
-            { bullet::grow::Fluctuation, 0 },
-            { bullet::grow::UseRatio, 0 },
-            { enemy::Exp, 0 },
-            { enemy::Interval, 0 },
-            { weapon::Interval, 0 },
-            { weapon::Rarity, 0 },
-            { extra::Param1, 0 },
-            { extra::Param2, 0 },
-            { extra::Param3, 0 },
+            { CATEGORY, 0 },
+            { NAME, 0 },
+            { ID, 0 },
+            { object::COLLISION_RADIUS, 0 },
+            { object::GRAPHIC_PATH, 0 },
+            { actor::MAX_HP, 0 },
+            { actor::HP, 0 },
+            { actor::SPEED, 0 },
+            { actor::grow::FIXED, 0 },
+            { actor::grow::FLUCTUATION, 0 },
+            { actor::grow::USE_RATIO, 0 },
+            { bullet::SPEED, 0 },
+            { bullet::ATTACK_POWER, 0 },
+            { bullet::ACCELERATION, 0 },
+            { bullet::ANGULER_VELOCITY, 0 },
+            { bullet::TYPE, 0 },
+            { bullet::grow::FIXED, 0 },
+            { bullet::grow::FLUCTUATION, 0 },
+            { bullet::grow::USE_RATIO, 0 },
+            { enemy::EXP, 0 },
+            { enemy::INTERVAL, 0 },
+            { weapon::INTERVAL, 0 },
+            { weapon::RARITY, 0 },
+            { extra::PARAM1, 0 },
+            { extra::PARAM2, 0 },
+            { extra::PARAM3, 0 },
         };
 
         static auto IdOn( const std::string& str ) -> uint32_t& {

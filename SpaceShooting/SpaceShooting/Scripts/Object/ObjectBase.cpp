@@ -9,7 +9,7 @@ namespace shooting::object {
                            static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
                            1.0f, angle, objectStatus.GraphicHandle, TRUE );
 
-        // DEBUG
+        // DEBUG 当たり判定を表示
         DrawCircle( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
                     static_cast<int32_t>( position.Y - camera.lock()->Position->Y ),
                     static_cast<int32_t>( objectStatus.CollisionRadius ), GetColor( 0, 255, 0 ), FALSE );
@@ -54,5 +54,12 @@ namespace shooting::object {
         auto& data = status::StatusLoader::Instance()->Get_a( objectName );
         objectStatusBase = data.ObjectData;
         objectStatus = objectStatusBase;
+    }
+
+    void ObjectBase::DrawStringOnHead( std::string&& str, float&& offsetY, uint32_t&& color ) const {
+        DrawString( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
+                    static_cast<int32_t>( position.Y - camera.lock()->Position->Y + offsetY ),
+                    str.c_str(),
+                    color );
     }
 }  // namespace shooting::object

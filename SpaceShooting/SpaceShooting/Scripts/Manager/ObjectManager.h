@@ -23,8 +23,8 @@ namespace shooting::object {
 
         /// @brief オブジェクトを作成
         /// @tparam T 作成するオブジェクトの型 @n ObjectBaseを基底クラスに持っていること
-        template<class T>
-        auto CreateObject( const status::ObjectKind& objectKind, const Vector2& position = Vector2( 0, 0 ), const float& angle = 0.0f ) -> ObjectBase* {
+        template<typename T>
+        auto CreateObject( const status::ObjectKind& objectKind, const Vector2& position = Vector2( 0, 0 ), const float& angle = 0.0f ) -> std::enable_if<std::derived_from<T, ObjectBase>, ObjectBase>::type* {
             auto obj = std::make_shared<T>();
             obj->Activate( objectKind, position, angle );
             objectList.emplace_back( obj );
@@ -47,12 +47,13 @@ namespace shooting::object {
         }
 
         /// @brief プレイヤーに経験値を付与
-        void GiveExp( const int32_t& exp );
+        void GiveExp( const uint32_t& exp );
 
         /// @brief fromから一番近い敵(ObjectKind::Enemy)の位置を取得
         /// @return 敵がいなければVector2{0,0}を返す
         [[nodiscard]] auto NearEnemyPosition( const Vector2& from ) -> Vector2 {
             if ( enemyList.empty() ) { return Vector2::Zero(); }
+
             return std::min_element( enemyList.begin(), enemyList.end(), [&from]( auto& left, auto& right ) {
                        return from.To( left->Position ).Length() < from.To( right->Position ).Length();
                    } )

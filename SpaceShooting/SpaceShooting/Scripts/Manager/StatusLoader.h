@@ -3,12 +3,13 @@
 #ifndef STATUS_LOADER_H
 #define STATUS_LOADER_H
 
+#include <concepts>
 #include <fstream>
-#include <map>
 #include <sstream>
 #include <string>
 #include <vector>
 
+#include "../Definition/GeneralConcepts.h"
 #include "../Definition/StatusDefinition.h"
 #include "../Definition/StatusLoaderKey.h"
 #include "../Utility/Singleton.h"
@@ -110,12 +111,9 @@ namespace shooting::object::status {
             std::string String {};
             std::istringstream Line {};
 
-            template<typename T = double>
-            auto Get( const uint32_t& index ) const -> T {
-                return static_cast<T>( Contents.at( index ) );
-            }
-
-            auto StringFrom( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> std::string {
+            /// @brief 文字列で取得
+            template<typename T>
+            auto Get( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> typename std::enable_if<std::same_as<T, std::string>, T>::type {
                 if ( EqualString( readFor, loaderKey::read::STATUS ) ) {
                     return Contents.at( loaderKey::parameter::IdOn( parameterName ) );
                 }
@@ -123,52 +121,41 @@ namespace shooting::object::status {
                     return Contents.at( loaderKey::spawn::IdOn( parameterName ) );
                 }
 
-                return std::string( "" );
+                return T();
             }
 
-            auto UIntFrom( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> uint32_t {
-                if ( EqualString( readFor, loaderKey::read::STATUS ) ) {
-                    return std::stoul( Contents.at( loaderKey::parameter::IdOn( parameterName ) ) );
-                }
-                else if ( EqualString( readFor, loaderKey::read::SPAWN ) ) {
-                    return std::stoul( Contents.at( loaderKey::spawn::IdOn( parameterName ) ) );
-                }
-
-                return 0;
-            }
-
-            auto DoubleFrom( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> double {
-                if ( EqualString( readFor, loaderKey::read::STATUS ) ) {
-                    return std::stod( Contents.at( loaderKey::parameter::IdOn( parameterName ) ) );
-                }
-                else if ( EqualString( readFor, loaderKey::read::SPAWN ) ) {
-                    return std::stod( Contents.at( loaderKey::spawn::IdOn( parameterName ) ) );
-                }
-
-                return 0.0;
-            }
-
-            auto FloatFrom( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> float {
-                if ( EqualString( readFor, loaderKey::read::STATUS ) ) {
-                    return static_cast<float>( std::stod( Contents.at( loaderKey::parameter::IdOn( parameterName ) ) ) );
-                }
-                else if ( EqualString( readFor, loaderKey::read::SPAWN ) ) {
-                    return static_cast<float>( std::stod( Contents.at( loaderKey::spawn::IdOn( parameterName ) ) ) );
-                }
-
-                return 0.0f;
-            }
-
+            /// @brief 整数型で取得
             template<typename T>
-            auto EnumFrom( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> typename std::enable_if<std::is_enum<T>::value, T>::type {
+            auto Get( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> typename std::enable_if<std::integral<T>, T>::type {
+                auto result = 0;
                 if ( EqualString( readFor, loaderKey::read::STATUS ) ) {
-                    return static_cast<T>( std::stoul( Contents.at( loaderKey::parameter::IdOn( parameterName ) ) ) );
+                    result = std::stol( Contents.at( loaderKey::parameter::IdOn( parameterName ) ) );
                 }
                 else if ( EqualString( readFor, loaderKey::read::SPAWN ) ) {
-                    return static_cast<T>( std::stoul( Contents.at( loaderKey::spawn::IdOn( parameterName ) ) ) );
+                    result = std::stol( Contents.at( loaderKey::spawn::IdOn( parameterName ) ) );
                 }
 
-                return static_cast<T>( 0 );
+                return static_cast<T>( result );
+            }
+
+            /// @brief 実数型で取得
+            template<typename T>
+            auto Get( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> typename std::enable_if<std::floating_point<T>, T>::type {
+                auto result = 0.0;
+                if ( EqualString( readFor, loaderKey::read::STATUS ) ) {
+                    result = std::stod( Contents.at( loaderKey::parameter::IdOn( parameterName ) ) );
+                }
+                else if ( EqualString( readFor, loaderKey::read::SPAWN ) ) {
+                    result = std::stod( Contents.at( loaderKey::spawn::IdOn( parameterName ) ) );
+                }
+
+                return static_cast<T>( result );
+            }
+
+            /// @brief 列挙型で取得
+            template<typename T>
+            auto Get( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> typename std::enable_if<std::is_enum<T>::value, T>::type {
+                return static_cast<T>( Get<uint32_t>( parameterName, readFor ) );
             }
         } buffer;
 
@@ -176,8 +163,8 @@ namespace shooting::object::status {
         std::vector<uint32_t> skipIndex {};  // 読み込まない列リスト
         uint32_t columnIndex { 0 };  // 何列目を読み込んでいるか
 
-        std::vector<ObjectStates> readedObjectList {};  // データを丸々入れておくリスト
-        std::vector<SpawnData> readedSpawnDataList {};
+        std::vector<ObjectStates> readedObjectList {};  // 読み込んだオブジェクト
+        std::vector<SpawnData> readedSpawnDataList {};  // 読み込んだ敵出現データ
 
         std::string currentRead {};
 

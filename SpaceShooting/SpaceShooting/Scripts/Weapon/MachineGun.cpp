@@ -17,7 +17,7 @@ namespace shooting::weapon {
     }
 
     void MachineGun::ShootProcess() {
-        auto shootAngle = *angle + RandomReal<float>( deviation );
+        auto shootAngle = *angle + Random<float>( deviation );
         ShootTo( shootAngle );
     }
 }  // namespace shooting::weapon

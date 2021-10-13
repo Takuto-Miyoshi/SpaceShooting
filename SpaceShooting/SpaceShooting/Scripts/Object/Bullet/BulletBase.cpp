@@ -10,7 +10,7 @@ namespace shooting::object {
 
     void BulletBase::Update() {
         lifeTime += timeManager.lock()->DeltaTime;
-        if ( lifeTime >= status::BulletSetting::LIFE_SPAN_OF_BULLET ) {
+        if ( lifeTime >= status::BulletSetting::LIFE_SPAN_OF_BULLET ) [[unlikely]] {
             isActive = false;
         }
 

@@ -32,8 +32,8 @@ namespace shooting {
             deltaTime = ToSeconds( currentTime - startTime );
             startTime = currentTime;
 
-            // deltaTimeが大きすぎる場合は不具合を回避するためdeltaTimeを0に
-            if ( deltaTime >= TIME_SKIP ) {
+            // deltaTimeが大きすぎる場合は不具合を回避するためdeltaTimeを上限値に
+            if ( deltaTime >= TIME_SKIP ) [[unlikely]] {
                 deltaTime = TIME_SKIP;
                 printfDx( "FPS : %d\n", fps );
             }
@@ -41,7 +41,7 @@ namespace shooting {
             // fps
             fpsCount++;
 
-            if ( currentTime >= ( fpsStartTime + ToMilliseconds( 1 ) ) ) {
+            if ( currentTime >= ( fpsStartTime + ToMilliseconds( 1 ) ) ) [[unlikely]] {
                 // 計測から1秒経過時点でのカウント=FPS
                 fps = fpsCount;
                 fpsCount = 0;
@@ -51,10 +51,12 @@ namespace shooting {
 
        public:
         /// @brief 秒をミリ秒に変換
-        [[nodiscard]] static constexpr auto ToMilliseconds( int32_t seconds ) -> int32_t { return seconds * MS_CONVERT_SOURCE; }
+        [[nodiscard]] static constexpr auto ToMilliseconds( int32_t&& seconds ) -> int32_t { return seconds * MS_CONVERT_SOURCE; }
+        [[nodiscard]] static constexpr auto ToMilliseconds( const int32_t& seconds ) -> int32_t { return seconds * MS_CONVERT_SOURCE; }
 
         /// @brief ミリ秒を秒に変換
-        [[nodiscard]] static constexpr auto ToSeconds( int32_t milliseconds ) -> float { return milliseconds / S_CONVERT_SOURCE; }
+        [[nodiscard]] static constexpr auto ToSeconds( int32_t&& milliseconds ) -> float { return milliseconds / S_CONVERT_SOURCE; }
+        [[nodiscard]] static constexpr auto ToSeconds( const int32_t& milliseconds ) -> float { return milliseconds / S_CONVERT_SOURCE; }
 
        public:
         /// @brief 前回の処理にかかった時間(s)

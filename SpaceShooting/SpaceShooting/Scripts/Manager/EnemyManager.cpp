@@ -12,6 +12,7 @@ namespace shooting::object {
     void EnemyManager::Initialize() {
         lotteryBox.reserve( Lottery::BOX_CAPACITY );
         box.reserve( Lottery::BOX_CAPACITY );
+
         spawnTimer = ObjectSetting::SPAWN_INTERVAL;
     }
 
@@ -67,8 +68,7 @@ namespace shooting::object {
         Vector2 result;
         do {
             // 有効範囲内の位置を生成
-            result = Vector2 { static_cast<double>( GetRand( static_cast<int32_t>( ObjectSetting::VALID_DISTANCE ) ) ) - ObjectSetting::VALID_DISTANCE,
-                               static_cast<double>( GetRand( static_cast<int32_t>( ObjectSetting::VALID_DISTANCE ) ) ) - ObjectSetting::VALID_DISTANCE };
+            result.Set( Random<double>( ObjectSetting::VALID_DISTANCE ), Random<double>( ObjectSetting::VALID_DISTANCE ) );
         } while ( result.Length() >= ObjectSetting::VALID_DISTANCE );
 
         return result;
@@ -76,6 +76,6 @@ namespace shooting::object {
 
     void EnemyManager::LevelSetting( EnemyBase& enemy, const status::SpawnData& spawnData ) {
         // 1~100の値で設定
-        enemy.Level = RandomInt<int32_t>( spawnData.MinLevel, spawnData.MaxLevel );
+        enemy.Level = Random<uint32_t>( spawnData.MinLevel, spawnData.MaxLevel );
     }
 }  // namespace shooting::object

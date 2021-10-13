@@ -37,7 +37,7 @@ namespace shooting::object {
         objectList.clear();
     }
 
-    void ObjectManager::GiveExp( const int32_t& exp ) {
+    void ObjectManager::GiveExp( const uint32_t& exp ) {
         dynamic_cast<Player*>( &*player )->AddExp( exp );
     }
 

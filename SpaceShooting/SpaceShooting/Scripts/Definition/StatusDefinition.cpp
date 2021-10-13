@@ -17,7 +17,7 @@ namespace shooting::object {
 
     namespace status {
         auto Grow::Dest() -> double {
-            auto value = Fixed + RandomReal( Fluctuation );
+            auto value = Fixed + Random<double>( Fluctuation );
             return PercentOf( value, UseRatio );
         }
 

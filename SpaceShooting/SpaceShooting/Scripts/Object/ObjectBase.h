@@ -48,6 +48,9 @@ namespace shooting::object {
        protected:
         virtual void Initialize( const std::string& objectName );
 
+        // 頭上に文字列を表示
+        void DrawStringOnHead( std::string&& str, float&& offsetY = 0, uint32_t&& color = GetColor( 255, 255, 255 ) ) const;
+
         /// @brief 更新の最初に呼び出される
         virtual void Start() = 0;
 

@@ -3,6 +3,7 @@
 #ifndef BULLET_FACTORY_H
 #define BULLET_FACTORY_H
 
+#include <concepts>
 #include <memory>
 
 #include "../Definition/StatusDefinition.h"
@@ -33,8 +34,10 @@ namespace shooting::object {
         auto CreateTrans( BulletBase* transTarget, const status::bullet::TransData& transData ) -> TransBullet*;
 
        private:
-        template<class T>
-        auto CreateBullet( const status::ObjectKind& objectKind, const Vector2& position, const float& angle ) -> ObjectBase* {
+        /// @brief 弾を作成
+        /// @tparam T BulletBaseを継承 またはTransBulletのみ許容
+        template<typename T>
+        auto CreateBullet( const status::ObjectKind& objectKind, const Vector2& position, const float& angle ) -> typename std::enable_if<std::derived_from<T, BulletBase> || std::same_as<T, TransBullet>, ObjectBase>::type* {
             return ObjectManager::Instance()->CreateObject<T>( objectKind, position, angle );
         }
     };

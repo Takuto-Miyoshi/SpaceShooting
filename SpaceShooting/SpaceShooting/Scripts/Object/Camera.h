@@ -29,7 +29,7 @@ namespace shooting {
         ReadonlyProperty<Vector2> Position { position };
 
        private:
-        static constexpr int32_t LENGTH_LIMIT { 250 };  // 上限
+        static constexpr uint32_t LENGTH_LIMIT { 250 };  // 上限
         static constexpr double SENSITIVITY { 2.5 };  // カーソル感度
 
         Vector2 position { 0, 0 };

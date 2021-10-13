@@ -191,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Definition\DxLibSetting.h" />
+    <ClInclude Include="Scripts\Definition\GeneralConcepts.h" />
     <ClInclude Include="Scripts\Definition\InputDefinition.h" />
     <ClInclude Include="Scripts\Definition\SceneDefinition.h" />
     <ClInclude Include="Scripts\Definition\StatusLoaderKey.h" />
