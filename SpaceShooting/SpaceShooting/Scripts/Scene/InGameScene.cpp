@@ -28,10 +28,9 @@ namespace shooting::scene {
     }
 
     void InGameScene::Update() {
-        enemyManager.Update();
         objectManager.lock()->Update();
 
-        auto& camera = Camera::Instance();
+        const auto& camera { Camera::Instance() };
         camera->Update();
         camera->OffsetBy( InputManager::Instance()->CursorPosition );
     }
@@ -40,8 +39,8 @@ namespace shooting::scene {
         objectManager.lock()->Draw();
 
         // DEBUG 有効範囲を表示
-        DrawCircle( static_cast<int32_t>( -Camera::Instance()->Position->X ),
-                    static_cast<int32_t>( -Camera::Instance()->Position->Y ),
+        DrawCircle( -Camera::Instance()->Position->X.Cast<int32_t>(),
+                    -Camera::Instance()->Position->Y.Cast<int32_t>(),
                     static_cast<int32_t>( object::ObjectSetting::VALID_DISTANCE ),
                     GetColor( 255, 0, 0 ),
                     FALSE );
@@ -49,7 +48,7 @@ namespace shooting::scene {
         printfDx( "InGame" );
     }
 
-    void InGameScene::Finalize() {
+    void InGameScene::Finalize() noexcept {
         objectManager.lock()->Finalize();
     }
 }  // namespace shooting::scene

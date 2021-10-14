@@ -8,13 +8,12 @@ namespace shooting::object {
     void HomingBullet::Start() {
         ObjectBase::Initialize( status::loaderKey::object::bullet::HOMING );
 
-        auto& data = status::StatusLoader::Instance()->Get_a( status::loaderKey::object::bullet::HOMING );
+        auto& data { status::StatusLoader::Instance()->Get_a( status::loaderKey::object::bullet::HOMING ) };
         lerpPower = data.ExtraParam1;
     }
 
     void HomingBullet::Move() {
-        auto target = TargetPosition();
-        if ( target != Vector2::Zero() ) [[likely]] {
+        if ( const auto target { TargetPosition() }; target != Vector2::Zero() ) [[likely]] {
             angle = SLerp<float>( angle, position.AngleTo( target ), lerpPower * timeManager.lock()->DeltaTime );
         }
 
@@ -22,7 +21,7 @@ namespace shooting::object {
     }
 
     auto HomingBullet::TargetPosition() const -> Vector2 {
-        auto objectManager = ObjectManager::Instance();
+        const auto objectManager { ObjectManager::Instance() };
 
         if ( kind == status::ObjectKind::EnemyBullet ) {
             // 敵の弾ならプレイヤーの位置を返す

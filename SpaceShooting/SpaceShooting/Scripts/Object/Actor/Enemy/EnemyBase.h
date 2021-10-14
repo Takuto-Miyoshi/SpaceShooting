@@ -3,6 +3,9 @@
 #ifndef ENEMY_BASE_H
 #define ENEMY_BASE_H
 
+#include <string>
+
+#include "../../../Utility/Timer.h"
 #include "../../Bullet/BulletBase.h"
 #include "../ActorBase.h"
 
@@ -13,14 +16,11 @@ namespace shooting::object {
 
         ~EnemyBase() override = default;
 
-       public:
-        void Update() override;
-
        protected:
         void Initialize( const std::string& objectName ) override;
 
         /// @brief expを設定
-        virtual void ExpSetting( const int32_t& defaultExp );
+        virtual void ExpSetting( const int32_t& defaultExp ) noexcept;
 
         void LevelUp() override;
 
@@ -52,8 +52,9 @@ namespace shooting::object {
 
         uint32_t exp { 0 };
         uint32_t expBase { 0 };
-        double timer { 0.0 };
+
         double interval { 0.0 };
+        Timer timer { interval, [this]() { Shoot(); } };
     };
 }  // namespace shooting::object
 

@@ -3,6 +3,7 @@
 #ifndef INPUT_INVOKER_H
 #define INPUT_INVOKER_H
 
+#include <array>
 #include <functional>
 #include <vector>
 
@@ -62,14 +63,16 @@ namespace shooting {
         void UnregisterTarget( Target&& target );
 
         /// @brief 登録した関数を全てリセット
-        void Reset();
+        void Reset() noexcept;
 
        private:
-        // 登録された関数を保存(Key) @n (キー)<(関数)<(型)>>
-        std::vector<std::vector<RegistData>> keyFunctions { NUMBER_OF_KEY };
+        // 登録された関数を保存(Key)
+        /// @note (キー)<(関数)<(型)>>
+        std::array<std::vector<RegistData>, NUMBER_OF_KEY> keyFunctions {};
 
-        // 登録された関数を保存(MB) @n (マウスボタン)<(関数)<(型)>>
-        std::vector<std::vector<RegistData>> mousebuttonFunctions { NUMBER_OF_MOUSEBUTTON };
+        // 登録された関数を保存(MB)
+        /// @note (マウスボタン)<(関数)<(型)>>
+        std::array<std::vector<RegistData>, NUMBER_OF_MOUSEBUTTON> mousebuttonFunctions {};
     };
 }  // namespace shooting
 

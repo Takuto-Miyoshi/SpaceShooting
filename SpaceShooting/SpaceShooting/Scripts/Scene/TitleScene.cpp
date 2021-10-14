@@ -15,13 +15,13 @@ namespace shooting::scene {
         } );
     }
 
-    void TitleScene::Update() {
+    void TitleScene::Update() noexcept {
     }
 
-    void TitleScene::Draw() {
+    void TitleScene::Draw() noexcept {
         printfDx( "Title" );
     }
 
-    void TitleScene::Finalize() {
+    void TitleScene::Finalize() noexcept {
     }
 }  // namespace shooting::scene

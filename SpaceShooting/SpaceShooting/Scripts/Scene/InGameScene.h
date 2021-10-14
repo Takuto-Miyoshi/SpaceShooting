@@ -23,7 +23,7 @@ namespace shooting::scene {
 
         void Draw() override;
 
-        void Finalize() override;
+        void Finalize() noexcept override;
 
        private:
         std::weak_ptr<object::ObjectManager> objectManager { object::ObjectManager::Instance() };

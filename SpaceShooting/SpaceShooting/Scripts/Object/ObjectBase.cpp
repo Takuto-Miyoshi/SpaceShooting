@@ -35,15 +35,15 @@ namespace shooting::object {
         isActive = false;
     }
 
-    void ObjectBase::MoveToForward( const double& speed ) {
+    void ObjectBase::MoveToForward( const double& speed ) noexcept {
         position += Vector2::FromAngle( angle ) * speed * timeManager.lock()->DeltaTime;
     }
 
-    void ObjectBase::MoveTo( const Vector2& direction, const double& speed ) {
+    void ObjectBase::MoveTo( const Vector2& direction, const double& speed ) noexcept {
         position += direction * speed * timeManager.lock()->DeltaTime;
     }
 
-    void ObjectBase::Activate( const status::ObjectKind& objectKind, const Vector2& resetPosition, const float& resetAngle ) {
+    void ObjectBase::Activate( const status::ObjectKind& objectKind, const Vector2& resetPosition, const float& resetAngle ) noexcept {
         kind = objectKind;
         position = resetPosition;
         angle = resetAngle;
@@ -51,14 +51,14 @@ namespace shooting::object {
     }
 
     void ObjectBase::Initialize( const std::string& objectName ) {
-        auto& data = status::StatusLoader::Instance()->Get_a( objectName );
+        auto& data { status::StatusLoader::Instance()->Get_a( objectName ) };
         objectStatusBase = data.ObjectData;
         objectStatus = objectStatusBase;
     }
 
-    void ObjectBase::DrawStringOnHead( std::string&& str, float&& offsetY, uint32_t&& color ) const {
-        DrawString( static_cast<int32_t>( position.X - camera.lock()->Position->X ),
-                    static_cast<int32_t>( position.Y - camera.lock()->Position->Y + offsetY ),
+    void ObjectBase::DrawStringOnHead( std::string&& str, const double&& offsetY, uint32_t&& color ) const noexcept {
+        DrawString( position.X.Cast<int32_t>() - camera.lock()->Position->X.Cast<int32_t>(),
+                    position.Y.Cast<int32_t>() - camera.lock()->Position->Y.Cast<int32_t>() + static_cast<int32_t>( offsetY ),
                     str.c_str(),
                     color );
     }

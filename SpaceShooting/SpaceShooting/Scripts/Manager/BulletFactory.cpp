@@ -9,26 +9,24 @@ using namespace shooting::object::status::bullet;
 
 namespace shooting::object {
     auto BulletFactory::Create( const status::ObjectKind& objectKind, const Vector2& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase* {
-        ObjectBase* bullet = nullptr;
+        auto bullet {
+            dynamic_cast<BulletBase*>( [&]() -> ObjectBase* {
+                // 弾の種類に応じた弾を作る
+                switch (bulletData.BulletType) {
+                    case Type::StandardBullet:
+                        return CreateBullet<StandardBullet>(objectKind, position, angle);
+                    case Type::HomingBullet:
+                        return CreateBullet<HomingBullet>(objectKind, position, angle);
+                    default: return nullptr;
+                } }() )
+        };
 
-        switch ( bulletData.BulletType ) {
-            case Type::StandardBullet:
-                bullet = CreateBullet<StandardBullet>( objectKind, position, angle );
-                break;
-            case Type::HomingBullet:
-                bullet = CreateBullet<HomingBullet>( objectKind, position, angle );
-                break;
-            default: return nullptr;
-        }
-
-        auto castBullet = dynamic_cast<BulletBase*>( bullet );
-        castBullet->Initialize( bulletData );
-        return castBullet;
+        bullet->Initialize( bulletData );
+        return bullet;
     }
 
     auto BulletFactory::CreateTrans( BulletBase* transTarget, const status::bullet::TransData& transData ) -> TransBullet* {
-        auto bulletTemp = CreateBullet<TransBullet>( transTarget->Kind, Vector2::Zero(), 0.0f );
-        auto bullet = dynamic_cast<TransBullet*>( bulletTemp );
+        auto bullet { dynamic_cast<TransBullet*>( CreateBullet<TransBullet>( transTarget->Kind, Vector2::Zero(), 0.0f ) ) };
         bullet->Initialize( transTarget, transData );
         return bullet;
     }

@@ -28,20 +28,20 @@ namespace shooting::weapon {
         ShootedProcess();
     }
 
-    void WeaponBase::ShootedProcess() {
+    void WeaponBase::ShootedProcess() noexcept {
         shootable = false;
         timer = weaponStatus.Interval;
     }
 
     void WeaponBase::InitializeWeapon( const std::string& objectName ) {
-        auto& data = object::status::StatusLoader::Instance()->Get_a( objectName, rarity );
+        auto& data { object::status::StatusLoader::Instance()->Get_a( objectName, rarity ) };
 
         weaponStatus = data.WeaponData;
         baseBulletData = data.BulletData;
         bulletStatus = baseBulletData;
     }
 
-    void WeaponBase::UpdateBulletStatus() {
+    void WeaponBase::UpdateBulletStatus() noexcept {
         // 初期レベルは1なので99.0+1=100%
         bulletStatus.AttackPower = PercentOf( baseBulletData.AttackPower, ( 99.0 + pow( *level, 2 ) ) );
     }
@@ -62,7 +62,7 @@ namespace shooting::weapon {
         return object::BulletFactory::Instance()->Create( kind, shootPosition, shootAngle, bulletStatus );
     }
 
-    auto WeaponBase::ConvertKind( const object::status::ObjectKind& source ) const -> object::status::ObjectKind {
+    auto WeaponBase::ConvertKind( const object::status::ObjectKind& source ) const noexcept -> object::status::ObjectKind {
         switch ( source ) {
             case object::status::ObjectKind::Enemy: return object::status::ObjectKind::EnemyBullet;
             case object::status::ObjectKind::Player: return object::status::ObjectKind::PlayerBullet;

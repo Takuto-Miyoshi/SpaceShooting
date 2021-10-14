@@ -29,7 +29,7 @@ namespace shooting::scene {
        protected:
         /// @brief シーンを変更する
         /// @param next 遷移先のシーン
-        constexpr void ChangeScene( const SceneDefs& next ) {
+        constexpr void ChangeScene( const SceneDefs& next ) noexcept {
             change = true;
             nextScene = next;
         }

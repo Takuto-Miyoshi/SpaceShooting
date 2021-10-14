@@ -15,11 +15,11 @@ namespace shooting::scene {
        public:
         void Start() override;
 
-        void Update() override;
+        void Update() noexcept override;
 
-        void Draw() override;
+        void Draw() noexcept override;
 
-        void Finalize() override;
+        void Finalize() noexcept override;
     };
 }  // namespace shooting::scene
 

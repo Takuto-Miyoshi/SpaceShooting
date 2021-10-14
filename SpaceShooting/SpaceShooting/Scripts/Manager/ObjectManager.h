@@ -25,7 +25,7 @@ namespace shooting::object {
         /// @tparam T 作成するオブジェクトの型 @n ObjectBaseを基底クラスに持っていること
         template<typename T>
         auto CreateObject( const status::ObjectKind& objectKind, const Vector2& position = Vector2( 0, 0 ), const float& angle = 0.0f ) -> std::enable_if<std::derived_from<T, ObjectBase>, ObjectBase>::type* {
-            auto obj = std::make_shared<T>();
+            auto obj { std::make_shared<T>() };
             obj->Activate( objectKind, position, angle );
             objectList.emplace_back( obj );
             return &*objectList.back();
@@ -38,11 +38,11 @@ namespace shooting::object {
         void Draw();
 
         /// @brief 終了処理
-        void Finalize();
+        void Finalize() noexcept;
 
         /// @brief プレイヤーの位置を取得
         /// @return プレイヤーが見つからなければVector2{0,0}を返す
-        [[nodiscard]] auto PlayerPosition() -> Vector2 {
+        [[nodiscard]] auto PlayerPosition() noexcept -> Vector2 {
             return ( player ) ? player->Position : Vector2::Zero();
         }
 
@@ -54,7 +54,7 @@ namespace shooting::object {
         [[nodiscard]] auto NearEnemyPosition( const Vector2& from ) -> Vector2 {
             if ( enemyList.empty() ) { return Vector2::Zero(); }
 
-            return std::min_element( enemyList.begin(), enemyList.end(), [&from]( auto& left, auto& right ) {
+            return std::min_element( enemyList.begin(), enemyList.end(), [&from]( const auto& left, const auto& right ) {
                        return from.To( left->Position ).Length() < from.To( right->Position ).Length();
                    } )
                 ->get()
@@ -63,7 +63,7 @@ namespace shooting::object {
 
        private:
         /// @brief アクティブでないオブジェクトをリストから削除
-        void EraseUnactiveObject();
+        void EraseInactiveObject();
 
         /// @brief 全てのオブジェクトに当たり判定処理を実行
         void CollisionDetection();
@@ -72,7 +72,7 @@ namespace shooting::object {
         void Grouping();
 
         /// @brief 2つのオブジェクトが接触しているかを取得
-        auto Detection( const ObjectBase& objA, const ObjectBase& objB ) const -> bool;
+        auto Detection( const ObjectBase& objA, const ObjectBase& objB ) const noexcept -> bool;
 
        private:
         std::vector<std::shared_ptr<ObjectBase>> objectList;  // オブジェクト全体

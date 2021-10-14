@@ -3,6 +3,7 @@
 #ifndef INPUT_MANAGER_H
 #define INPUT_MANAGER_H
 
+#include <array>
 #include <vector>
 
 #include "../Definition/InputDefinition.h"
@@ -12,7 +13,7 @@
 namespace shooting {
     class InputManager : public Singleton<InputManager> {
        public:
-        InputManager() = default;
+        InputManager();
 
         ~InputManager() = default;
 
@@ -22,35 +23,36 @@ namespace shooting {
 
        private:
         /// @brief InputStateへ変換
-        [[nodiscard]] static constexpr auto ConvertToState( const bool& current, const bool& previous ) -> InputState;
+        [[nodiscard]] static constexpr auto ConvertToState( const bool& current, const bool& previous ) noexcept -> InputState;
 
         /// @brief キーの入力状態を更新
-        void UpdateKeyState();
+        void UpdateKeyState() noexcept;
 
         /// @brief マウスボタンの入力状態を更新
-        void UpdateMousebuttonState();
+        void UpdateMousebuttonState() noexcept;
 
         /// @brief カーソル位置情報を更新
-        void UpdateCursorPosition();
+        void UpdateCursorPosition() noexcept;
 
        public:
         /// @brief キーの入力状態を取得
         /// @param id キーID @n KEY_INPUT_XXXX
-        [[nodiscard]] constexpr auto KeyState( const uint32_t& id ) const -> InputState { return keyStates.at( id ); }
+        [[nodiscard]] constexpr auto KeyState( const uint32_t& id ) const -> const InputState& { return keyStates.at( id ); }
 
         /// @brief マウスボタンの入力状態を取得
         /// @param id マウスボタンID @n shooting::MOUSEBUTTON_XXXX
-        [[nodiscard]] constexpr auto MousebuttonState( const uint32_t& id ) const -> InputState { return mousebuttonStates.at( id ); }
+        [[nodiscard]] constexpr auto MousebuttonState( const uint32_t& id ) const -> const InputState& { return mousebuttonStates.at( id ); }
 
         /// @brief マウスの位置
         ReadonlyProperty<Vector2> CursorPosition { cursorPosition };
 
        private:
-        std::vector<bool> previousKeys { std::vector<bool>( NUMBER_OF_KEY, false ) };
-        std::vector<InputState> keyStates { std::vector<InputState>( NUMBER_OF_KEY, InputState::None ) };
+        std::array<bool, NUMBER_OF_KEY> previousKeys {};
+        std::array<InputState, NUMBER_OF_KEY> keyStates {};
 
-        std::vector<bool> previousMousebuttons { std::vector<bool>( NUMBER_OF_MOUSEBUTTON, false ) };
-        std::vector<InputState> mousebuttonStates { std::vector<InputState>( NUMBER_OF_MOUSEBUTTON, InputState::None ) };
+        std::array<bool, NUMBER_OF_MOUSEBUTTON> previousMousebuttons {};
+        std::array<InputState, NUMBER_OF_MOUSEBUTTON> mousebuttonStates {};
+
         Vector2 cursorPosition;
     };
 }  // namespace shooting

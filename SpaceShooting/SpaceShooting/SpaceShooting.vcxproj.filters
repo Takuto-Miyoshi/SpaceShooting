@@ -77,6 +77,12 @@
     <ClCompile Include="Scripts\Manager\StatusLoader.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Manager\TimeManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Utility\Timer.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -186,6 +192,9 @@
     </ClInclude>
     <ClInclude Include="Scripts\Definition\GeneralConcepts.h">
       <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utility\Timer.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

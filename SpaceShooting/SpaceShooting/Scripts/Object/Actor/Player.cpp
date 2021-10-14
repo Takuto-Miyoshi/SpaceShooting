@@ -22,7 +22,7 @@ namespace shooting::object {
         NextExpSetting();
 
         // キー登録
-        auto inputInvoker = InputInvoker::Instance();
+        const auto inputInvoker { InputInvoker::Instance() };
         inputInvoker->RegisterKey(
             KEY_INPUT_A, [this]( InputState inputState ) { MoveLeft( inputState ); }, InputInvoker::Target::Player );
         inputInvoker->RegisterKey(
@@ -41,7 +41,7 @@ namespace shooting::object {
         InputInvoker::Instance()->UnregisterTarget( InputInvoker::Target::Player );
     }
 
-    void Player::OutOfValidArea() {
+    void Player::OutOfValidArea() noexcept {
         position = previousPosition;
     }
 
@@ -57,7 +57,7 @@ namespace shooting::object {
         ActorBase::Draw();
 
         // 経験値表示 DEBUG
-        DrawStringOnHead( "EXP:" + std::to_string( experience.Point ) + "/" + std::to_string( experience.Next ), -15 );
+        DrawStringOnHead( "EXP:" + std::to_string( experience.Point ) + "/" + std::to_string( experience.Next ), -15.0 );
     }
 
     void Player::AddExp( const int32_t& exp ) {
@@ -76,8 +76,8 @@ namespace shooting::object {
         UpdateStatus();
     }
 
-    void Player::NextExpSetting() {
-        experience.Next += ( level + PercentOf( experience.Next, status::ExperienceSetting::RATE_OF_NEXT_LEVEL ) ) * status::ExperienceSetting::MULTIPLE_OF_NEXT_LEVEL + level;
+    void Player::NextExpSetting() noexcept {
+        experience.Next += ( level + PercentOf<uint32_t>( experience.Next, status::ExperienceSetting::RATE_OF_NEXT_LEVEL ) ) * status::ExperienceSetting::MULTIPLE_OF_NEXT_LEVEL + level;
     }
 
     void Player::MoveLeft( InputState inputState ) {
@@ -112,7 +112,7 @@ namespace shooting::object {
     }
 
     void Player::LookToCursor() {
-        auto&& cursorPosition = InputManager::Instance()->CursorPosition + camera.lock()->Position;
+        const auto cursorPosition { InputManager::Instance()->CursorPosition + camera.lock()->Position };
         angle = static_cast<float>( position.AngleTo( cursorPosition ) );
     }
 }  // namespace shooting::object

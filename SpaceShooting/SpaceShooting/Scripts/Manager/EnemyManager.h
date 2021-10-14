@@ -10,6 +10,7 @@
 #include "../Manager/StatusLoader.h"
 #include "../Object/Actor/Enemy/EnemyBase.h"
 #include "../Utility/Property.h"
+#include "../Utility/Timer.h"
 #include "../Utility/Vector.h"
 #include "ObjectManager.h"
 
@@ -24,15 +25,14 @@ namespace shooting::object {
         /// @brief 初期化
         void Initialize();
 
-        /// @brief 更新
-        void Update();
-
         /// @brief 抽選リストを全てリセット
-        void Reset();
+        void Reset() noexcept;
 
        private:
+        void Spawn();
+
         /// @brief 抽選リストの中から敵データをランダムに取得
-        auto Lottery() -> status::SpawnData;
+        auto Lottery() -> const status::SpawnData&;
 
         /// @brief 敵を生成
         /// @param type 敵のタイプ
@@ -74,8 +74,8 @@ namespace shooting::object {
 
         uint32_t useGroup { 0 };  // 使用する敵グループのID
 
-        double spawnTimer { 0.0 };
         double interval { 0.0 };
+        Timer timer { interval, [this]() { Spawn(); } };
     };
 }  // namespace shooting::object
 

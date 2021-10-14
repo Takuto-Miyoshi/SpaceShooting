@@ -19,10 +19,10 @@ namespace shooting {
 
        public:
         /// @brief 更新
-        void Update();
+        void Update() noexcept;
 
         /// @brief fromの位置に応じてカメラをずらす
-        void OffsetBy( const Vector2& from );
+        void OffsetBy( const Vector2& from ) noexcept;
 
        public:
         /// @brief 位置

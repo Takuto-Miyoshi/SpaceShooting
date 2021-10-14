@@ -21,7 +21,7 @@ namespace shooting::object {
         void Initialize( const std::string& objectName ) override;
 
         /// @brief ステータスの更新
-        virtual void UpdateStatus();
+        virtual void UpdateStatus() noexcept;
 
         /// @brief レベルアップ時の処理 @n 基礎ステータスを更新する
         virtual void LevelUp();
@@ -32,9 +32,9 @@ namespace shooting::object {
         /// @brief directionの方向に進む
         void MoveTo( const Vector2& direction );
 
-        [[nodiscard]] auto AttackPower() const -> double override;
+        [[nodiscard]] auto AttackPower() const noexcept -> double override;
 
-        [[nodiscard]] auto TakeDamage( const double& attackPower ) -> bool override;
+        [[nodiscard]] auto TakeDamage( const double& attackPower ) noexcept -> bool override;
 
        public:
         ReadonlyProperty<uint32_t> Level { level };

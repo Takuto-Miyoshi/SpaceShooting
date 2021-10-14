@@ -169,6 +169,7 @@
     <ClCompile Include="Scripts\Manager\ObjectManager.cpp" />
     <ClCompile Include="Scripts\Manager\SceneManager.cpp" />
     <ClCompile Include="Scripts\Manager\StatusLoader.cpp" />
+    <ClCompile Include="Scripts\Manager\TimeManager.cpp" />
     <ClCompile Include="Scripts\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Enemy\ExplodeEnemy.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="Scripts\Object\ObjectBase.cpp" />
     <ClCompile Include="Scripts\Scene\InGameScene.cpp" />
     <ClCompile Include="Scripts\Scene\TitleScene.cpp" />
+    <ClCompile Include="Scripts\Utility\Timer.cpp" />
     <ClCompile Include="Scripts\Weapon\MachineGun.cpp" />
     <ClCompile Include="Scripts\Weapon\StandardRifle.cpp" />
     <ClCompile Include="Scripts\Weapon\WeaponBase.cpp" />
@@ -222,6 +224,7 @@
     <ClInclude Include="Scripts\Utility\Functions.h" />
     <ClInclude Include="Scripts\Utility\Property.h" />
     <ClInclude Include="Scripts\Utility\Singleton.h" />
+    <ClInclude Include="Scripts\Utility\Timer.h" />
     <ClInclude Include="Scripts\Utility\Vector.h" />
     <ClInclude Include="Scripts\Weapon\MachineGun.h" />
     <ClInclude Include="Scripts\Weapon\StandardRifle.h" />

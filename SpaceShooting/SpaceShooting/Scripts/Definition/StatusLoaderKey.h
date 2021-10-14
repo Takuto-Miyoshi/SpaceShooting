@@ -115,7 +115,7 @@ namespace shooting::object::status::loaderKey {
             { extra::PARAM3, 0 },
         };
 
-        static auto IdOn( const std::string& str ) -> uint32_t& {
+        static auto IdOn( const std::string& str ) -> const uint32_t& {
             return List.at( str );
         }
     }  // namespace parameter
@@ -158,7 +158,7 @@ namespace shooting::object::status::loaderKey {
             { NEXT_INTERVAL, 0 },
         };
 
-        static auto IdOn( const std::string& str ) -> uint32_t& {
+        static auto IdOn( const std::string& str ) -> const uint32_t& {
             return List.at( str );
         }
     }  // namespace spawn

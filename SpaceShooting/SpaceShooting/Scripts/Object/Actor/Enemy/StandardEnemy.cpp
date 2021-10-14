@@ -16,12 +16,11 @@ namespace shooting::object {
     }
 
     void StandardEnemy::Move() {
-        angle += timeManager.lock()->DeltaTime;
+        angle += timeManager.lock()->DeltaTime.Cast<float>();
         MoveToForward();
     }
 
     void StandardEnemy::Shoot() {
-        float target = position.AngleTo( ObjectManager::Instance()->PlayerPosition() );
-        ShootTo( target );
+        ShootTo( position.AngleTo( ObjectManager::Instance()->PlayerPosition() ) );
     }
 }  // namespace shooting::object

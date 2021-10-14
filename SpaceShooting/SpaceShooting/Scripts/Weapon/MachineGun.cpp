@@ -12,12 +12,12 @@ namespace shooting::weapon {
 
         InitializeWeapon( status::loaderKey::object::weapon::MACHINE_GUN );
 
-        auto& data = status::StatusLoader::Instance()->Get_a( status::loaderKey::object::weapon::MACHINE_GUN );
+        auto& data { status::StatusLoader::Instance()->Get_a( status::loaderKey::object::weapon::MACHINE_GUN ) };
         deviation = static_cast<float>( data.ExtraParam1 );
     }
 
     void MachineGun::ShootProcess() {
-        auto shootAngle = *angle + Random<float>( deviation );
+        const auto shootAngle { *angle + Random<float>( deviation ) };
         ShootTo( shootAngle );
     }
 }  // namespace shooting::weapon

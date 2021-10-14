@@ -54,7 +54,7 @@ namespace shooting::object::status {
     }
 
     void StatusLoader::ReadConstantData() {
-        uint32_t number = 0;
+        auto number { 0u };
         while ( ReadElement() ) {
             if ( CanReadTarget() ) {
                 // パラメータに番号を振る
@@ -141,8 +141,8 @@ namespace shooting::object::status {
         states.Id = buffer.Get<uint32_t>( parameter::ID );
 
         states.ObjectData.CollisionRadius = buffer.Get<double>( parameter::object::COLLISION_RADIUS );
-        auto path = buffer.Get<std::string>( parameter::object::GRAPHIC_PATH );
-        if ( path != command::NONE ) {
+        const auto path { buffer.Get<std::string>( parameter::object::GRAPHIC_PATH ) };
+        if ( path != command::NONE ) [[likely]] {
             states.ObjectData.GraphicHandle = LoadGraph( path.c_str() );
         }
 
@@ -189,7 +189,7 @@ namespace shooting::object::status {
         return data;
     }
 
-    void StatusLoader::Reset() {
+    void StatusLoader::Reset() noexcept {
         buffer.Contents.clear();
         buffer.Line.clear();
         buffer.String.clear();
@@ -199,15 +199,15 @@ namespace shooting::object::status {
         skipIndex.clear();
     }
 
-    constexpr auto StatusLoader::SameCurrentRead( const std::string& read ) -> bool {
+    constexpr auto StatusLoader::CanReadTarget() -> bool {
+        return !std::any_of( skipIndex.begin(), skipIndex.end(), [this]( const auto& element ) { return columnIndex == element; } );
+    }
+
+    constexpr auto StatusLoader::SameCurrentRead( const std::string& read ) noexcept -> bool {
         return EqualString( currentRead, read );
     }
 
-    constexpr auto StatusLoader::CanReadTarget() -> bool {
-        return !std::any_of( skipIndex.begin(), skipIndex.end(), [this]( auto& element ) { return columnIndex == element; } );
-    }
-
-    constexpr auto StatusLoader::SameBuffer( const std::string& str ) -> bool {
+    constexpr auto StatusLoader::SameBuffer( const std::string& str ) noexcept -> bool {
         return EqualString( buffer.String, str );
     }
 

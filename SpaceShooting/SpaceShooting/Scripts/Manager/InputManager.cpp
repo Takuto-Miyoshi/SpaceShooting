@@ -1,11 +1,17 @@
 ﻿#include "InputManager.h"
 
 #include <algorithm>
-#include <array>
 
 #include "DxLib.h"
 
 namespace shooting {
+    InputManager::InputManager() {
+        previousKeys.fill( false );
+        keyStates.fill( InputState::None );
+        previousMousebuttons.fill( false );
+        mousebuttonStates.fill( InputState::None );
+    }
+
     void InputManager::Update() {
         UpdateKeyState();
 
@@ -14,7 +20,7 @@ namespace shooting {
         UpdateCursorPosition();
     }
 
-    constexpr auto InputManager::ConvertToState( const bool& current, const bool& previous ) -> InputState {
+    constexpr auto InputManager::ConvertToState( const bool& current, const bool& previous ) noexcept -> InputState {
         if ( current ) {
             return ( previous ) ? InputState::Hold : InputState::Pressed;
         }
@@ -22,16 +28,19 @@ namespace shooting {
         return ( previous ) ? InputState::Released : InputState::None;
     }
 
-    void InputManager::UpdateKeyState() {
-        std::array<char, NUMBER_OF_KEY> currentKeys;
+    void InputManager::UpdateKeyState() noexcept {
+        std::array<bool, NUMBER_OF_KEY> currentKeys;
         // 入力状態を取得
-        GetHitKeyStateAll( currentKeys.data() );
+        for ( auto i { 0u };
+              auto&& element : currentKeys ) {
+            element = CheckHitKey( i );
+            i++;
+        }
 
-        auto current = currentKeys.begin();
-        auto previous = previousKeys.begin();
-        for ( auto& key : keyStates ) {
+        for ( auto current { currentKeys.begin() }, previous { previousKeys.begin() };
+              auto &&key : keyStates ) {
             // 入力状態へ変換
-            key = ConvertToState( *current == dxlib::PRESSED, *previous );
+            key = ConvertToState( *current, *previous );
 
             // 前回の状態を更新
             *previous = *current;
@@ -42,12 +51,12 @@ namespace shooting {
         }
     }
 
-    void InputManager::UpdateMousebuttonState() {
-        auto previous = previousMousebuttons.begin();
-        auto numButton = MOUSE_INPUT_LEFT;  // 左ボタンから調べる
-        for ( auto& mousebutton : mousebuttonStates ) {
+    void InputManager::UpdateMousebuttonState() noexcept {
+        auto previous { previousMousebuttons.begin() };
+        for ( auto numButton { MOUSE_INPUT_LEFT };
+              auto&& mousebutton : mousebuttonStates ) {
             // 入力状態を取得
-            auto current = ( GetMouseInput() & numButton ) != dxlib::NOT_PRESSED;
+            auto current { ( GetMouseInput() & numButton ) != dxlib::NOT_PRESSED };
 
             // 入力状態へ変換
             mousebutton = ConvertToState( current, *previous );
@@ -60,9 +69,8 @@ namespace shooting {
         }
     }
 
-    void InputManager::UpdateCursorPosition() {
-        int32_t x = 0;
-        int32_t y = 0;
+    void InputManager::UpdateCursorPosition() noexcept {
+        auto x { 0 }, y { 0 };
         GetMousePoint( &x, &y );
         cursorPosition.Set( x, y );
     }

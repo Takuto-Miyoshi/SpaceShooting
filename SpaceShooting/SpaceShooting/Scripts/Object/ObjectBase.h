@@ -21,10 +21,10 @@ namespace shooting::object {
        public:
         /// @brief Startの呼び出し用
         virtual void ReserveStart() {
-            if ( !calledOnce ) {
-                Start();
-                calledOnce = true;
-            }
+            if ( calledOnce ) { return; }
+
+            Start();
+            calledOnce = true;
         }
 
         /// @brief 更新
@@ -43,13 +43,13 @@ namespace shooting::object {
         /// @brief アクティブにする
         /// @param resetPosition アクティブにする位置
         /// @param resetAngle アクティブにする角度
-        void Activate( const status::ObjectKind& objectKind, const Vector2& resetPosition, const float& resetAngle );
+        void Activate( const status::ObjectKind& objectKind, const Vector2& resetPosition, const float& resetAngle ) noexcept;
 
        protected:
         virtual void Initialize( const std::string& objectName );
 
         // 頭上に文字列を表示
-        void DrawStringOnHead( std::string&& str, float&& offsetY = 0, uint32_t&& color = GetColor( 255, 255, 255 ) ) const;
+        void DrawStringOnHead( std::string&& str, const double&& offsetY = 0, uint32_t&& color = GetColor( 255, 255, 255 ) ) const noexcept;
 
         /// @brief 更新の最初に呼び出される
         virtual void Start() = 0;
@@ -61,10 +61,10 @@ namespace shooting::object {
         virtual void OutOfValidArea();
 
         /// @brief angleの方向へ進む
-        virtual void MoveToForward( const double& speed );
+        void MoveToForward( const double& speed ) noexcept;
 
         /// @brief directionの方向へ進む
-        virtual void MoveTo( const Vector2& direction, const double& speed );
+        void MoveTo( const Vector2& direction, const double& speed ) noexcept;
 
        public:
         Property<bool> IsActive { isActive };

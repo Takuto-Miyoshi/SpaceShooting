@@ -15,8 +15,8 @@ namespace shooting {
 
        public:
         /// @brief インスタンスを取得 @n なければ作成
-        [[nodiscard]] static auto Instance() -> std::shared_ptr<T>& {
-            if ( !instance ) {
+        [[nodiscard]] static auto Instance() noexcept -> std::shared_ptr<T>& {
+            if ( !instance ) [[unlikely]] {
                 instance = std::make_shared<T>();
             }
 

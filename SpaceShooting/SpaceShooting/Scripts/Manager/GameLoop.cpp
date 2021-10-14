@@ -6,7 +6,7 @@
 
 namespace shooting {
     void GameLoop::Exec() {
-        auto sceneManager = shooting::SceneManager();
+        auto sceneManager { shooting::SceneManager() };
         sceneManager.Initialize();
 
         while ( true ) {

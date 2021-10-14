@@ -24,42 +24,47 @@ namespace shooting {
             return ( get ) ? get() : base;
         }
 
-        void operator=( const T& value ) {
+        template<std::convertible_to<T> U>
+        constexpr auto Cast() const -> U {
+            return static_cast<U>( ( get ) ? get() : base );
+        }
+
+        void operator=( const T& value ) & {
             if ( set ) { set( value ); }
             else {
                 base = value;
             }
         }
 
-        void operator=( const Property<T>& value ) {
+        void operator=( const Property<T>& value ) & {
             if ( set ) { set( value.base ); }
             else {
                 base = value.base;
             }
         }
 
-        void operator+=( const T& value ) {
+        void operator+=( const T& value ) & {
             if ( set ) { set( base + value ); }
             else {
                 base += value;
             }
         }
 
-        void operator+=( const Property<T>& value ) {
+        void operator+=( const Property<T>& value ) & {
             if ( set ) { set( base + value.base ); }
             else {
                 base += value.base;
             }
         }
 
-        void operator-=( const T& value ) {
+        void operator-=( const T& value ) & {
             if ( set ) { set( base - value ); }
             else {
                 base -= value;
             }
         }
 
-        void operator-=( const Property<T>& value ) {
+        void operator-=( const Property<T>& value ) & {
             if ( set ) { set( base - value.base ); }
             else {
                 base -= value.base;
@@ -90,8 +95,8 @@ namespace shooting {
 
        private:
         T& base;
-        std::function<T()> get = nullptr;
-        std::function<void( T )> set = nullptr;
+        std::function<T()> get { nullptr };
+        std::function<void( T )> set { nullptr };
     };
 
     template<typename T>
@@ -108,6 +113,11 @@ namespace shooting {
        public:
         operator T() const {
             return ( get ) ? get() : base;
+        }
+
+        template<std::convertible_to<T> U>
+        constexpr auto Cast() const -> U {
+            return static_cast<U>( ( get ) ? get() : base );
         }
 
         auto operator+( T& right ) -> T { return base + right; }
@@ -134,7 +144,7 @@ namespace shooting {
 
        private:
         T& base;
-        std::function<T()> get = nullptr;
+        std::function<T()> get { nullptr };
     };
 
     template<typename T>
@@ -157,12 +167,12 @@ namespace shooting {
        public:
         operator std::weak_ptr<T>() const {
             if ( get ) {
-                std::weak_ptr<T> returns = get();
-                if ( returns.expired() ) {
+                if ( auto ret { get() }; ret.expired() ) {
                     throw std::exception( "参照先が見つかりません" );
                 }
-
-                return returns;
+                else {
+                    return ret;
+                }
             }
             else {
                 if ( base.expired() ) {
@@ -173,6 +183,11 @@ namespace shooting {
             }
         }
 
+        template<std::convertible_to<T> U>
+        constexpr auto Cast() const -> U {
+            return static_cast<U>( ( get ) ? *get() : *base.lock().get() );
+        }
+
         auto operator->() const -> T* { return base.lock().get(); }
 
         auto operator&() const -> T* { return base.lock().get(); }
@@ -181,7 +196,7 @@ namespace shooting {
 
        private:
         std::weak_ptr<T> base;
-        std::function<std::weak_ptr<T>()> get = nullptr;
+        std::function<std::weak_ptr<T>()> get { nullptr };
     };
 }  // namespace shooting
 

@@ -5,6 +5,7 @@
 
 #include <queue>
 
+#include "../../Utility/Timer.h"
 #include "BulletBase.h"
 
 namespace shooting::object {
@@ -15,11 +16,11 @@ namespace shooting::object {
         ~TransBullet() override = default;
 
        public:
-        void Initialize( BulletBase* transTarget, const status::bullet::TransData& transData );
+        void Initialize( BulletBase* transTarget, const status::bullet::TransData& transData ) noexcept;
 
         void Stack( const status::bullet::TransData& stackData );
 
-        void Update() override;
+        void Update() noexcept override;
 
         void Draw() const override {}
 
@@ -31,7 +32,11 @@ namespace shooting::object {
         [[nodiscard]] virtual auto TakeDamage( const double& attackPower ) -> bool override { return false; }
 
        private:
-        double transTime { 0.0 };
+        void Trans();
+
+       private:
+        double interval { 0.0 };
+        Timer timer { interval, [this]() { Trans(); } };
 
         BulletBase* target { nullptr };
 

@@ -24,12 +24,14 @@ namespace shooting {
         currentScene->Draw();
 
         endGame = currentScene->EndGame;
-        if ( currentScene->Change ) { ChangeScene( currentScene->NextScene ); }
+        if ( currentScene->Change ) [[unlikely]] { ChangeScene( currentScene->NextScene ); }
     }
 
     void SceneManager::ChangeScene( const scene::SceneDefs& next ) {
         inputInvoker.lock()->Reset();
-        if ( currentScene ) { currentScene->Finalize(); }
+        timeManager.lock()->ResetTimerList();
+
+        if ( currentScene ) [[likely]] { currentScene->Finalize(); }
 
         switch ( next ) {
             case scene::SceneDefs::Title: currentScene = std::make_unique<scene::TitleScene>(); break;

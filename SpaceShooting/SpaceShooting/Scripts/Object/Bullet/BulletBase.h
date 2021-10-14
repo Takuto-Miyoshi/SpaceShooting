@@ -3,7 +3,9 @@
 #ifndef BULLET_BASE_H
 #define BULLET_BASE_H
 
+#include "../../Definition/StatusDefinition.h"
 #include "../../Utility/Property.h"
+#include "../../Utility/Timer.h"
 #include "../../Utility/Vector.h"
 #include "../ObjectBase.h"
 
@@ -15,7 +17,7 @@ namespace shooting::object {
         ~BulletBase() override = default;
 
        public:
-        void Initialize( const status::Bullet& bulletData );
+        void Initialize( const status::Bullet& bulletData ) noexcept;
 
         void Update() override;
 
@@ -34,12 +36,14 @@ namespace shooting::object {
         /// @brief directionの方向へ進む
         void MoveTo( const Vector2& direction );
 
-        [[nodiscard]] virtual auto AttackPower() const -> double override;
+        [[nodiscard]] virtual auto AttackPower() const noexcept -> double override;
 
-        [[nodiscard]] virtual auto TakeDamage( const double& attackPower ) -> bool override;
+        [[nodiscard]] virtual auto TakeDamage( const double& attackPower ) noexcept -> bool override;
 
        protected:
-        double lifeTime { 0.0 };  // 生成されてからの時間
+        double interval { status::BulletSetting::LIFE_SPAN_OF_BULLET };
+        Timer timer { interval, [this]() { isActive = false; } };
+
         status::Bullet bulletStatus {};
     };
 }  // namespace shooting::object

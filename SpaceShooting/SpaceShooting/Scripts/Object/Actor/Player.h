@@ -26,10 +26,10 @@ namespace shooting::object {
 
         void DeathProcess() override;
 
-        void OutOfValidArea() override;
+        void OutOfValidArea() noexcept override;
 
        private:
-        void NextExpSetting();
+        void NextExpSetting() noexcept;
 
         void MoveLeft( InputState inputState );
 

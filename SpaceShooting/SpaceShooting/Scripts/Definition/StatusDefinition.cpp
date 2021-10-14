@@ -17,12 +17,12 @@ namespace shooting::object {
 
     namespace status {
         auto Grow::Dest() -> double {
-            auto value = Fixed + Random<double>( Fluctuation );
+            const auto value { Fixed + Random<double>( Fluctuation ) };
             return PercentOf( value, UseRatio );
         }
 
         void Actor::LevelUp() {
-            auto increaseHp = GrowHp.Dest();
+            const auto increaseHp { GrowHp.Dest() };
             MaxHp += increaseHp;
             Hp += increaseHp;
         }

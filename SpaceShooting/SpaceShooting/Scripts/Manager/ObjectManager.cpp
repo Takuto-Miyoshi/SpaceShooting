@@ -23,7 +23,7 @@ namespace shooting::object {
 
         CollisionDetection();
 
-        EraseUnactiveObject();
+        EraseInactiveObject();
     }
 
     void ObjectManager::Draw() {
@@ -33,16 +33,20 @@ namespace shooting::object {
         }
     }
 
-    void ObjectManager::Finalize() {
+    void ObjectManager::Finalize() noexcept {
         objectList.clear();
+        player.reset();
+        playerBulletList.clear();
+        enemyList.clear();
+        enemyBulletList.clear();
     }
 
     void ObjectManager::GiveExp( const uint32_t& exp ) {
         dynamic_cast<Player*>( &*player )->AddExp( exp );
     }
 
-    void ObjectManager::EraseUnactiveObject() {
-        std::erase_if( objectList, []( auto& element ) {
+    void ObjectManager::EraseInactiveObject() {
+        std::erase_if( objectList, []( auto&& element ) {
             return !element->IsActive;
         } );
     }
@@ -54,6 +58,7 @@ namespace shooting::object {
         if ( !enemyBulletList.empty() && player ) {
             for ( auto&& bullet : std::as_const( enemyBulletList ) ) {
                 if ( !bullet ) { continue; }
+                // 判定
                 if ( Detection( *player, *bullet ) ) {
                     player->Collide( *bullet );
                     bullet->Collide( *player );
@@ -67,6 +72,7 @@ namespace shooting::object {
                 if ( !enemy ) { continue; }
                 for ( auto&& bullet : std::as_const( playerBulletList ) ) {
                     if ( !bullet ) { continue; }
+                    // 判定
                     if ( Detection( *enemy, *bullet ) ) {
                         enemy->Collide( *bullet );
                         bullet->Collide( *enemy );
@@ -77,6 +83,7 @@ namespace shooting::object {
     }
 
     void ObjectManager::Grouping() {
+        player.reset();
         playerBulletList.clear();
         enemyList.clear();
         enemyBulletList.clear();
@@ -100,7 +107,7 @@ namespace shooting::object {
         }
     }
 
-    auto ObjectManager::Detection( const ObjectBase& objA, const ObjectBase& objB ) const -> bool {
+    auto ObjectManager::Detection( const ObjectBase& objA, const ObjectBase& objB ) const noexcept -> bool {
         return ( objA.Position->To( objB.Position ).Length() <= ( objA.ObjectStatus->CollisionRadius + objB.ObjectStatus->CollisionRadius ) );
     }
 }  // namespace shooting::object

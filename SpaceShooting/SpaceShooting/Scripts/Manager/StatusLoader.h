@@ -43,18 +43,18 @@ namespace shooting::object::status {
 
         /// @brief オブジェクトのデータを参照 @n StatusLoaderKey::loaderKey::object::XXXX
         auto Get_a( const std::string& objectName ) -> const ObjectStates& {
-            return *std::find_if( readedObjectList.begin(), readedObjectList.end(), [&objectName]( auto& element ) { return element.Name == objectName; } );
+            return *std::find_if( readedObjectList.begin(), readedObjectList.end(), [&objectName]( const auto& element ) { return element.Name == objectName; } );
         }
 
         /// @brief 武器のデータを参照 @n StatusLoaderKey::loaderKey::object::XXXX
         auto Get_a( const std::string& objectName, const uint32_t& rarity ) -> const ObjectStates& {
             return *std::find_if( readedObjectList.begin(), readedObjectList.end(),
-                                  [&objectName, &rarity]( auto& element ) { return element.Name == objectName && element.WeaponData.Rarity == rarity; } );
+                                  [&objectName, &rarity]( const auto& element ) { return element.Name == objectName && element.WeaponData.Rarity == rarity; } );
         }
 
         /// @brief スポーンデータのリストを取得
-        auto GetGroup( const uint32_t& groupId ) -> const std::vector<SpawnData> {
-            std::vector<SpawnData> result;
+        auto GetGroup( const uint32_t& groupId ) -> std::vector<SpawnData> {
+            std::vector<SpawnData> result {};
             for ( auto&& element : std::as_const( readedSpawnDataList ) ) {
                 if ( element.Group == groupId ) {
                     result.push_back( element );
@@ -94,16 +94,16 @@ namespace shooting::object::status {
         /// @brief stringBufferをSpawnDataに翻訳して返す
         auto TranslateSpawnBuffer() -> SpawnData;
 
-        void Reset();
-
-        /// @brief currentReadと比較
-        constexpr auto SameCurrentRead( const std::string& read ) -> bool;
+        void Reset() noexcept;
 
         /// @brief columnIndexが読み取り対象かを調べる
         constexpr auto CanReadTarget() -> bool;
 
+        /// @brief currentReadと比較
+        constexpr auto SameCurrentRead( const std::string& read ) noexcept -> bool;
+
         /// @brief バッファの文字列と一致しているかを調べる
-        constexpr auto SameBuffer( const std::string& str ) -> bool;
+        constexpr auto SameBuffer( const std::string& str ) noexcept -> bool;
 
        private:
         struct {
@@ -127,7 +127,7 @@ namespace shooting::object::status {
             /// @brief 整数型で取得
             template<typename T>
             auto Get( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> typename std::enable_if<std::integral<T>, T>::type {
-                auto result = 0;
+                auto result { 0 };
                 if ( EqualString( readFor, loaderKey::read::STATUS ) ) {
                     result = std::stol( Contents.at( loaderKey::parameter::IdOn( parameterName ) ) );
                 }
@@ -141,7 +141,7 @@ namespace shooting::object::status {
             /// @brief 実数型で取得
             template<typename T>
             auto Get( const std::string& parameterName, const std::string& readFor = loaderKey::read::STATUS ) -> typename std::enable_if<std::floating_point<T>, T>::type {
-                auto result = 0.0;
+                auto result { 0.0 };
                 if ( EqualString( readFor, loaderKey::read::STATUS ) ) {
                     result = std::stod( Contents.at( loaderKey::parameter::IdOn( parameterName ) ) );
                 }
