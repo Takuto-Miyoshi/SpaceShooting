@@ -24,7 +24,7 @@ namespace shooting::scene {
         objectManager.lock()->CreateObject<Player>( ObjectKind::Player );
 
         enemyManager.Initialize();
-        enemyManager.UseGroup = 1;
+        enemyManager.UseGroup = 2;
     }
 
     void InGameScene::Update() {

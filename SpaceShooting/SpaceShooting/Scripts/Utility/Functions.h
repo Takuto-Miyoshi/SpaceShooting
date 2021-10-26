@@ -74,6 +74,12 @@ namespace shooting {
         if ( str1.size() != str2.size() ) { return false; }
         return std::equal( str1.begin(), str1.end(), str2.begin(), str2.end(), []( auto& s1, auto& s2 ) { return s1 == s2; } );
     }
+
+    /// @brief ランダムな向きを取得
+    /// @return 0 ~ 2PI
+    static constexpr auto RandomAngle() -> float {
+        return Random<float>( 0.0f, static_cast<float>( PI * 2 ) );
+    }
 }  // namespace shooting
 
 #endif  // !FUNCTIONS_H

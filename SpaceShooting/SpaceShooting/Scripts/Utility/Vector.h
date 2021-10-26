@@ -39,6 +39,9 @@ namespace shooting {
         /// @brief Vector2{-1,0}を取得
         [[nodiscard]] static auto Left() noexcept -> Vector2 { return Vector2 { -1, 0 }; }
 
+        /// @brief Vector2{-1.0~1.0, -1.0~1.0}を取得
+        [[nodiscard]] static auto RandomUnit() -> Vector2 { return Vector2 { Random<double>( -1.0, 1.0 ), Random<double>( -1.0, 1.0 ) }.Normalized(); }
+
         /// @brief ベクトルの長さを取得
         [[nodiscard]] auto Length() const noexcept -> double { return sqrt( x * x + y * y ); }
 
@@ -60,6 +63,9 @@ namespace shooting {
 
         /// @brief ラジアンを単位ベクトルに変換
         [[nodiscard]] static auto FromAngle( const float& angle ) -> Vector2 { return Vector2 { sinf( angle ), -cosf( angle ) }.Normalized(); }
+
+        /// @brief 単位ベクトルをラジアンに変換
+        [[nodiscard]] static auto FromUnit( const Vector2& unitVector ) -> float { return static_cast<float>( atan2( unitVector.y, unitVector.x ) ); }
 
        public:
         auto operator+( const Vector2& vector ) const noexcept -> Vector2 { return Vector2( x + vector.x, y + vector.y ); }

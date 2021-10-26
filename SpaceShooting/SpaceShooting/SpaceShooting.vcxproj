@@ -173,6 +173,7 @@
     <ClCompile Include="Scripts\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Enemy\ExplodeEnemy.cpp" />
+    <ClCompile Include="Scripts\Object\Actor\Enemy\NeedleEnemy.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Enemy\StandardEnemy.cpp" />
     <ClCompile Include="Scripts\Object\Actor\Player.cpp" />
     <ClCompile Include="Scripts\Object\Bullet\BulletBase.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="Scripts\Object\Actor\ActorBase.h" />
     <ClInclude Include="Scripts\Object\Actor\Enemy\EnemyBase.h" />
     <ClInclude Include="Scripts\Object\Actor\Enemy\ExplodeEnemy.h" />
+    <ClInclude Include="Scripts\Object\Actor\Enemy\NeedleEnemy.h" />
     <ClInclude Include="Scripts\Object\Actor\Enemy\StandardEnemy.h" />
     <ClInclude Include="Scripts\Object\Actor\Player.h" />
     <ClInclude Include="Scripts\Object\Bullet\BulletBase.h" />

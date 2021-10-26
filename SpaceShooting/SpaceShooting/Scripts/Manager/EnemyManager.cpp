@@ -3,9 +3,12 @@
 #include <algorithm>
 
 #include "../Object/Actor/Enemy/ExplodeEnemy.h"
+#include "../Object/Actor/Enemy/NeedleEnemy.h"
 #include "../Object/Actor/Enemy/StandardEnemy.h"
 #include "../Utility/Functions.h"
 #include "DxLib.h"
+
+using namespace shooting::object::enemy;
 
 namespace shooting::object {
     void EnemyManager::Initialize() {
@@ -53,6 +56,7 @@ namespace shooting::object {
         switch ( spawnData.SpawnType ) {
             case status::enemy::Type::StandardEnemy: enemy = GenerateEnemy<StandardEnemy>(); break;
             case status::enemy::Type::ExplodeEnemy: enemy = GenerateEnemy<ExplodeEnemy>(); break;
+            case status::enemy::Type::NeedleEnemy: enemy = GenerateEnemy<NeedleEnemy>(); break;
             default: return;
         }
         LevelSetting( *enemy, spawnData );

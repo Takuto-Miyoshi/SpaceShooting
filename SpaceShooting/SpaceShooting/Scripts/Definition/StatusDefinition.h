@@ -37,6 +37,7 @@ namespace shooting::object {
                 None,
                 StandardEnemy,
                 ExplodeEnemy,
+                NeedleEnemy,
             };
         }  // namespace enemy
 
