@@ -86,6 +86,9 @@
     <ClCompile Include="Scripts\Object\Actor\Enemy\NeedleEnemy.cpp">
       <Filter>Object\Actor\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\Enemy\Magician.cpp">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -200,6 +203,9 @@
       <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Object\Actor\Enemy\NeedleEnemy.h">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\Enemy\Magician.h">
       <Filter>Object\Actor\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,7 +5,7 @@
 
 #include "EnemyBase.h"
 
-namespace shooting::object::enemy {
+namespace shooting::object {
     class NeedleEnemy : public EnemyBase {
        public:
         NeedleEnemy() = default;
@@ -26,6 +26,6 @@ namespace shooting::object::enemy {
        private:
         uint32_t bulletIndex { 0 };  // 発射する数
     };
-}  // namespace shooting::object::enemy
+}  // namespace shooting::object
 
 #endif  // !NEEDLE_ENEMY_H

@@ -38,6 +38,7 @@ namespace shooting::object {
                 StandardEnemy,
                 ExplodeEnemy,
                 NeedleEnemy,
+                Magician,
             };
         }  // namespace enemy
 
@@ -162,7 +163,6 @@ namespace shooting::object {
         namespace bullet {
             // 変化弾データ
             struct TransData {
-                bullet::Type TransTo {};  // 変化先
                 Bullet ToBulletData {};  // 変化先の弾データ
                 double TimeToTrans { 0.0 };  // 変化するまでの時間
             };

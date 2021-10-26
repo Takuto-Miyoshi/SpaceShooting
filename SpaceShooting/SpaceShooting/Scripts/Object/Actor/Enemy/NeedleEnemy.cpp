@@ -3,7 +3,7 @@
 #include "../../../Definition/StatusLoaderKey.h"
 #include "../../../Manager/StatusLoader.h"
 
-namespace shooting::object::enemy {
+namespace shooting::object {
     void NeedleEnemy::Start() {
         Initialize( status::loaderKey::object::enemy::NEEDLE );
 
@@ -29,4 +29,4 @@ namespace shooting::object::enemy {
     void NeedleEnemy::Move() {
         MoveToForward();
     }
-}  // namespace shooting::object::enemy
+}  // namespace shooting::object
