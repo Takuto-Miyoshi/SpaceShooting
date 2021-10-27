@@ -39,6 +39,7 @@ namespace shooting::object {
                 ExplodeEnemy,
                 NeedleEnemy,
                 Magician,
+                Ghost,
             };
         }  // namespace enemy
 

@@ -89,6 +89,9 @@
     <ClCompile Include="Scripts\Object\Actor\Enemy\Magician.cpp">
       <Filter>Object\Actor\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Object\Actor\Enemy\Ghost.cpp">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Object\Camera.h">
@@ -206,6 +209,9 @@
       <Filter>Object\Actor\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Object\Actor\Enemy\Magician.h">
+      <Filter>Object\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Object\Actor\Enemy\Ghost.h">
       <Filter>Object\Actor\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

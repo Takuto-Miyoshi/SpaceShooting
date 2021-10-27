@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "../Object/Actor/Enemy/ExplodeEnemy.h"
+#include "../Object/Actor/Enemy/Ghost.h"
 #include "../Object/Actor/Enemy/Magician.h"
 #include "../Object/Actor/Enemy/NeedleEnemy.h"
 #include "../Object/Actor/Enemy/StandardEnemy.h"
@@ -57,6 +58,7 @@ namespace shooting::object {
             case status::enemy::Type::ExplodeEnemy: enemy = GenerateEnemy<ExplodeEnemy>(); break;
             case status::enemy::Type::NeedleEnemy: enemy = GenerateEnemy<NeedleEnemy>(); break;
             case status::enemy::Type::Magician: enemy = GenerateEnemy<Magician>(); break;
+            case status::enemy::Type::Ghost: enemy = GenerateEnemy<Ghost>(); break;
             default: return;
         }
         LevelSetting( *enemy, spawnData );

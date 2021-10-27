@@ -128,6 +128,7 @@ namespace shooting::object::status::loaderKey {
             static const std::string EXPLODE { "ExplodeEnemy" };
             static const std::string NEEDLE { "NeedleEnemy" };
             static const std::string MAGICIAN { "Magician" };
+            static const std::string GHOST { "Ghost" };
         }  // namespace enemy
 
         namespace bullet {
