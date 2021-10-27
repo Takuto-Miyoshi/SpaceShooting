@@ -29,8 +29,8 @@ namespace shooting::object {
         for ( auto i { 0u }; i < wayIndex; i++ ) {
             const auto shootAngle { baseAngle + ( angleOffset * i ) };
             auto bullet { ShootTo( position, shootAngle ) };
-            auto trans { BulletFactory::Instance()->CreateTrans( bullet, { baseBuletData, transTime } ) };
-            trans->Stack( { 120, 6.0, 0.0, 0.0f, status::bullet::Type::HomingBullet, baseBuletData.GrowAttackPower } );
+            auto trans { BulletFactory::Instance()->CreateTrans( bullet, { baseBuletData } ) };
+            trans->Stack( { 120, 6.0, 0.0, 0.0f, status::bullet::Type::HomingBullet, baseBuletData.GrowAttackPower, transTime } );
         }
     }
 

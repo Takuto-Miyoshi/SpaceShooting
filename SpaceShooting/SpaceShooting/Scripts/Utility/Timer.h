@@ -19,7 +19,7 @@ namespace shooting {
         ~Timer() noexcept;
 
        public:
-        void Update();
+        _declspec( noinline ) void Update();
 
        public:
         ReadonlyProperty<bool> End { end };

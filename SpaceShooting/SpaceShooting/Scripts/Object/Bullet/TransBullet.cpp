@@ -15,7 +15,7 @@ namespace shooting::object {
     }
 
     void TransBullet::Update() noexcept {
-        isActive = target->IsActive;
+        if ( !target->IsActive ) { isActive = false; }
     }
 
     void TransBullet::Trans() {
@@ -28,6 +28,7 @@ namespace shooting::object {
         }
 
         next = transStack.front();
+        interval = next.TimeToTrans;
         transStack.pop();
     }
 }  // namespace shooting::object

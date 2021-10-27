@@ -13,7 +13,7 @@ namespace shooting {
         end = true;
     }
 
-    void Timer::Update() {
+    _declspec( noinline ) void Timer::Update() {
         if ( end ) { return; }
 
         timer -= TimeManager::Instance()->DeltaTime;

@@ -42,7 +42,7 @@ namespace shooting::object {
 
        protected:
         double interval { status::BulletSetting::LIFE_SPAN_OF_BULLET };
-        Timer timer { interval, [this]() { isActive = false; } };
+        Timer timer { interval, [this]() { isActive = false; }, false };
 
         status::Bullet bulletStatus {};
     };

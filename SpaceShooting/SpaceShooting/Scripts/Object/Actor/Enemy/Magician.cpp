@@ -26,8 +26,8 @@ namespace shooting::object {
         const auto shootAngle { baseAngle * progress };
 
         auto bullet { ShootTo( position + Vector2::FromAngle( shootAngle ) * shootDistance, shootAngle ) };
-        auto trans { BulletFactory::Instance()->CreateTrans( bullet, { baseBuletData, transTime } ) };
-        trans->Stack( { 180.0, 8.0, 0.0, 0.0f, status::bullet::Type::StandardBullet, baseBuletData.GrowAttackPower } );
+        auto trans { BulletFactory::Instance()->CreateTrans( bullet, { baseBuletData } ) };
+        trans->Stack( { 180.0, 8.0, 0.0, 0.0f, status::bullet::Type::StandardBullet, baseBuletData.GrowAttackPower, transTime } );
 
         progress++;
 
