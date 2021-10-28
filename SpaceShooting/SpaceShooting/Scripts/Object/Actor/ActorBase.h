@@ -30,14 +30,14 @@ namespace shooting::object {
         void MoveToForward();
 
         /// @brief directionの方向に進む
-        void MoveTo( const Vector2& direction );
+        void MoveTo( const Vector2<double>& direction );
 
         [[nodiscard]] auto AttackPower() const noexcept -> double override;
 
         [[nodiscard]] auto TakeDamage( const double& attackPower ) noexcept -> bool override;
 
        public:
-        ReadonlyProperty<uint32_t> Level { level };
+        BasicProperty<uint32_t> Level { level };
 
        protected:
         status::Actor actorStatus {};

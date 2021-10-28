@@ -12,7 +12,7 @@ start,Player,Player,1,32,Images/Object/Actor/Player.png,100,100,120,5,3,85,1.7 ~
 ,Bullet,StandardBullet,4,8,Images/Object/Bullet/StandardBullet.png,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ~ 0,0,0,0,0,0,0,0,0,0
 ,Bullet,HomingBullet,5,8,Images/Object/Bullet/HomingBullet.png,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ~ 0,0,0,0,0,0,0,1.6,0,0
 ,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,210,7,-20,0,1,0,0,0,0 ~ 0,0,0,0,0,1.1,1,0,0,0
-,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,230,8,0,0,2,0,0,0,0 ~ 0,0,0,0,0,1,2,0,0,0
+,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,230,8,0,0,1,0,0,0,0 ~ 0,0,0,0,0,1,2,0,0,0
 ,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,240,9,30,0,1,0,0,0,0 ~ 0,0,0,0,0,0.8,3,0,0,0
 ,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,260,10,50,0,1,0,0,0,0 ~ 0,0,0,0,0,0.7,4,0,0,0
 ,Weapon,StandardRifle,6,0,None,0,0,0,0,0,0,0,280,12,80,0,1,0,0,0,0 ~ 0,0,0,0,0,0.6,5,0,0,0

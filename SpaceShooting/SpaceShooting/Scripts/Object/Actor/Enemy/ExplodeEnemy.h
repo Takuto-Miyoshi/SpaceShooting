@@ -30,7 +30,7 @@ namespace shooting::object {
         void Explosion();
 
        private:
-        Vector2 toPlayerVector { 0, 0 };  // プレイヤーの位置
+        Vector2<double> toPlayerVector { 0, 0 };  // プレイヤーの位置
 
         uint32_t diffusionIndex { 0 };  // 拡散する個数
         double ignitionDistance { 0.0 };  // 起爆する距離

@@ -7,7 +7,7 @@
 
 #include "../Definition/StatusDefinition.h"
 #include "../Manager/TimeManager.h"
-#include "../Utility/Vector.h"
+#include "../Utility/Vector.hpp"
 #include "Camera.h"
 #include "DxLib.h"
 
@@ -43,7 +43,7 @@ namespace shooting::object {
         /// @brief アクティブにする
         /// @param resetPosition アクティブにする位置
         /// @param resetAngle アクティブにする角度
-        void Activate( const status::ObjectKind& objectKind, const Vector2& resetPosition, const float& resetAngle ) noexcept;
+        void Activate( const status::ObjectKind& objectKind, const Vector2<double>& resetPosition, const float& resetAngle ) noexcept;
 
        protected:
         virtual void Initialize( const std::string& objectName );
@@ -64,14 +64,14 @@ namespace shooting::object {
         void MoveToForward( const double& speed ) noexcept;
 
         /// @brief directionの方向へ進む
-        void MoveTo( const Vector2& direction, const double& speed ) noexcept;
+        void MoveTo( const Vector2<double>& direction, const double& speed ) noexcept;
 
        public:
-        Property<bool> IsActive { isActive };
+        BasicProperty<bool> IsActive { isActive };
 
-        ReadonlyProperty<Vector2> Position { position };
+        BasicProperty<Vector2<double>> Position { position };
 
-        ReadonlyProperty<float> Angle { angle };
+        BasicProperty<float> Angle { angle };
 
         ReadonlyProperty<status::Object> ObjectStatus { objectStatus };
 
@@ -92,7 +92,7 @@ namespace shooting::object {
         bool isActive { false };
         bool calledOnce { false };
 
-        Vector2 position { 0, 0 };
+        Vector2<double> position { 0, 0 };
         float angle { 0.0f };
 
         status::Object objectStatus {};

@@ -33,7 +33,7 @@ namespace shooting::object {
 
         /// @brief angleの方向へ発射
         /// @param shootPosition 発射する位置
-        auto ShootTo( const Vector2& shootPosition ) -> BulletBase*;
+        auto ShootTo( const Vector2<double>& shootPosition ) -> BulletBase*;
 
         /// @brief positionから発射
         /// @param shootAngle 発射する方向
@@ -42,10 +42,10 @@ namespace shooting::object {
         /// @brief 弾を発射
         /// @param shootPosition 発射する位置
         /// @param shootAngle 発射する方向
-        auto ShootTo( const Vector2& shootPosition, const float& shootAngle ) -> BulletBase*;
+        auto ShootTo( const Vector2<double>& shootPosition, const float& shootAngle ) -> BulletBase*;
 
        public:
-        Property<uint32_t> Level { level };
+        BasicProperty<uint32_t> Level { level };
 
        protected:
         status::Bullet baseBuletData;

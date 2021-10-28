@@ -9,9 +9,9 @@
 #include "../Definition/StatusDefinition.h"
 #include "../Manager/StatusLoader.h"
 #include "../Object/Actor/Enemy/EnemyBase.h"
-#include "../Utility/Property.h"
+#include "../Utility/Property.hpp"
 #include "../Utility/Timer.h"
-#include "../Utility/Vector.h"
+#include "../Utility/Vector.hpp"
 #include "ObjectManager.h"
 
 namespace shooting::object {
@@ -53,13 +53,13 @@ namespace shooting::object {
         auto HitOfTheTime( const double& chance ) -> bool;
 
         /// @brief 有効距離内でランダムな位置を取得
-        auto RandomPosition() -> Vector2;
+        auto RandomPosition() -> Vector2<double>;
 
         /// @brief レベルの設定
         void LevelSetting( EnemyBase& enemy, const status::SpawnData& spawnData );
 
        public:
-        Property<uint32_t> UseGroup {
+        BasicProperty<uint32_t> UseGroup {
             useGroup, nullptr, [this]( uint32_t value ) {
                 useGroup = value;
                 lotteryBox = status::StatusLoader::Instance()->GetGroup( useGroup );

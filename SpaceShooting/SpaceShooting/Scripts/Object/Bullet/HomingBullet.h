@@ -18,7 +18,7 @@ namespace shooting::object {
         void Move() override;
 
        private:
-        auto TargetPosition() const -> Vector2;
+        auto TargetPosition() const -> Vector2<double>;
 
        private:
         double lerpPower { 0.0 };  // 線形補完の強さ

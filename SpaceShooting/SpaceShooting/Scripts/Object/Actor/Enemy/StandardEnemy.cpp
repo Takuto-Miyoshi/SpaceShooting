@@ -21,6 +21,6 @@ namespace shooting::object {
     }
 
     void StandardEnemy::Shoot() {
-        ShootTo( position.AngleTo( ObjectManager::Instance()->PlayerPosition() ) );
+        ShootTo( position.AngleTo<float>( ObjectManager::Instance()->PlayerPosition() ) );
     }
 }  // namespace shooting::object

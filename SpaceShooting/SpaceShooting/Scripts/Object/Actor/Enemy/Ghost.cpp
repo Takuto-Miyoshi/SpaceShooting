@@ -35,7 +35,7 @@ namespace shooting::object {
     }
 
     void Ghost::Move() {
-        MoveTo( Vector2::FromAngle( angle ) );
+        MoveTo( Vector2<>::FromAngle<float>( angle ).Cast<double>() );
     }
 
     void Ghost::Look() {

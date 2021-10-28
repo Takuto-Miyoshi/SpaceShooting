@@ -44,7 +44,7 @@ namespace shooting::object {
         return ShootTo( position, angle );
     }
 
-    auto EnemyBase::ShootTo( const Vector2& shootPosition ) -> BulletBase* {
+    auto EnemyBase::ShootTo( const Vector2<double>& shootPosition ) -> BulletBase* {
         return ShootTo( shootPosition, angle );
     }
 
@@ -52,7 +52,7 @@ namespace shooting::object {
         return ShootTo( position, shootAngle );
     }
 
-    auto EnemyBase::ShootTo( const Vector2& shootPosition, const float& shootAngle ) -> BulletBase* {
+    auto EnemyBase::ShootTo( const Vector2<double>& shootPosition, const float& shootAngle ) -> BulletBase* {
         return BulletFactory::Instance()->Create( status::ObjectKind::EnemyBullet, shootPosition, shootAngle, baseBuletData );
     }
 }  // namespace shooting::object

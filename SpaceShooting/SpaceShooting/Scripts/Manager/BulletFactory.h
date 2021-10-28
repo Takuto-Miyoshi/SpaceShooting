@@ -10,7 +10,7 @@
 #include "../Object/Bullet/BulletBase.h"
 #include "../Object/Bullet/TransBullet.h"
 #include "../Utility/Singleton.h"
-#include "../Utility/Vector.h"
+#include "../Utility/Vector.hpp"
 #include "ObjectManager.h"
 
 namespace shooting::object {
@@ -26,7 +26,7 @@ namespace shooting::object {
         /// @param position 作成する位置
         /// @param angle 作成する向き
         /// @param bulletData 弾データ
-        auto Create( const status::ObjectKind& objectKind, const Vector2& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase*;
+        auto Create( const status::ObjectKind& objectKind, const Vector2<double>& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase*;
 
         /// @brief 変化弾を作成
         /// @param transTarget 変化させる弾 @n BulletManager::Createで作成した弾を想定
@@ -37,7 +37,7 @@ namespace shooting::object {
         /// @brief 弾を作成
         /// @tparam T BulletBaseを継承 またはTransBulletのみ許容
         template<typename T>
-        auto CreateBullet( const status::ObjectKind& objectKind, const Vector2& position, const float& angle ) -> typename std::enable_if<std::derived_from<T, BulletBase> || std::same_as<T, TransBullet>, ObjectBase>::type* {
+        auto CreateBullet( const status::ObjectKind& objectKind, const Vector2<double>& position, const float& angle ) -> typename std::enable_if<std::derived_from<T, BulletBase> || std::same_as<T, TransBullet>, ObjectBase>::type* {
             return ObjectManager::Instance()->CreateObject<T>( objectKind, position, angle );
         }
     };

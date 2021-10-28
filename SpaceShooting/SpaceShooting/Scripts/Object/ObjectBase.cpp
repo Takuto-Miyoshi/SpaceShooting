@@ -26,7 +26,7 @@ namespace shooting::object {
     }
 
     void ObjectBase::CheckOutOfValidArea() {
-        if ( position.To( Vector2::Zero() ).Length() >= ObjectSetting::VALID_DISTANCE ) {
+        if ( position.To( Vector2<double>::Zero<> ).Length() >= ObjectSetting::VALID_DISTANCE ) {
             OutOfValidArea();
         }
     }
@@ -36,14 +36,14 @@ namespace shooting::object {
     }
 
     void ObjectBase::MoveToForward( const double& speed ) noexcept {
-        position += Vector2::FromAngle( angle ) * speed * timeManager.lock()->DeltaTime;
+        position += Vector2<>::FromAngle<double>( angle ) * speed * timeManager.lock()->DeltaTime;
     }
 
-    void ObjectBase::MoveTo( const Vector2& direction, const double& speed ) noexcept {
-        position += direction * speed * timeManager.lock()->DeltaTime;
+    void ObjectBase::MoveTo( const Vector2<double>& direction, const double& speed ) noexcept {
+        position += Vector2( direction ) * speed * timeManager.lock()->DeltaTime;
     }
 
-    void ObjectBase::Activate( const status::ObjectKind& objectKind, const Vector2& resetPosition, const float& resetAngle ) noexcept {
+    void ObjectBase::Activate( const status::ObjectKind& objectKind, const Vector2<double>& resetPosition, const float& resetAngle ) noexcept {
         kind = objectKind;
         position = resetPosition;
         angle = resetAngle;

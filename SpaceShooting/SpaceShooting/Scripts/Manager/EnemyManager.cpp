@@ -68,7 +68,7 @@ namespace shooting::object {
         return chance >= Random<double>( 0.0, 100.0 );
     }
 
-    auto EnemyManager::RandomPosition() -> Vector2 {
+    auto EnemyManager::RandomPosition() -> Vector2<double> {
         Vector2 result {};
         do {
             // 有効範囲内の位置を生成

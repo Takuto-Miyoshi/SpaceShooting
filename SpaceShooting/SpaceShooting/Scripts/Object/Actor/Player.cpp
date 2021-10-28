@@ -82,22 +82,22 @@ namespace shooting::object {
 
     void Player::MoveLeft( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        MoveTo( Vector2::Left() );
+        MoveTo( Vector2<double>::Left<> );
     }
 
     void Player::MoveRight( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        MoveTo( Vector2::Right() );
+        MoveTo( Vector2<double>::Right<> );
     }
 
     void Player::MoveUp( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        MoveTo( Vector2::Up() );
+        MoveTo( Vector2<double>::Up<> );
     }
 
     void Player::MoveDown( InputState inputState ) {
         if ( inputState != InputState::Hold ) { return; }
-        MoveTo( Vector2::Down() );
+        MoveTo( Vector2<double>::Down<> );
     }
 
     void Player::Shoot( InputState inputState ) {
@@ -112,7 +112,7 @@ namespace shooting::object {
     }
 
     void Player::LookToCursor() {
-        const auto cursorPosition { InputManager::Instance()->CursorPosition + camera.lock()->Position };
+        const Vector2<> cursorPosition { InputManager::Instance()->CursorPosition + camera.lock()->Position };
         angle = static_cast<float>( position.AngleTo( cursorPosition ) );
     }
 }  // namespace shooting::object

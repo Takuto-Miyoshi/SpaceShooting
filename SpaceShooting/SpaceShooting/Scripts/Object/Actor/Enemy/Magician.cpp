@@ -22,10 +22,10 @@ namespace shooting::object {
     }
 
     void Magician::Shoot() {
-        const auto baseAngle { static_cast<float>( PI * 2 ) / bulletIndex };
+        const auto baseAngle { TWICE_PI<float> / bulletIndex };
         const auto shootAngle { baseAngle * progress };
 
-        auto bullet { ShootTo( position + Vector2::FromAngle( shootAngle ) * shootDistance, shootAngle ) };
+        auto bullet { ShootTo( position + Vector2<>::FromAngle<double>( shootAngle ) * shootDistance, shootAngle ) };
         auto trans { BulletFactory::Instance()->CreateTrans( bullet, { baseBuletData } ) };
         trans->Stack( { 180.0, 8.0, 0.0, 0.0f, status::bullet::Type::StandardBullet, baseBuletData.GrowAttackPower, transTime } );
 
@@ -39,7 +39,7 @@ namespace shooting::object {
 
     void Magician::Warp() {
         auto warpTo { ObjectManager::Instance()->PlayerPosition() };
-        warpTo += Vector2::RandomUnit() * toPlayerDistance;
+        warpTo += Vector2<double>::RandomUnit() * toPlayerDistance;
         position = warpTo;
     }
 }  // namespace shooting::object

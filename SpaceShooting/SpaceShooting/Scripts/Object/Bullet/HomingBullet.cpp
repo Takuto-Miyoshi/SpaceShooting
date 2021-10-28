@@ -13,14 +13,14 @@ namespace shooting::object {
     }
 
     void HomingBullet::Move() {
-        if ( const auto target { TargetPosition() }; target != Vector2::Zero() ) [[likely]] {
+        if ( const auto target { TargetPosition() }; target != Vector2<double>::Zero<> ) [[likely]] {
             angle = SLerp<float>( angle, position.AngleTo( target ), lerpPower * timeManager.lock()->DeltaTime );
         }
 
         MoveToForward();
     }
 
-    auto HomingBullet::TargetPosition() const -> Vector2 {
+    auto HomingBullet::TargetPosition() const -> Vector2<double> {
         const auto objectManager { ObjectManager::Instance() };
 
         if ( kind == status::ObjectKind::EnemyBullet ) {

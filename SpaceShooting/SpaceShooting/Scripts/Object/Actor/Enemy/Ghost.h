@@ -25,7 +25,7 @@ namespace shooting::object {
         void Look();
 
        private:
-        Vector2 target {};  // 追いかける対象
+        Vector2<double> target {};  // 追いかける対象
 
         double transTime { 0.0 };  // Transformまでの時間
 

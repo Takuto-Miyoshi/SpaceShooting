@@ -17,7 +17,7 @@ namespace shooting::object {
         angle += bulletStatus.AngularVelocity * timeManager.lock()->DeltaTime.Cast<float>();
     }
 
-    void BulletBase::Collide( const ObjectBase& hit ) {
+    void BulletBase::Collide( [[maybe_unused]] const ObjectBase& hit ) {
         isActive = false;
         DeathProcess();
     }
@@ -26,7 +26,7 @@ namespace shooting::object {
         ObjectBase::MoveToForward( bulletStatus.Speed );
     }
 
-    void BulletBase::MoveTo( const Vector2& direction ) {
+    void BulletBase::MoveTo( const Vector2<double>& direction ) {
         ObjectBase::MoveTo( direction, bulletStatus.Speed );
     }
 
@@ -34,7 +34,7 @@ namespace shooting::object {
         return bulletStatus.AttackPower;
     }
 
-    auto BulletBase::TakeDamage( const double& attackPower ) noexcept -> bool {
+    auto BulletBase::TakeDamage( [[maybe_unused]] const double& attackPower ) noexcept -> bool {
         return false;
     }
 }  // namespace shooting::object

@@ -5,7 +5,7 @@
 
 #include <functional>
 
-#include "Property.h"
+#include "Property.hpp"
 
 namespace shooting {
     class Timer {

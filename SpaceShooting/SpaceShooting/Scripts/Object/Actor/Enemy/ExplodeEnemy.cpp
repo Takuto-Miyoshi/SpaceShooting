@@ -37,11 +37,11 @@ namespace shooting::object {
         const auto direction { toPlayerVector.Normalized() };
         MoveTo( direction );
 
-        angle = position.AngleTo( direction );
+        angle = position.AngleTo<float>( direction );
     }
 
     void ExplodeEnemy::Explosion() {
-        const auto baseAngle { static_cast<float>( PI * 2 ) / diffusionIndex };
+        const auto baseAngle { TWICE_PI<float> / diffusionIndex };
         for ( auto i { 0u }; i < diffusionIndex; i++ ) {
             const auto target { angle + baseAngle * i };
             ShootTo( target );

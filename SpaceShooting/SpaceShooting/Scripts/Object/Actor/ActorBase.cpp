@@ -39,7 +39,7 @@ namespace shooting::object {
         ObjectBase::MoveToForward( actorStatus.Speed );
     }
 
-    void ActorBase::MoveTo( const Vector2& direction ) {
+    void ActorBase::MoveTo( const Vector2<double>& direction ) {
         ObjectBase::MoveTo( direction, actorStatus.Speed );
     }
 

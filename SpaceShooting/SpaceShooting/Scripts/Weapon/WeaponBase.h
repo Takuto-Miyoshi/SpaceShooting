@@ -9,7 +9,7 @@
 #include "../Object/Actor/ActorBase.h"
 #include "../Object/Bullet/BulletBase.h"
 #include "../Utility/Timer.h"
-#include "../Utility/Vector.h"
+#include "../Utility/Vector.hpp"
 
 namespace shooting::weapon {
     class WeaponBase {
@@ -47,7 +47,7 @@ namespace shooting::weapon {
 
         /// @brief angleの方向へ発射
         /// @param shootPosition 発射する位置
-        auto ShootTo( const Vector2& shootPosition ) -> object::BulletBase*;
+        auto ShootTo( const Vector2<double>& shootPosition ) -> object::BulletBase*;
 
         /// @brief positionから発射
         /// @param shootAngle 発射する方向
@@ -56,7 +56,7 @@ namespace shooting::weapon {
         /// @brief 弾を発射
         /// @param shootPosition 発射する位置
         /// @param shootAngle 発射する方向
-        auto ShootTo( const Vector2& shootPosition, const float& shootAngle ) -> object::BulletBase*;
+        auto ShootTo( const Vector2<double>& shootPosition, const float& shootAngle ) -> object::BulletBase*;
 
        private:
         /// @brief 所属グループを弾用に変更する
@@ -74,7 +74,7 @@ namespace shooting::weapon {
 
         bool shootable { false };
 
-        Vector2* position { nullptr };
+        Vector2<double>* position { nullptr };
         float* angle { nullptr };
         uint32_t* level { nullptr };
         object::status::ObjectKind kind {};

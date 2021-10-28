@@ -9,8 +9,8 @@ namespace shooting {
                       pos.Y - dxlib::SCREEN_SIZE_Y / 2 );
     }
 
-    void Camera::OffsetBy( const Vector2& from ) noexcept {
-        const Vector2 screenCenter { dxlib::SCREEN_SIZE_X / 2, dxlib::SCREEN_SIZE_Y / 2 };
+    void Camera::OffsetBy( const Vector2<double>& from ) noexcept {
+        const Vector2<double> screenCenter { dxlib::SCREEN_SIZE_X / 2, dxlib::SCREEN_SIZE_Y / 2 };
 
         const auto vector { screenCenter.To( from ) };
         auto length { vector.Length() };

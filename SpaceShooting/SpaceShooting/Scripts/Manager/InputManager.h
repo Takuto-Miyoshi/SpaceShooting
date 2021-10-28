@@ -8,7 +8,7 @@
 
 #include "../Definition/InputDefinition.h"
 #include "../Utility/Singleton.h"
-#include "../Utility/Vector.h"
+#include "../Utility/Vector.hpp"
 
 namespace shooting {
     class InputManager : public Singleton<InputManager> {
@@ -44,7 +44,7 @@ namespace shooting {
         [[nodiscard]] constexpr auto MousebuttonState( const uint32_t& id ) const -> const InputState& { return mousebuttonStates.at( id ); }
 
         /// @brief マウスの位置
-        ReadonlyProperty<Vector2> CursorPosition { cursorPosition };
+        ReadonlyProperty<Vector2<double>> CursorPosition { cursorPosition };
 
        private:
         std::array<bool, NUMBER_OF_KEY> previousKeys {};
@@ -53,7 +53,7 @@ namespace shooting {
         std::array<bool, NUMBER_OF_MOUSEBUTTON> previousMousebuttons {};
         std::array<InputState, NUMBER_OF_MOUSEBUTTON> mousebuttonStates {};
 
-        Vector2 cursorPosition;
+        Vector2<double> cursorPosition;
     };
 }  // namespace shooting
 

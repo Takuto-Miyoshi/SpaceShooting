@@ -9,7 +9,7 @@
 
 #include "../Object/ObjectBase.h"
 #include "../Utility/Singleton.h"
-#include "../Utility/Vector.h"
+#include "../Utility/Vector.hpp"
 
 namespace shooting::object {
     class ObjectManager : public Singleton<ObjectManager> {
@@ -24,7 +24,7 @@ namespace shooting::object {
         /// @brief オブジェクトを作成
         /// @tparam T 作成するオブジェクトの型 @n ObjectBaseを基底クラスに持っていること
         template<typename T>
-        auto CreateObject( const status::ObjectKind& objectKind, const Vector2& position = Vector2( 0, 0 ), const float& angle = 0.0f ) -> std::enable_if<std::derived_from<T, ObjectBase>, ObjectBase>::type* {
+        auto CreateObject( const status::ObjectKind& objectKind, const Vector2<double>& position = Vector2<double>( 0, 0 ), const float& angle = 0.0f ) -> std::enable_if<std::derived_from<T, ObjectBase>, ObjectBase>::type* {
             auto obj { std::make_shared<T>() };
             obj->Activate( objectKind, position, angle );
             objectList.emplace_back( obj );
@@ -42,8 +42,8 @@ namespace shooting::object {
 
         /// @brief プレイヤーの位置を取得
         /// @return プレイヤーが見つからなければVector2{0,0}を返す
-        [[nodiscard]] auto PlayerPosition() noexcept -> Vector2 {
-            return ( player ) ? player->Position : Vector2::Zero();
+        [[nodiscard]] auto PlayerPosition() noexcept -> Vector2<double> {
+            return ( player ) ? player->Position : Vector2<double>::Zero<>;
         }
 
         /// @brief プレイヤーに経験値を付与
@@ -51,8 +51,8 @@ namespace shooting::object {
 
         /// @brief fromから一番近い敵(ObjectKind::Enemy)の位置を取得
         /// @return 敵がいなければVector2{0,0}を返す
-        [[nodiscard]] auto NearEnemyPosition( const Vector2& from ) -> Vector2 {
-            if ( enemyList.empty() ) { return Vector2::Zero(); }
+        [[nodiscard]] auto NearEnemyPosition( const Vector2<double>& from ) -> Vector2<double> {
+            if ( enemyList.empty() ) { return Vector2<double>::Zero<>; }
 
             return std::min_element( enemyList.begin(), enemyList.end(), [&from]( const auto& left, const auto& right ) {
                        return from.To( left->Position ).Length() < from.To( right->Position ).Length();

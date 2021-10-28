@@ -47,7 +47,7 @@ namespace shooting::object {
         void LookToCursor();
 
        private:
-        Vector2 previousPosition { 0, 0 };  //前回の位置
+        Vector2<double> previousPosition { 0, 0 };  //前回の位置
 
         std::vector<std::shared_ptr<weapon::WeaponBase>> weaponList;
         std::vector<std::shared_ptr<weapon::WeaponBase>>::iterator usingWeapon;

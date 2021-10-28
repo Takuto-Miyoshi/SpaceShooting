@@ -4,7 +4,7 @@
 #define SCENE_MANAGER_H
 
 #include "../Scene/SceneBase.h"
-#include "../Utility/Property.h"
+#include "../Utility/Property.hpp"
 #include "InputInvoker.h"
 #include "InputManager.h"
 #include "TimeManager.h"

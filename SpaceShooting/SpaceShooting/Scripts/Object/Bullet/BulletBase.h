@@ -4,9 +4,9 @@
 #define BULLET_BASE_H
 
 #include "../../Definition/StatusDefinition.h"
-#include "../../Utility/Property.h"
+#include "../../Utility/Property.hpp"
 #include "../../Utility/Timer.h"
-#include "../../Utility/Vector.h"
+#include "../../Utility/Vector.hpp"
 #include "../ObjectBase.h"
 
 namespace shooting::object {
@@ -21,7 +21,7 @@ namespace shooting::object {
 
         void Update() override;
 
-        void Collide( const ObjectBase& hit ) override;
+        void Collide( [[maybe_unused]] const ObjectBase& hit ) override;
 
        protected:
         /// @brief 移動
@@ -34,11 +34,11 @@ namespace shooting::object {
         void MoveToForward();
 
         /// @brief directionの方向へ進む
-        void MoveTo( const Vector2& direction );
+        void MoveTo( const Vector2<double>& direction );
 
         [[nodiscard]] virtual auto AttackPower() const noexcept -> double override;
 
-        [[nodiscard]] virtual auto TakeDamage( const double& attackPower ) noexcept -> bool override;
+        [[nodiscard]] virtual auto TakeDamage( [[maybe_unused]] const double& attackPower ) noexcept -> bool override;
 
        protected:
         double interval { status::BulletSetting::LIFE_SPAN_OF_BULLET };

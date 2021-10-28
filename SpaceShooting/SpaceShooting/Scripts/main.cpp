@@ -4,6 +4,7 @@
 #include <cstdint>
 
 #include "Definition/DxLibSetting.h"
+#include "Definition/GeneralConcepts.h"
 #include "DxLib.h"
 #include "Manager/GameLoop.h"
 
@@ -11,7 +12,7 @@
 
 using namespace shooting::dxlib;
 
-auto WINAPI WinMain( _In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int32_t nShowCmd ) -> int32_t {
+auto WINAPI WinMain( [[maybe_unused]] _In_ HINSTANCE hInstance, [[maybe_unused]] _In_opt_ HINSTANCE hPrevInstance, [[maybe_unused]] _In_ LPSTR lpCmdLine, [[maybe_unused]] _In_ int32_t nShowCmd ) -> int32_t {
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_DELAY_FREE_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_LEAK_CHECK_DF );
 
     // ------------ DxLib初期設定 -------------

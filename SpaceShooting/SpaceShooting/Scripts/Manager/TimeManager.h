@@ -8,7 +8,7 @@
 #include <memory>
 #include <vector>
 
-#include "../Utility/Property.h"
+#include "../Utility/Property.hpp"
 #include "../Utility/Singleton.h"
 #include "../Utility/Timer.h"
 

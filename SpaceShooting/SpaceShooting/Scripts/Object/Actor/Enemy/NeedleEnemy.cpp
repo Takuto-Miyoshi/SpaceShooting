@@ -9,7 +9,7 @@ namespace shooting::object {
 
         auto& data { status::StatusLoader::Instance()->Get_a( status::loaderKey::object::enemy::NEEDLE ) };
         bulletIndex = static_cast<uint32_t>( data.ExtraParam1 );
-        angle = RandomAngle();
+        angle = RandomAngle<float>();
     }
 
     void NeedleEnemy::Update() {
@@ -20,10 +20,10 @@ namespace shooting::object {
 
     void NeedleEnemy::Shoot() {
         for ( auto&& i { 0u }; i < bulletIndex; i++ ) {
-            ShootTo( Vector2::FromUnit( Vector2::RandomUnit() ) );
+            ShootTo( Vector2<>::FromUnit<float>( Vector2<>::RandomUnit<float>() ) );
         }
 
-        angle = RandomAngle();
+        angle = RandomAngle<float>();
     }
 
     void NeedleEnemy::Move() {

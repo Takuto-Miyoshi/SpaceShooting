@@ -8,7 +8,7 @@
 using namespace shooting::object::status::bullet;
 
 namespace shooting::object {
-    auto BulletFactory::Create( const status::ObjectKind& objectKind, const Vector2& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase* {
+    auto BulletFactory::Create( const status::ObjectKind& objectKind, const Vector2<double>& position, const float& angle, const status::Bullet& bulletData ) -> BulletBase* {
         auto bullet {
             dynamic_cast<BulletBase*>( [&]() -> ObjectBase* {
                 // 弾の種類に応じた弾を作る
@@ -26,7 +26,7 @@ namespace shooting::object {
     }
 
     auto BulletFactory::CreateTrans( BulletBase* transTarget, const status::bullet::TransData& transData ) -> TransBullet* {
-        auto bullet { dynamic_cast<TransBullet*>( CreateBullet<TransBullet>( transTarget->Kind, Vector2::Zero(), 0.0f ) ) };
+        auto bullet { dynamic_cast<TransBullet*>( CreateBullet<TransBullet>( transTarget->Kind, Vector2<double>::Zero<>, 0.0f ) ) };
         bullet->Initialize( transTarget, transData );
         return bullet;
     }

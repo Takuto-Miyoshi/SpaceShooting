@@ -4,7 +4,7 @@
 #define SCENE_BASE_H
 
 #include "../Definition/SceneDefinition.h"
-#include "../Utility/Property.h"
+#include "../Utility/Property.hpp"
 
 namespace shooting::scene {
     class SceneBase {
@@ -36,7 +36,7 @@ namespace shooting::scene {
 
        public:
         /// @brief ゲームを終了するか
-        Property<bool> EndGame { endGame };
+        BasicProperty<bool> EndGame { endGame };
 
         /// @brief シーンを変更するか
         ReadonlyProperty<bool> Change { change };

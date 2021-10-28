@@ -6,9 +6,9 @@
 
 namespace shooting::weapon {
     void WeaponBase::Initialize( const object::ActorBase& user, const uint8_t& useRarity ) {
-        position = &user.Position;
-        angle = &user.Angle;
-        level = &user.Level;
+        position = &*user.Position;
+        angle = &*user.Angle;
+        level = &*user.Level;
         kind = ConvertKind( user.Kind );
         rarity = useRarity;
     }
@@ -50,7 +50,7 @@ namespace shooting::weapon {
         return ShootTo( *position, *angle );
     }
 
-    auto WeaponBase::ShootTo( const Vector2& shootPosition ) -> object::BulletBase* {
+    auto WeaponBase::ShootTo( const Vector2<double>& shootPosition ) -> object::BulletBase* {
         return ShootTo( shootPosition, *angle );
     }
 
@@ -58,7 +58,7 @@ namespace shooting::weapon {
         return ShootTo( *position, shootAngle );
     }
 
-    auto WeaponBase::ShootTo( const Vector2& shootPosition, const float& shootAngle ) -> object::BulletBase* {
+    auto WeaponBase::ShootTo( const Vector2<double>& shootPosition, const float& shootAngle ) -> object::BulletBase* {
         return object::BulletFactory::Instance()->Create( kind, shootPosition, shootAngle, bulletStatus );
     }
 

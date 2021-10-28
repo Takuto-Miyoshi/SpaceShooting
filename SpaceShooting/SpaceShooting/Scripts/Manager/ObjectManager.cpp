@@ -31,8 +31,6 @@ namespace shooting::object {
             if ( !obj ) { continue; }
             obj->Draw();
         }
-
-        printfDx( "obj : %d\n", objectList.size() );
     }
 
     void ObjectManager::Finalize() noexcept {

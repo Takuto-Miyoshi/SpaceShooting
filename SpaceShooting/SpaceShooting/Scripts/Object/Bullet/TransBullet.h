@@ -29,7 +29,7 @@ namespace shooting::object {
 
         [[nodiscard]] virtual auto AttackPower() const -> double override { return 0.0; }
 
-        [[nodiscard]] virtual auto TakeDamage( const double& attackPower ) -> bool override { return false; }
+        [[nodiscard]] virtual auto TakeDamage( [[maybe_unused]] const double& attackPower ) -> bool override { return false; }
 
        private:
         void Trans();

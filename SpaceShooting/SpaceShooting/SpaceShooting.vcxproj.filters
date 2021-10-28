@@ -136,12 +136,6 @@
     <ClInclude Include="Scripts\Object\Actor\Player.h">
       <Filter>Object\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Utility\Vector.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Utility\Property.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\Utility\Singleton.h">
       <Filter>Utility</Filter>
     </ClInclude>
@@ -214,6 +208,21 @@
     <ClInclude Include="Scripts\Object\Actor\Enemy\Ghost.h">
       <Filter>Object\Actor\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Utility\Property.hpp">
+      <Filter>Utility\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utility\Property\ReadonlyProperty.hpp">
+      <Filter>Utility\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utility\Property\BasicProperty.hpp">
+      <Filter>Utility\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utility\Vector\Vector2.hpp">
+      <Filter>Utility\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utility\Vector.hpp">
+      <Filter>Utility\Vector</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
@@ -245,6 +254,12 @@
     </Filter>
     <Filter Include="Object\Actor\Enemy">
       <UniqueIdentifier>{90b63fd4-0e32-4b10-87d2-bd52129966c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Property">
+      <UniqueIdentifier>{70743e84-d4d5-4a0e-9252-3eee9d179828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Vector">
+      <UniqueIdentifier>{a4ad20dc-8878-46fe-99e3-d0f74d312df0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
