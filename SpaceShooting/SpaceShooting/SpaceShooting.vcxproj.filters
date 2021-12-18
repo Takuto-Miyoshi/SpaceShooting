@@ -1,6 +1,114 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Scripts\main.cpp" />
+    <ClCompile Include="Scripts\Source\main.cpp" />
+    <ClCompile Include="Scripts\Source\GameSystem\Time\TimeManager.cpp">
+      <Filter>GameSystem\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\GameSystem\Scene\SceneManager.cpp">
+      <Filter>GameSystem\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\GameSystem\Input\InputManager.cpp">
+      <Filter>GameSystem\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\GameSystem\GameLoop\GameLoop.cpp">
+      <Filter>GameSystem\GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\Scene\Title.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\Scene\InGame.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\GameSystem\Texture\TextureManager.cpp">
+      <Filter>GameSystem\Texture</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Other">
+      <UniqueIdentifier>{4d2461e2-2d27-47a5-bbe2-f086cd267c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystem">
+      <UniqueIdentifier>{2db0169b-6d28-4077-8544-203b3c08457b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystem\GameLoop">
+      <UniqueIdentifier>{33a942aa-2382-40b6-99c1-e8c60b002b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Definition">
+      <UniqueIdentifier>{8ff36392-cee0-44f8-988a-fcd16225818b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystem\Input">
+      <UniqueIdentifier>{f2b35f79-e492-4759-ae55-12ac3ebb9b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{1d3a2948-972e-4bbc-b85e-71d981bc5414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\VectorImpl">
+      <UniqueIdentifier>{76e28fde-a15c-414d-8597-569b8697a4f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystem\Time">
+      <UniqueIdentifier>{61acbe83-9361-4b76-944b-5d716586a0fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystem\Scene">
+      <UniqueIdentifier>{b5411f2d-bddf-4e10-9baa-a32debf688e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{8b8ca70c-0996-4c5b-a5c8-2e6abd0d7b82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystem\Texture">
+      <UniqueIdentifier>{1bf75354-4f70-420a-803e-f538ef4248f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scripts\Include\Game\GameLoop.hpp">
+      <Filter>GameSystem\GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Exception.hpp">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Structures.hpp">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Singleton.hpp">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\InputManager.hpp">
+      <Filter>GameSystem\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Concepts.hpp">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Vector.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\VectorImpl\Vector2.hpp">
+      <Filter>Utility\VectorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\TimeManager.hpp">
+      <Filter>GameSystem\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\SceneManager.hpp">
+      <Filter>GameSystem\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\IScene.hpp">
+      <Filter>GameSystem\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Scene\Title.hpp">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Scene\InGame.hpp">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Accessor.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\TextureManager.hpp">
+      <Filter>GameSystem\Texture</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format">
+      <Filter>Other</Filter>
+    </None>
   </ItemGroup>
 </Project>
