@@ -18,7 +18,7 @@ namespace game {
 
     constexpr auto InputManager::ConvertState( const InputState& previous, const bool& current ) noexcept -> InputState {
         if ( previous == InputState::Pressed || previous == InputState::Hold ) {
-            return ( current ) ? InputState::Hold : InputState::Release;
+            return ( current ) ? InputState::Hold : InputState::Released;
         }
         else {
             return ( current ) ? InputState::Pressed : InputState::None;

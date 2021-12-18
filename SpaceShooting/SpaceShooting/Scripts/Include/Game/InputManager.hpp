@@ -4,18 +4,15 @@
 #ifndef INPUT_MANAGER_HPP
 #define INPUT_MANAGER_HPP
 
+#include <Game/Enums.hpp>
 #include <Game/Singleton.hpp>
 #include <Game/Vector.hpp>
 #include <array>
 
 namespace game {
-    /// @brief 入力状態
-    enum class InputState {
-        None,  // 押していない
-        Pressed,  // 押された瞬間
-        Hold,  // 押している
-        Release  // 離した瞬間
-    };
+    constexpr uint8_t MOUSEBUTTON_LEFT { 0 };
+    constexpr uint8_t MOUSEBUTTON_RIGHT { 1 };
+    constexpr uint8_t MOUSEBUTTON_MIDDLE { 2 };
 
     constexpr uint8_t MOUSEBUTTON_LEFT { 0 };
     constexpr uint8_t MOUSEBUTTON_RIGHT { 1 };

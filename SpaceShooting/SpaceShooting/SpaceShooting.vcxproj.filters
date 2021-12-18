@@ -144,6 +144,9 @@
     <ClInclude Include="Scripts\Include\Game\Object\ObjectData.hpp">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\TextureManager.hpp">
+      <Filter>GameSystem\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format">
