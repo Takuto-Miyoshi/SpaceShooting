@@ -17,9 +17,9 @@ namespace game {
         Release  // 離した瞬間
     };
 
-    constexpr uint32_t MOUSEBUTTON_LEFT { 0 };
-    constexpr uint32_t MOUSEBUTTON_RIGHT { 1 };
-    constexpr uint32_t MOUSEBUTTON_MIDDLE { 2 };
+    constexpr uint8_t MOUSEBUTTON_LEFT { 0 };
+    constexpr uint8_t MOUSEBUTTON_RIGHT { 1 };
+    constexpr uint8_t MOUSEBUTTON_MIDDLE { 2 };
 
     class InputManager : public Singleton<InputManager> {
        public:
@@ -28,7 +28,7 @@ namespace game {
        public:
         InputManager();
 
-        ~InputManager() = default;
+        ~InputManager() override = default;
 
        public:
         void Update() & noexcept;
@@ -51,7 +51,7 @@ namespace game {
             }
         }
 
-        Accessor<cursor_position_type>::Get CursorPosition { cursorPosition };
+        ReadonlyProperty<cursor_position_type> CursorPosition { cursorPosition };
 
        private:
         [[nodiscard]] static constexpr auto ConvertState( const InputState& previous, const bool& current ) noexcept -> InputState;
@@ -63,11 +63,11 @@ namespace game {
         void UpdateCursorPosition() noexcept;
 
        private:
-        static constexpr auto NUMBER_OF_KEY { 256 };
-        static constexpr auto NUMBER_OF_MOUSEBUTTON { 3 };
+        static constexpr uint16_t NUMBER_OF_KEY { 256 };
+        static constexpr uint8_t NUMBER_OF_MOUSEBUTTON { 3 };
 
-        static constexpr auto PRESSED { 1 };
-        static constexpr auto NOT_PRESSED { 0 };
+        static constexpr int8_t DX_PRESSED { 1 };
+        static constexpr uint8_t DX_NOT_PRESSED { 0 };
 
         std::array<InputState, NUMBER_OF_KEY> keyList {};
         std::array<InputState, NUMBER_OF_MOUSEBUTTON> mousebuttonList {};

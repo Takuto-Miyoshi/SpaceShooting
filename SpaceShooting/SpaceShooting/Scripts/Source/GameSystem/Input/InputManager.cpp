@@ -28,7 +28,7 @@ namespace game {
     constexpr void InputManager::UpdateKeyState() noexcept {
         for ( auto index { 0u };
               auto&& key : keyList ) {
-            key = ConvertState( key, CheckHitKey( index ) == PRESSED );
+            key = ConvertState( key, CheckHitKey( index ) == DX_PRESSED );
             index++;
         }
     }
@@ -36,7 +36,7 @@ namespace game {
     constexpr void InputManager::UpdateMousebutton() noexcept {
         for ( auto index { MOUSE_INPUT_LEFT };
               auto&& mousebutton : mousebuttonList ) {
-            mousebutton = ConvertState( mousebutton, ( GetMouseInput() & index ) != NOT_PRESSED );
+            mousebutton = ConvertState( mousebutton, ( GetMouseInput() & index ) != DX_NOT_PRESSED );
             index <<= 1;
         }
     }

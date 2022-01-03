@@ -4,8 +4,8 @@
 #ifndef SCENE_MANAGER_HPP
 #define SCENE_MANAGER_HPP
 
-#include <Game/Accessor.hpp>
 #include <Game/IScene.hpp>
+#include <Game/Property.hpp>
 #include <Game/Singleton.hpp>
 #include <concepts>
 #include <map>
@@ -19,13 +19,13 @@ namespace game {
        public:
         SceneManager() = default;
 
-        ~SceneManager() = default;
+        ~SceneManager() override = default;
 
        public:
         /// @brief シーンを登録
         /// @param name 登録名
         template<std::derived_from<IScene> T>
-        void Regist( const std::string& name ) {
+        void Regist( std::string_view name ) {
             sceneList.emplace( map_type { name, std::make_shared<T>() } );
 
             if ( !currentScene ) [[unlikely]] {
@@ -35,14 +35,14 @@ namespace game {
 
         /// @brief シーンを変更
         /// @param name 変更先のシーンの登録名
-        void ChangeScene( const std::string& name );
+        void ChangeScene( std::string_view name );
 
         /// @brief 更新
         void Update();
 
        public:
         /// @brief ゲーム終了フラグ
-        Accessor<bool> EndGame { endGame };
+        BasicProperty<bool> EndGame { endGame };
 
        private:
         std::map<map_type::first_type, map_type::second_type> sceneList {};

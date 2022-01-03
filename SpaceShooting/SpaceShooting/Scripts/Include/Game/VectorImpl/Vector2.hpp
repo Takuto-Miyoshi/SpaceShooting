@@ -2,8 +2,8 @@
 #ifndef VECTOR2_HPP
 #define VECTOR2_HPP
 
-#include <Game/Accessor.hpp>
 #include <Game/Concepts.hpp>
+#include <Game/Property.hpp>
 #include <cmath>
 #include <format>
 #include <numbers>
@@ -210,8 +210,8 @@ namespace game {
         }
 
        public:
-        Accessor<value_type> X { x };
-        Accessor<value_type> Y { y };
+        BasicProperty<value_type> X { x };
+        BasicProperty<value_type> Y { y };
 
         /// @brief セッタ コピー
         constexpr void Set( const_reference x_, const_reference y_ ) & noexcept {

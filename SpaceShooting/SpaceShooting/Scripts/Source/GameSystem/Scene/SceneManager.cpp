@@ -4,9 +4,9 @@
 #include <format>
 
 namespace game {
-    void SceneManager::ChangeScene( const std::string& name ) {
+    void SceneManager::ChangeScene( std::string_view name ) {
         try {
-            const auto next { sceneList.find( name ) };
+            const auto next { sceneList.find( name.data() ) };
             if ( next == sceneList.end() ) {
                 throw exception::NotFound( std::format( "{} はシーンリストに登録されていません。", name ) );
             }

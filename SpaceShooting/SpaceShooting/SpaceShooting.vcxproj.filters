@@ -20,6 +20,15 @@
     <ClCompile Include="Scripts\Source\Scene\InGame.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Source\GameSystem\Texture\TextureManager.cpp">
+      <Filter>GameSystem\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\Object\ObjectBase.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\Object\Component\Renderer.cpp">
+      <Filter>Object\Component\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Other">
@@ -51,6 +60,24 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{8b8ca70c-0996-4c5b-a5c8-2e6abd0d7b82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystem\Texture">
+      <UniqueIdentifier>{1bf75354-4f70-420a-803e-f538ef4248f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{2d214e63-e706-4c65-8fda-f0b216675606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component">
+      <UniqueIdentifier>{90fc661f-84a0-45d1-96a1-b298dd9ff60a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Transform">
+      <UniqueIdentifier>{00adabea-438f-477b-880b-8c7de206d22b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Renderer">
+      <UniqueIdentifier>{1c0da199-6990-4319-8c54-cf1e7f3343e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\PropertyImpl">
+      <UniqueIdentifier>{c8d7ae91-60f4-4877-895a-4c2a826efda8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,8 +120,29 @@
     <ClInclude Include="Scripts\Include\Game\Scene\InGame.hpp">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Include\Game\Accessor.hpp">
+    <ClInclude Include="Scripts\Include\Game\TextureManager.hpp">
+      <Filter>GameSystem\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Object\ObjectBase.hpp">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Object\Component\Transform.hpp">
+      <Filter>Object\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Object\Component\Renderer.hpp">
+      <Filter>Object\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\PropertyImpl\BasicProperty.hpp">
+      <Filter>Utility\PropertyImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\PropertyImpl\ReadonlyProperty.hpp">
+      <Filter>Utility\PropertyImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Property.hpp">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Object\ObjectData.hpp">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -14,8 +14,8 @@ namespace game::exception {
             runtime_error( ( message ) ? message : "初期化に失敗しました。" ) {
         }
 
-        InitializeError( const std::string& message ) :
-            runtime_error( message ) {
+        InitializeError( std::string_view message ) :
+            runtime_error( message.data() ) {
         }
 
         ~InitializeError() = default;
@@ -28,8 +28,8 @@ namespace game::exception {
             runtime_error( ( message ) ? message : "見つかりませんでした。" ) {
         }
 
-        NotFound( const std::string& message ) :
-            runtime_error( message ) {
+        NotFound( std::string_view message ) :
+            runtime_error( message.data() ) {
         }
 
         ~NotFound() = default;

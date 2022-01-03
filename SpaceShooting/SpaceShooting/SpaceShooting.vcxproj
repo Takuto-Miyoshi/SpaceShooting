@@ -22,8 +22,11 @@
     <ClCompile Include="Scripts\Source\GameSystem\GameLoop\GameLoop.cpp" />
     <ClCompile Include="Scripts\Source\GameSystem\Input\InputManager.cpp" />
     <ClCompile Include="Scripts\Source\GameSystem\Scene\SceneManager.cpp" />
+    <ClCompile Include="Scripts\Source\GameSystem\Texture\TextureManager.cpp" />
     <ClCompile Include="Scripts\Source\GameSystem\Time\TimeManager.cpp" />
     <ClCompile Include="Scripts\Source\main.cpp" />
+    <ClCompile Include="Scripts\Source\Object\Component\Renderer.cpp" />
+    <ClCompile Include="Scripts\Source\Object\ObjectBase.cpp" />
     <ClCompile Include="Scripts\Source\Scene\InGame.cpp" />
     <ClCompile Include="Scripts\Source\Scene\Title.cpp" />
   </ItemGroup>
@@ -31,17 +34,24 @@
     <None Include=".clang-format" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scripts\Include\Game\Accessor.hpp" />
     <ClInclude Include="Scripts\Include\Game\Concepts.hpp" />
     <ClInclude Include="Scripts\Include\Game\Exception.hpp" />
     <ClInclude Include="Scripts\Include\Game\GameLoop.hpp" />
     <ClInclude Include="Scripts\Include\Game\InputManager.hpp" />
     <ClInclude Include="Scripts\Include\Game\IScene.hpp" />
+    <ClInclude Include="Scripts\Include\Game\Object\Component\Renderer.hpp" />
+    <ClInclude Include="Scripts\Include\Game\Object\Component\Transform.hpp" />
+    <ClInclude Include="Scripts\Include\Game\Object\ObjectBase.hpp" />
+    <ClInclude Include="Scripts\Include\Game\Object\ObjectData.hpp" />
+    <ClInclude Include="Scripts\Include\Game\Property.hpp" />
+    <ClInclude Include="Scripts\Include\Game\PropertyImpl\BasicProperty.hpp" />
+    <ClInclude Include="Scripts\Include\Game\PropertyImpl\ReadonlyProperty.hpp" />
     <ClInclude Include="Scripts\Include\Game\SceneManager.hpp" />
     <ClInclude Include="Scripts\Include\Game\Scene\InGame.hpp" />
     <ClInclude Include="Scripts\Include\Game\Scene\Title.hpp" />
     <ClInclude Include="Scripts\Include\Game\Singleton.hpp" />
     <ClInclude Include="Scripts\Include\Game\Structures.hpp" />
+    <ClInclude Include="Scripts\Include\Game\TextureManager.hpp" />
     <ClInclude Include="Scripts\Include\Game\TimeManager.hpp" />
     <ClInclude Include="Scripts\Include\Game\Vector.hpp" />
     <ClInclude Include="Scripts\Include\Game\VectorImpl\Vector2.hpp" />

@@ -39,12 +39,12 @@ namespace game {
             inputManager->Update();
             timeManager->Update();
             sceneManager->Update();
-            if ( sceneManager->EndGame() ) { break; }
+            if ( sceneManager->EndGame ) { break; }
 
             timeManager->MarkFPS( targetFPS );
 
-            printfDx( "FPS : %d\n", timeManager->FPS() );
-            printfDx( "DeltaTime : %f\n", timeManager->DeltaTime() );
+            printfDx( "FPS : %d\n", *timeManager->FPS );
+            printfDx( "DeltaTime : %f\n", *timeManager->DeltaTime );
 
             ScreenFlip();
         }

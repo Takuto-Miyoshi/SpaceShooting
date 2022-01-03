@@ -15,8 +15,7 @@ auto WINAPI WinMain( [[maybe_unused]] _In_ HINSTANCE hInstance,
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_DELAY_FREE_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_LEAK_CHECK_DF );
 
     auto gameLoop { game::GameLoop( game::GameLoop::DxLibConfig {
-        //.ScreenSize { 1920, 1080 },
-        .ScreenSize { 1600, 900 },
+        .ScreenSize { 1920, 1080 },
         .ColorBitDepth { 32 },
         .FrameRate { 60 },
         .EnableFullscreen { false },
