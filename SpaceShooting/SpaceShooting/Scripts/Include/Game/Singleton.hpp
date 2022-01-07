@@ -18,7 +18,7 @@ namespace game {
         virtual ~Singleton() = default;
 
        public:
-        [[nodiscard]] static constexpr auto Instance() -> std::shared_ptr<T>& {
+        [[nodiscard]] static constexpr auto Instance() -> const std::shared_ptr<T>& {
             if ( !instance ) [[unlikely]] {
                 instance = std::make_shared<T>();
             }

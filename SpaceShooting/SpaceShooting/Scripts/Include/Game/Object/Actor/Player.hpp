@@ -11,7 +11,7 @@
 namespace game {
     class Player final : public ObjectBase {
        public:
-        Player() = default;
+        Player();
 
         ~Player() override = default;
 
@@ -19,6 +19,13 @@ namespace game {
         void SetDefault() override;
 
        private:
+        void MoveUp();
+        void MoveDown();
+        void MoveLeft();
+        void MoveRight();
+
+       private:
+        static constexpr std::string_view MOVE_REGIST_NAME { "PlayerMovement" };
         static constexpr auto MOVE_UP { KEY_INPUT_W };
         static constexpr auto MOVE_DOWN { KEY_INPUT_S };
         static constexpr auto MOVE_LEFT { KEY_INPUT_A };

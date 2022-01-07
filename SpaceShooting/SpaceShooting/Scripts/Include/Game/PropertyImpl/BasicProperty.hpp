@@ -52,7 +52,7 @@ namespace game {
 
         /// @brief 後置インクリメント
         template<concepts::numeric U = value_type>
-        constexpr auto operator++( int ) & noexcept -> reference {
+        constexpr auto operator++( int ) & noexcept -> U {
             auto pre { base };
             base++;
             return pre;
@@ -60,21 +60,19 @@ namespace game {
 
         /// @brief 後置デクリメント
         template<concepts::numeric U = value_type>
-        constexpr auto operator--( int ) & noexcept -> reference {
+        constexpr auto operator--( int ) & noexcept -> U {
             auto pre { base };
             base--;
             return pre;
         }
 
         /// @brief 前置インクリメント
-        template<concepts::numeric U = value_type>
         constexpr auto operator++() & noexcept -> reference {
             base++;
             return base;
         }
 
         /// @brief 前置デクリメント
-        template<concepts::numeric U = value_type>
         constexpr auto operator--() & noexcept -> reference {
             base--;
             return base;

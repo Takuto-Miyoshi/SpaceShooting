@@ -3,7 +3,9 @@
 
 #include <Game/Exception.hpp>
 #include <Game/GameLoop.hpp>
+#include <Game/InputInvoker.hpp>
 #include <Game/InputManager.hpp>
+#include <Game/Invoker.hpp>
 #include <Game/Scene/InGame.hpp>
 #include <Game/Scene/Title.hpp>
 #include <Game/SceneManager.hpp>
@@ -23,9 +25,11 @@ namespace game {
     }
 
     void GameLoop::Exec() {
-        auto inputManager { InputManager::Instance() };
-        auto timeManager { TimeManager::Instance() };
-        auto sceneManager { SceneManager::Instance() };
+        auto& inputManager { InputManager::Instance() };
+        auto& timeManager { TimeManager::Instance() };
+        auto& sceneManager { SceneManager::Instance() };
+        auto& invoker { Invoker::Instance() };
+        auto& inputInvoker { InputInvoker::Instance() };
 
         sceneManager->Regist<scene::Title>( "Title" );
         sceneManager->Regist<scene::InGame>( "InGame" );
@@ -38,6 +42,8 @@ namespace game {
 
             inputManager->Update();
             timeManager->Update();
+            invoker->Update();
+            inputInvoker->Update();
             sceneManager->Update();
             if ( sceneManager->EndGame ) { break; }
 

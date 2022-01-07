@@ -29,6 +29,15 @@
     <ClCompile Include="Scripts\Source\Object\Component\Renderer.cpp">
       <Filter>Object\Component\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Source\Object\Actor\Player.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\GameSystem\Input\InputInvoker.cpp">
+      <Filter>GameSystem\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Source\GameSystem\Invoker\Invoker.cpp">
+      <Filter>GameSystem\Invoker</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Other">
@@ -78,6 +87,12 @@
     </Filter>
     <Filter Include="Utility\PropertyImpl">
       <UniqueIdentifier>{c8d7ae91-60f4-4877-895a-4c2a826efda8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{8e68d7c6-9bf5-4e48-9824-d326d6f79d2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystem\Invoker">
+      <UniqueIdentifier>{b565f1d1-a1fa-40b4-8960-e80da4c3c6fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +161,15 @@
     </ClInclude>
     <ClInclude Include="Scripts\Include\Game\TextureManager.hpp">
       <Filter>GameSystem\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Object\Actor\Player.hpp">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Invoker.hpp">
+      <Filter>GameSystem\Invoker</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\InputInvoker.hpp">
+      <Filter>GameSystem\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

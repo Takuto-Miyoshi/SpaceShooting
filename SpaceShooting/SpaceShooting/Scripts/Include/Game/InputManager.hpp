@@ -14,10 +14,6 @@ namespace game {
     constexpr uint8_t MOUSEBUTTON_RIGHT { 1 };
     constexpr uint8_t MOUSEBUTTON_MIDDLE { 2 };
 
-    constexpr uint8_t MOUSEBUTTON_LEFT { 0 };
-    constexpr uint8_t MOUSEBUTTON_RIGHT { 1 };
-    constexpr uint8_t MOUSEBUTTON_MIDDLE { 2 };
-
     class InputManager : public Singleton<InputManager> {
        public:
         using cursor_position_type = Vector2<double>;
