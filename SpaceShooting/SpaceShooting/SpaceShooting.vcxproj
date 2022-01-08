@@ -37,21 +37,21 @@
     <None Include=".clang-format" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Include\Game\Accessor.hpp" />
     <ClInclude Include="Scripts\Include\Game\Concepts.hpp" />
     <ClInclude Include="Scripts\Include\Game\Exception.hpp" />
+    <ClInclude Include="Scripts\Include\Game\Functions.hpp" />
     <ClInclude Include="Scripts\Include\Game\GameLoop.hpp" />
     <ClInclude Include="Scripts\Include\Game\InputInvoker.hpp" />
     <ClInclude Include="Scripts\Include\Game\InputManager.hpp" />
     <ClInclude Include="Scripts\Include\Game\Invoker.hpp" />
     <ClInclude Include="Scripts\Include\Game\IScene.hpp" />
+    <ClInclude Include="Scripts\Include\Game\Mathematics.hpp" />
     <ClInclude Include="Scripts\Include\Game\Object\Actor\Player.hpp" />
     <ClInclude Include="Scripts\Include\Game\Object\Component\Renderer.hpp" />
     <ClInclude Include="Scripts\Include\Game\Object\Component\Transform.hpp" />
     <ClInclude Include="Scripts\Include\Game\Object\ObjectBase.hpp" />
     <ClInclude Include="Scripts\Include\Game\Object\ObjectData.hpp" />
-    <ClInclude Include="Scripts\Include\Game\Property.hpp" />
-    <ClInclude Include="Scripts\Include\Game\PropertyImpl\BasicProperty.hpp" />
-    <ClInclude Include="Scripts\Include\Game\PropertyImpl\ReadonlyProperty.hpp" />
     <ClInclude Include="Scripts\Include\Game\SceneManager.hpp" />
     <ClInclude Include="Scripts\Include\Game\Scene\InGame.hpp" />
     <ClInclude Include="Scripts\Include\Game\Scene\Title.hpp" />
@@ -73,26 +73,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>

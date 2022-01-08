@@ -22,11 +22,5 @@ namespace game::component {
         //               transform.Angle<double>(),
         //               handle,
         //               true );
-        DrawRotaGraph( static_cast<int32_t>( transform.Position.Get().X.Get() ),
-                       static_cast<int32_t>( transform.Position.Get().Y.Get() ),
-                       1.0,
-                       transform.Angle<double>(),
-                       handle,
-                       true );
     }
 }  // namespace game::component

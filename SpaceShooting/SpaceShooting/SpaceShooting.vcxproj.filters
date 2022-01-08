@@ -85,9 +85,6 @@
     <Filter Include="Object\Component\Renderer">
       <UniqueIdentifier>{1c0da199-6990-4319-8c54-cf1e7f3343e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utility\PropertyImpl">
-      <UniqueIdentifier>{c8d7ae91-60f4-4877-895a-4c2a826efda8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Actor">
       <UniqueIdentifier>{8e68d7c6-9bf5-4e48-9824-d326d6f79d2f}</UniqueIdentifier>
     </Filter>
@@ -147,15 +144,6 @@
     <ClInclude Include="Scripts\Include\Game\Object\Component\Renderer.hpp">
       <Filter>Object\Component\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Include\Game\PropertyImpl\BasicProperty.hpp">
-      <Filter>Utility\PropertyImpl</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Include\Game\PropertyImpl\ReadonlyProperty.hpp">
-      <Filter>Utility\PropertyImpl</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Include\Game\Property.hpp">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\Include\Game\Object\ObjectData.hpp">
       <Filter>Object</Filter>
     </ClInclude>
@@ -171,6 +159,13 @@
     <ClInclude Include="Scripts\Include\Game\InputInvoker.hpp">
       <Filter>GameSystem\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Accessor.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Mathematics.hpp">
+      <Filter>Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Include\Game\Functions.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format">

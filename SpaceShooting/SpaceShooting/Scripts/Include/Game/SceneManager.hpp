@@ -4,8 +4,8 @@
 #ifndef SCENE_MANAGER_HPP
 #define SCENE_MANAGER_HPP
 
+#include <Game/Accessor.hpp>
 #include <Game/IScene.hpp>
-#include <Game/Property.hpp>
 #include <Game/Singleton.hpp>
 #include <concepts>
 #include <map>
@@ -42,7 +42,7 @@ namespace game {
 
        public:
         /// @brief ゲーム終了フラグ
-        BasicProperty<bool> EndGame { endGame };
+        Accessor<bool> EndGame { endGame };
 
        private:
         std::map<map_type::first_type, map_type::second_type> sceneList {};

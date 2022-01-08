@@ -19,10 +19,11 @@ namespace game {
         void SetDefault() override;
 
        private:
-        void MoveUp();
-        void MoveDown();
-        void MoveLeft();
-        void MoveRight();
+        constexpr void MoveUp();
+        constexpr void MoveDown();
+        constexpr void MoveLeft();
+        constexpr void MoveRight();
+        void LookToCursor();
 
        private:
         static constexpr std::string_view MOVE_REGIST_NAME { "PlayerMovement" };

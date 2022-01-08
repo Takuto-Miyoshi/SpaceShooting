@@ -1,5 +1,6 @@
 ﻿
 #include <Game/InputInvoker.hpp>
+#include <Game/InputManager.hpp>
 #include <Game/Object/Actor/Player.hpp>
 
 namespace game {
@@ -18,19 +19,24 @@ namespace game {
         };
     }
 
-    void game::Player::MoveUp() {
-        transform.Position->Y--;
+    constexpr void game::Player::MoveUp() {
+        transform.Position->Y.Add();
     }
 
-    void game::Player::MoveDown() {
-        transform.Position->Y++;
+    constexpr void game::Player::MoveDown() {
+        transform.Position->Y.Add();
     }
 
-    void game::Player::MoveLeft() {
-        transform.Position->X--;
+    constexpr void game::Player::MoveLeft() {
+        transform.Position->X.Add();
     }
 
-    void game::Player::MoveRight() {
-        transform.Position->X++;
+    constexpr void game::Player::MoveRight() {
+        transform.Position->X.Add();
+    }
+
+    void Player::LookToCursor() {
+        //auto& cursor { InputManager::Instance()->CursorPosition.Get() };
+        //transform.Direction = transform.Position->To( cursor );
     }
 }  // namespace game

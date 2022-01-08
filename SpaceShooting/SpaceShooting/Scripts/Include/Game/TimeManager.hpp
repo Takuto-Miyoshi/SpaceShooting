@@ -4,8 +4,8 @@
 #ifndef TIME_MANAGER_HPP
 #define TIME_MANAGER_HPP
 
+#include <Game/Accessor.hpp>
 #include <Game/Concepts.hpp>
-#include <Game/Property.hpp>
 #include <Game/Singleton.hpp>
 
 namespace game {
@@ -34,10 +34,10 @@ namespace game {
 
        public:
         /// @brief フレームレート
-        ReadonlyProperty<int32_t> FPS { fps };
+        Reader<int32_t> FPS { fps };
 
         /// @brief 前回のフレームにかかった時間
-        ReadonlyProperty<double> DeltaTime { deltaTime };
+        Reader<double> DeltaTime { deltaTime };
 
        private:
         template<concepts::numeric T>

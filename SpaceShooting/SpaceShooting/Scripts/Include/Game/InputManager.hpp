@@ -16,7 +16,7 @@ namespace game {
 
     class InputManager : public Singleton<InputManager> {
        public:
-        using cursor_position_type = Vector2<double>;
+        using cursor_position_type = Vector2;
 
        public:
         InputManager();
@@ -44,7 +44,7 @@ namespace game {
             }
         }
 
-        ReadonlyProperty<cursor_position_type> CursorPosition { cursorPosition };
+        Reader<cursor_position_type> CursorPosition { cursorPosition };
 
        private:
         [[nodiscard]] static constexpr auto ConvertState( const InputState& previous, const bool& current ) noexcept -> InputState;

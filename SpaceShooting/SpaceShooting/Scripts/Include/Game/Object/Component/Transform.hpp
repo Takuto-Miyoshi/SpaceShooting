@@ -15,20 +15,20 @@ namespace game::component {
 
        public:
         /// @brief 位置情報
-        BasicProperty<Vector2<double>> Position { position };
+        Accessor<Vector2> Position { position };
 
         /// @brief ベクトル角
-        BasicProperty<Vector2<double>> Direction { direction };
+        Accessor<Vector2> Direction { direction };
 
         /// @brief ラジアン角
         template<std::floating_point T = float>
         [[nodiscard]] auto Angle() const& noexcept -> T {
-            return Vector2<T>::ToAngle( direction );
+            return Vector2::ToAngle( direction );
         }
 
        private:
-        Vector2<double> position {};
-        Vector2<double> direction {};
+        Vector2 position {};
+        Vector2 direction {};
     };
 }  // namespace game::component
 

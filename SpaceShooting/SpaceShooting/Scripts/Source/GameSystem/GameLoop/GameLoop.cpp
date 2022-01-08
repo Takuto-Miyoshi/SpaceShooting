@@ -45,12 +45,12 @@ namespace game {
             invoker->Update();
             inputInvoker->Update();
             sceneManager->Update();
-            if ( sceneManager->EndGame ) { break; }
+            if ( sceneManager->EndGame() ) { break; }
 
             timeManager->MarkFPS( targetFPS );
 
-            printfDx( "FPS : %d\n", *timeManager->FPS );
-            printfDx( "DeltaTime : %f\n", *timeManager->DeltaTime );
+            printfDx( "FPS : %d\n", timeManager->FPS() );
+            printfDx( "DeltaTime : %f\n", timeManager->DeltaTime() );
 
             ScreenFlip();
         }
